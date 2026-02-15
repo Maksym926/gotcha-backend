@@ -682,3 +682,298 @@ Caused by: org.springframework.util.PlaceholderResolutionException: Could not re
 2026-02-15 12:37:13 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-02-15 12:37:13 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-02-15 12:37:13 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-15 12:38:38 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 32356 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-15 12:38:38 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-15 12:38:38 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-15 12:38:38 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 1 JPA repository interface.
+2026-02-15 12:38:39 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-15 12:38:39 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-15 12:38:39 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-15 12:38:39 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1782 ms
+2026-02-15 12:38:40 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-15 12:38:40 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@70091872
+2026-02-15 12:38:40 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-15 12:38:40 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-15 12:38:40 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.048s)
+2026-02-15 12:38:40 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 3
+2026-02-15 12:38:40 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-15 12:38:40 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-15 12:38:40 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-15 12:38:41 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-15 12:38:41 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-15 12:38:42 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-15 12:38:42 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 12:38:42 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-15 12:38:43 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-15 12:38:43 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-15 12:38:43 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.882 seconds (process running for 6.573)
+2026-02-15 12:39:03 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-15 12:39:03 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-15 12:39:03 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-02-15 12:39:04 - INFO - com.gotcha.gotcha_api.controller.EventController - Adding the event to DB(Controller layer): Event(eventId=null, title=Coffee & Jazz Night, description=Enjoy a relaxing evening with live jazz music and exclusive coffee blends., eventDate=2026-03-15T19:00, location=Gotcha Café, Paris, createdAt=2026-02-14T10:30, imageKey=null)
+2026-02-15 12:39:04 - INFO - com.gotcha.gotcha_api.service.EventService - Uploading image to S3: shrek-facts.jpg
+2026-02-15 12:39:04 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-15 12:39:04 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-15 12:39:04 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: events-img/b9386dd3-c3fc-4369-8575-3f62326196db_shrek-facts.jpg
+2026-02-15 12:39:04 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-15 12:39:30 - INFO - com.gotcha.gotcha_api.service.EventService - Getting events from DB: 5
+2026-02-15 12:54:22 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-15 12:54:22 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-15 12:54:22 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 12:54:22 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-15 12:54:22 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-15 13:02:18 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 18420 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-15 13:02:18 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-15 13:02:19 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-15 13:02:19 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 1 JPA repository interface.
+2026-02-15 13:02:19 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-15 13:02:19 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-15 13:02:19 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-15 13:02:19 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1577 ms
+2026-02-15 13:02:20 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-15 13:02:20 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@8f2e3e6
+2026-02-15 13:02:20 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-15 13:02:20 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-15 13:02:20 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.038s)
+2026-02-15 13:02:20 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 3
+2026-02-15 13:02:20 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-15 13:02:20 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-15 13:02:21 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-15 13:02:21 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-15 13:02:21 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-15 13:02:22 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-15 13:02:22 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 13:02:22 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-15 13:02:23 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-15 13:02:23 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-15 13:02:23 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 6.015 seconds (process running for 6.804)
+2026-02-15 13:02:39 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-15 13:02:39 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-15 13:02:39 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2026-02-15 13:05:08 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-15 13:05:08 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-15 13:05:08 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 13:05:08 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-15 13:05:08 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-15 13:05:11 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 29504 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-15 13:05:11 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-15 13:05:12 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-15 13:05:12 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 1 JPA repository interface.
+2026-02-15 13:05:13 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-15 13:05:13 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-15 13:05:13 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-15 13:05:13 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1316 ms
+2026-02-15 13:05:13 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-15 13:05:13 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@17fbfb02
+2026-02-15 13:05:13 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-15 13:05:13 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-15 13:05:13 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.035s)
+2026-02-15 13:05:13 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 3
+2026-02-15 13:05:13 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-15 13:05:13 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-15 13:05:13 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-15 13:05:14 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-15 13:05:14 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-15 13:05:14 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-15 13:05:14 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 13:05:15 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-15 13:05:15 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-15 13:05:16 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-15 13:05:16 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 4.842 seconds (process running for 5.298)
+2026-02-15 13:05:24 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-15 13:05:24 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-15 13:05:24 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-02-15 13:05:48 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-15 13:05:48 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-15 13:05:48 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 13:05:48 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-15 13:05:48 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-15 13:10:57 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 29864 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-15 13:10:57 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-15 13:10:58 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-15 13:10:58 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 1 JPA repository interface.
+2026-02-15 13:10:59 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-15 13:10:59 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-15 13:10:59 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-15 13:10:59 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1451 ms
+2026-02-15 13:10:59 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-15 13:10:59 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4b4814d0
+2026-02-15 13:10:59 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-15 13:10:59 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-15 13:10:59 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.034s)
+2026-02-15 13:10:59 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 3
+2026-02-15 13:10:59 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-15 13:11:00 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-15 13:11:00 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-15 13:11:00 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-15 13:11:00 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-15 13:11:01 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-15 13:11:01 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 13:11:01 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-15 13:11:02 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-15 13:11:02 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-15 13:11:02 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.551 seconds (process running for 6.169)
+2026-02-15 13:11:09 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-15 13:11:09 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-15 13:11:09 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-02-15 13:11:10 - INFO - com.gotcha.gotcha_api.controller.EventController - Updating the event in DB(Controller layer): Event(eventId=null, title=Pop, description=Enjoy a relaxing evening with live jazz music and exclusive coffee blends., eventDate=2026-03-15T19:00, location=Gotcha Café, Paris, createdAt=2026-02-14T10:30, imageKey=null)
+2026-02-15 13:11:10 - INFO - com.gotcha.gotcha_api.service.EventService - Uploading image to S3: shrek-facts.jpg
+2026-02-15 13:11:10 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-15 13:11:10 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-15 13:11:10 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: events-img/affd82ea-4be7-448a-b42e-59a54af12d93_shrek-facts.jpg
+2026-02-15 13:11:10 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-15 13:18:45 - INFO - com.gotcha.gotcha_api.controller.EventController - Updating the event in DB(Controller layer): Event(eventId=null, title=frfrf, description=Enjoy a relaxing evening with live jazz music and exclusive coffee blends., eventDate=2026-03-15T19:00, location=Gotcha Café, Paris, createdAt=2026-02-14T10:30, imageKey=null)
+2026-02-15 13:18:45 - INFO - com.gotcha.gotcha_api.service.EventService - Uploading image to S3: shrek-facts.jpg
+2026-02-15 13:18:45 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-15 13:18:45 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-15 13:18:45 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: events-img/d080d04a-7287-4f6f-817f-9da1a5550501_shrek-facts.jpg
+2026-02-15 13:18:45 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-15 13:24:27 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-15 13:24:27 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-15 13:24:27 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 13:24:27 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-15 13:24:27 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-15 19:21:08 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 31820 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-15 19:21:08 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-15 19:21:09 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-15 19:21:09 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 1 JPA repository interface.
+2026-02-15 19:21:10 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-15 19:21:10 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-15 19:21:10 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-15 19:21:10 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1576 ms
+2026-02-15 19:21:10 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-15 19:21:11 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@8f2e3e6
+2026-02-15 19:21:11 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-15 19:21:11 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-15 19:21:11 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.087s)
+2026-02-15 19:21:11 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 3
+2026-02-15 19:21:11 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-15 19:21:11 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-15 19:21:11 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-15 19:21:12 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-15 19:21:12 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-15 19:21:12 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-15 19:21:12 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 19:21:13 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-15 19:21:13 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-15 19:21:14 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-15 19:21:14 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.867 seconds (process running for 6.563)
+2026-02-15 19:21:28 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-15 19:21:28 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-15 19:21:28 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2026-02-15 19:21:28 - INFO - com.gotcha.gotcha_api.controller.EventController - Updating the event in DB(Controller layer): Event(eventId=null, title=sdfdsf, description=Enjoy a relaxing evening with live jazz music and exclusive coffee blends., eventDate=2026-03-15T19:00, location=Gotcha Café, Paris, createdAt=2026-02-14T10:30, imageKey=null)
+2026-02-15 19:21:28 - INFO - com.gotcha.gotcha_api.service.EventService - Uploading image to S3: shrek-facts.jpg
+2026-02-15 19:21:28 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-15 19:21:28 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-15 19:21:28 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: events-img/b0c9d261-c94b-44cb-ba5b-8532f25fff2b_shrek-facts.jpg
+2026-02-15 19:21:28 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-15 19:21:47 - INFO - com.gotcha.gotcha_api.controller.EventController - Updating the event in DB(Controller layer): Event(eventId=null, title=ShrekLatte, description=Enjoy a relaxing evening with live jazz music and exclusive coffee blends., eventDate=2026-03-15T19:00, location=Gotcha Café, Paris, createdAt=2026-02-14T10:30, imageKey=null)
+2026-02-15 19:21:47 - INFO - com.gotcha.gotcha_api.service.EventService - Uploading image to S3: shrek-facts.jpg
+2026-02-15 19:21:47 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-15 19:21:47 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-15 19:21:47 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: events-img/5c746738-b5cc-4368-8b1a-a0ec33ce4226_shrek-facts.jpg
+2026-02-15 19:21:47 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-15 19:33:27 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-15 19:33:27 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-15 19:33:27 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 19:33:27 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-15 19:33:27 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-15 19:33:39 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 20920 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-15 19:33:39 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-15 19:33:40 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-15 19:33:40 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 1 JPA repository interface.
+2026-02-15 19:33:41 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-15 19:33:41 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-15 19:33:41 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-15 19:33:41 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1455 ms
+2026-02-15 19:33:41 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-15 19:33:41 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@45e140ae
+2026-02-15 19:33:41 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-15 19:33:41 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-15 19:33:41 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.036s)
+2026-02-15 19:33:41 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 3
+2026-02-15 19:33:41 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-15 19:33:41 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-15 19:33:42 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-15 19:33:42 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-15 19:33:42 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-15 19:33:43 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-15 19:33:43 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 19:33:43 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-15 19:33:44 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-15 19:33:44 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-15 19:33:44 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.349 seconds (process running for 6.0)
+2026-02-15 19:34:03 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-15 19:34:03 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-15 19:34:03 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-02-15 19:34:46 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-15 19:34:46 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-15 19:34:46 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-15 19:34:46 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-15 19:34:46 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

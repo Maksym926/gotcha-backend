@@ -52,4 +52,22 @@ public class EventService {
 
         return eventRepo.save(event);
     }
+
+    public Event getEventById(Long id) {
+        Event event = eventRepo.findById(id).orElse(null);
+
+        if(event != null){
+            String signedUrl;
+            if(event.getImageKey() != null){
+                signedUrl = s3Service.generateSignedUrl(event.getImageKey());
+                event.setImageKey(signedUrl);
+            }
+            return event;
+        }
+        return null;
+    }
+
+    public void deleteEvent(Long id) {
+        eventRepo.deleteById(id);
+    }
 }

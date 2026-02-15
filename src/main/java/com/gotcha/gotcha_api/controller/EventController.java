@@ -27,7 +27,14 @@ public class EventController {
         List<EventResponse> events = eventService.getAllEvents();
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
-
+    @GetMapping("/event/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable Long id){
+        Event event = eventService.getEventById(id);
+        if(event != null){
+            return new ResponseEntity<>(event, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
     @PostMapping("/event")
     public ResponseEntity<Event> addEvent(@RequestPart("event") Event event, @RequestPart("imageFile") MultipartFile imageFile){
@@ -40,6 +47,30 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PutMapping("/event/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestPart("event") Event event, @RequestPart("imageFile") MultipartFile imageFile){
+        try{
+            log.info("Updating the event in DB(Controller layer): " + event);
+            event.setEventId(id);
+            Event savedEvent = eventService.addOrUpdateEvent(event, imageFile);
+
+            return new ResponseEntity<>(savedEvent, HttpStatus.OK);
+        }catch (Exception e){
+            log.error("Error while uploading to S3", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping("/event/{id}")
+    public ResponseEntity<String> deleteEvent(@PathVariable Long id){
+        Event event = eventService.getEventById(id);
+        if(event != null){
+            eventService.deleteEvent(id);
+            return new ResponseEntity<>("Deleted", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Event not found", HttpStatus.NOT_FOUND);
+    }
+
+
 
 
 }
