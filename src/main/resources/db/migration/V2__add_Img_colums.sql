@@ -1,0 +1,4 @@
+ALTER TABLE events
+ADD COLUMN image_name VARCHAR(25),
+ADD COLUMN image_type VARCHAR(25),
+ADD COLUMN image_data BYTEA;
