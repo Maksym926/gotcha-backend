@@ -1,6 +1,6 @@
 package com.gotcha.gotcha_api.controller;
 
-import com.gotcha.gotcha_api.model.News;
+import com.gotcha.gotcha_api.model.dto.NewsResponse;
 import com.gotcha.gotcha_api.service.NewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class NewsController {
     NewService newService;
 
     @GetMapping("/news")
-    public ResponseEntity<News> getNewsPage(){
+    public ResponseEntity<NewsResponse> getNewsPage(){
         log.info("Getting news page from DB: ");
       return newService.getAllNews();
     }

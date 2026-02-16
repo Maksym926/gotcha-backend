@@ -198,3 +198,349 @@ Caused by: java.lang.IllegalArgumentException: Not a managed type: class com.got
 2026-02-16 10:27:27 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-02-16 10:27:27 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-02-16 10:27:27 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-16 10:31:45 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 17100 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-16 10:31:45 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-16 10:31:47 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-16 10:31:47 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 99 ms. Found 2 JPA repository interfaces.
+2026-02-16 10:31:48 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-16 10:31:48 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-16 10:31:48 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-16 10:31:48 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2831 ms
+2026-02-16 10:31:49 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-16 10:31:49 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7ac48f05
+2026-02-16 10:31:49 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-16 10:31:49 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-16 10:31:50 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 4 migrations (execution time 00:00.104s)
+2026-02-16 10:31:50 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
+2026-02-16 10:31:50 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-16 10:31:50 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-16 10:31:50 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-16 10:31:51 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-16 10:31:51 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-16 10:31:52 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-16 10:31:52 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 10:31:52 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-16 10:31:54 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-16 10:31:54 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-16 10:31:54 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 9.842 seconds (process running for 11.192)
+2026-02-16 10:32:07 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-16 10:32:07 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-16 10:32:07 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2026-02-16 10:32:07 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.gotcha.gotcha_api.model.StaticContent` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('sectionKey')]
+2026-02-16 10:32:46 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.gotcha.gotcha_api.model.StaticContent` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('sectionKey')]
+2026-02-16 10:37:01 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.gotcha.gotcha_api.model.StaticContent` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('title')]
+2026-02-16 10:39:04 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.gotcha.gotcha_api.model.StaticContent` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('title')]
+2026-02-16 11:07:03 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m42s597ms332µs200ns).
+2026-02-16 11:07:33 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.gotcha.gotcha_api.model.StaticContent` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('title')]
+2026-02-16 11:21:09 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.gotcha.gotcha_api.model.StaticContent` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('title')]
+2026-02-16 11:29:43 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.gotcha.gotcha_api.model.StaticContent` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('title')]
+2026-02-16 11:32:05 - INFO - com.gotcha.gotcha_api.controller.StaticContentController - Updating the static content in DB(Controller layer): StaticContent(contentId=null, sectionKey=null, title=Shreck, description=Discover our special Pistachio Latte and homemade almond croissant, available only this month., imageKey=null)
+2026-02-16 11:32:05 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-16 11:32:05 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-16 11:32:05 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: static-content-img/30a15a8d-464e-4554-b2f9-f45b680e3a34_shrek-facts.jpg
+2026-02-16 11:32:05 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-16 11:32:20 - ERROR - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 2 results were returned] with root cause
+org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
+	at org.hibernate.query.spi.AbstractSelectionQuery.uniqueElement(AbstractSelectionQuery.java:315)
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResultOrNull(AbstractSelectionQuery.java:330)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:328)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy2/jdk.proxy2.$Proxy138.findBySectionKey(Unknown Source)
+	at com.gotcha.gotcha_api.service.StaticContentService.getSection(StaticContentService.java:22)
+	at com.gotcha.gotcha_api.controller.StaticContentController.getSection(StaticContentController.java:37)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1778)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2026-02-16 11:52:21 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-16 11:52:21 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-16 11:52:21 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 11:52:21 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-16 11:52:21 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-16 11:53:00 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 23104 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-16 11:53:00 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-16 11:53:02 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-16 11:53:02 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 99 ms. Found 2 JPA repository interfaces.
+2026-02-16 11:53:03 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-16 11:53:03 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-16 11:53:03 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-16 11:53:03 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 3552 ms
+2026-02-16 11:53:04 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-16 11:53:05 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2e4eda17
+2026-02-16 11:53:05 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-16 11:53:05 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-16 11:53:05 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 4 migrations (execution time 00:00.100s)
+2026-02-16 11:53:05 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
+2026-02-16 11:53:05 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-16 11:53:05 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-16 11:53:05 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-16 11:53:06 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-16 11:53:06 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-16 11:53:08 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-16 11:53:08 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 11:53:08 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-16 11:53:10 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-16 11:53:11 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-16 11:53:11 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 12.917 seconds (process running for 14.495)
+2026-02-16 12:10:56 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-16 12:10:56 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-16 12:10:57 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 159 ms
+2026-02-16 12:11:43 - INFO - com.gotcha.gotcha_api.controller.StaticContentController - Updating the static content in DB(Controller layer): StaticContent(contentId=null, sectionKey=GOTCHA_BOX, title=Shreck, description=Discover our special Pistachio Latte and homemade almond croissant, available only this month., imageKey=null)
+2026-02-16 12:11:43 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-16 12:11:43 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-16 12:11:43 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: static-content-img/f89b3eb0-a632-4ba4-bce5-6c8772b6a0e1_shrek-facts.jpg
+2026-02-16 12:11:43 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-16 15:49:49 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h31m24ms691µs100ns).
+2026-02-16 18:09:09 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h28m49s470ms239µs900ns).
+2026-02-16 18:19:58 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-16 18:19:58 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-16 18:19:58 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 18:19:58 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-16 18:19:58 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-16 18:20:07 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 15536 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-16 18:20:07 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-16 18:20:08 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-16 18:20:08 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 2 JPA repository interfaces.
+2026-02-16 18:20:09 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-16 18:20:09 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-16 18:20:09 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-16 18:20:09 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1362 ms
+2026-02-16 18:20:09 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-16 18:20:09 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7ac48f05
+2026-02-16 18:20:09 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-16 18:20:09 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-16 18:20:09 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 4 migrations (execution time 00:00.069s)
+2026-02-16 18:20:10 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
+2026-02-16 18:20:10 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-16 18:20:10 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-16 18:20:10 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-16 18:20:10 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-16 18:20:10 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-16 18:20:11 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-16 18:20:11 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 18:20:11 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-16 18:20:13 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-16 18:20:13 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-16 18:20:13 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 6.706 seconds (process running for 7.395)
+2026-02-16 18:20:30 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-16 18:20:30 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-16 18:20:30 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-02-16 18:20:31 - INFO - com.gotcha.gotcha_api.controller.StaticContentController - Updating the static content in DB(Controller layer): StaticContent(contentId=null, sectionKey=GOTCHA_BOX, title=Shreck, description=Discover our special Pistachio Latte and homemade almond croissant, available only this month., imageKey=null)
+2026-02-16 18:20:32 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-16 18:20:32 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-16 18:20:32 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: static-content-img/51f08007-5dce-41c1-ac14-bb7da20662b0_shrek-facts.jpg
+2026-02-16 18:20:32 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-16 18:22:24 - ERROR - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 2 results were returned] with root cause
+org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
+	at org.hibernate.query.spi.AbstractSelectionQuery.uniqueElement(AbstractSelectionQuery.java:315)
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResultOrNull(AbstractSelectionQuery.java:330)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:328)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy2/jdk.proxy2.$Proxy138.findBySectionKey(Unknown Source)
+	at com.gotcha.gotcha_api.service.StaticContentService.getSectionBySectionKey(StaticContentService.java:22)
+	at com.gotcha.gotcha_api.controller.StaticContentController.getSection(StaticContentController.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1778)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2026-02-16 18:31:01 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-16 18:31:01 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-16 18:31:01 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 18:31:01 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-16 18:31:01 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-16 18:31:07 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 3268 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-16 18:31:07 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-16 18:31:08 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-16 18:31:08 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 2 JPA repository interfaces.
+2026-02-16 18:31:08 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-16 18:31:08 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-16 18:31:08 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-16 18:31:08 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1578 ms
+2026-02-16 18:31:09 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-16 18:31:09 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4f213a2
+2026-02-16 18:31:09 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-16 18:31:09 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-16 18:31:10 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 4 migrations (execution time 00:00.071s)
+2026-02-16 18:31:10 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
+2026-02-16 18:31:10 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-16 18:31:10 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-16 18:31:10 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-16 18:31:11 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-16 18:31:11 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-16 18:31:12 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-16 18:31:12 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 18:31:12 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-16 18:31:13 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-16 18:31:14 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-16 18:31:14 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 7.413 seconds (process running for 8.043)
+2026-02-16 18:32:00 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-16 18:32:00 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-16 18:32:00 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-02-16 18:32:00 - INFO - com.gotcha.gotcha_api.controller.StaticContentController - Updating the static content in DB(Controller layer): StaticContent(contentId=null, sectionKey=GOTCHA_BOX, title=MyShreck, description=Discover our special Pistachio Latte and homemade almond croissant, available only this month., imageKey=null)
+2026-02-16 18:32:01 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-02-16 18:32:01 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek-facts.jpg
+2026-02-16 18:32:01 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: static-content-img/0136ddf6-9662-49a0-9e95-37908666b9a9_shrek-facts.jpg
+2026-02-16 18:32:01 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-02-16 18:33:56 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-16 18:33:56 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-16 18:33:56 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-16 18:33:56 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-16 18:33:56 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

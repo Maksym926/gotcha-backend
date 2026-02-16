@@ -18,13 +18,14 @@ public class StaticContentService {
     @Autowired
     S3Service s3Service;
 
-    public StaticContent getSection(String sectionKey) {
+    public StaticContent getSectionBySectionKey(String sectionKey) {
         StaticContent staticContent = staticContentRepo.findBySectionKey(sectionKey).orElseThrow(() ->
                 new RuntimeException("Not found"));
         String signedUrl;
         if(staticContent.getImageKey() != null){
             signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
             staticContent.setImageKey(signedUrl);
+
         }
         return staticContent;
 
@@ -44,11 +45,19 @@ public class StaticContentService {
     }
 
     public StaticContent updateStaticContent(StaticContent content, MultipartFile file) throws IOException {
-        if(file != null && !file.isEmpty()){
-            String imageKey = s3Service.uploadFile(file, "static-content-img");
-            content.setImageKey(imageKey);
-            return staticContentRepo.save(content);
+
+        StaticContent existingContent = staticContentRepo.findBySectionKey(content.getSectionKey()).orElse(null);
+        if(existingContent != null){
+            existingContent.setTitle(content.getTitle());
+            existingContent.setDescription(content.getDescription());
+            if(file != null && !file.isEmpty()){
+                String imageKey = s3Service.uploadFile(file, "static-content-img");
+                existingContent.setImageKey(imageKey);
+            }
+            return staticContentRepo.save(existingContent);
         }
+
+
         return null;
 
     }

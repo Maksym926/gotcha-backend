@@ -1,9 +1,8 @@
 package com.gotcha.gotcha_api.service;
 
-import com.gotcha.gotcha_api.model.Event;
-import com.gotcha.gotcha_api.model.News;
+import com.gotcha.gotcha_api.model.StaticContent;
 import com.gotcha.gotcha_api.model.dto.EventResponse;
-import org.apache.coyote.Response;
+import com.gotcha.gotcha_api.model.dto.NewsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +16,18 @@ public class NewService {
     @Autowired
     EventService eventService;
 
-    public ResponseEntity<News> getAllNews() {
+    @Autowired
+    StaticContentService staticContentService;
+
+    public ResponseEntity<NewsResponse> getAllNews() {
         List<EventResponse> events = eventService.getAllEvents();
-        News news = new News(events);
-        return new ResponseEntity(news, HttpStatus.OK);
+        List<StaticContent> staticContents =  staticContentService.getAllSections();
+        NewsResponse response = new NewsResponse(
+                events,
+                staticContents
+        );
+
+        return new ResponseEntity(response, HttpStatus.OK);
 
 
     }
