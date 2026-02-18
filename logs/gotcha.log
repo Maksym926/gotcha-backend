@@ -1,443 +1,24 @@
-2026-02-17 18:28:52 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 18808 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-02-17 18:28:52 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
-2026-02-17 18:28:53 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-17 18:28:53 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 2 JPA repository interfaces.
-2026-02-17 18:28:54 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-02-17 18:28:54 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-02-17 18:28:54 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-17 18:28:54 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1449 ms
-2026-02-17 18:28:54 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-17 18:28:54 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@33d230ce
-2026-02-17 18:28:54 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-17 18:28:54 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
-2026-02-17 18:28:54 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 5 migrations (execution time 00:00.091s)
-2026-02-17 18:28:54 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
-2026-02-17 18:28:55 - INFO - org.flywaydb.core.internal.command.DbMigrate - Migrating schema "public" to version "5 - create userTable"
-2026-02-17 18:28:55 - ERROR - org.flywaydb.core.internal.command.DbMigrate - Migration of schema "public" to version "5 - create userTable" failed! Changes successfully rolled back.
-2026-02-17 18:28:55 - WARN - org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-2026-02-17 18:28:55 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-17 18:28:55 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-02-17 18:28:55 - INFO - org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2026-02-17 18:28:55 - INFO - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-02-17 18:28:55 - ERROR - org.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at com.gotcha.gotcha_api.GotchaApiApplication.main(GotchaApiApplication.java:10)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
-	... 10 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:283)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:282)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:255)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:153)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:77)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:105)
-	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:164)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:153)
-	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:104)
-	at org.flywaydb.core.Flyway.lambda$migrate$3(Flyway.java:245)
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:240)
-	at org.flywaydb.core.Flyway.migrate(Flyway.java:186)
-	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
-	... 17 common frames omitted
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:255)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:216)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:136)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:75)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:66)
-	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:31)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65)
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391)
-	... 36 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near "user"
-  Position: 14
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:358)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:343)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:319)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:314)
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:215)
-	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:88)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:211)
-	... 42 common frames omitted
-2026-02-17 18:29:23 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 29348 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-02-17 18:29:23 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
-2026-02-17 18:29:24 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-17 18:29:24 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 2 JPA repository interfaces.
-2026-02-17 18:29:25 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-02-17 18:29:25 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-02-17 18:29:25 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-17 18:29:25 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1342 ms
-2026-02-17 18:29:25 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-17 18:29:25 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1a2773a8
-2026-02-17 18:29:25 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-17 18:29:25 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
-2026-02-17 18:29:25 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 5 migrations (execution time 00:00.050s)
-2026-02-17 18:29:25 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
-2026-02-17 18:29:26 - INFO - org.flywaydb.core.internal.command.DbMigrate - Migrating schema "public" to version "5 - create userTable"
-2026-02-17 18:29:26 - ERROR - org.flywaydb.core.internal.command.DbMigrate - Migration of schema "public" to version "5 - create userTable" failed! Changes successfully rolled back.
-2026-02-17 18:29:26 - WARN - org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-2026-02-17 18:29:26 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-17 18:29:26 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-02-17 18:29:26 - INFO - org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2026-02-17 18:29:26 - INFO - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-02-17 18:29:26 - ERROR - org.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at com.gotcha.gotcha_api.GotchaApiApplication.main(GotchaApiApplication.java:10)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
-	... 10 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:283)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:282)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:255)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:153)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:77)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:105)
-	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:164)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:153)
-	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:104)
-	at org.flywaydb.core.Flyway.lambda$migrate$3(Flyway.java:245)
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:240)
-	at org.flywaydb.core.Flyway.migrate(Flyway.java:186)
-	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
-	... 17 common frames omitted
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "user"
-  Position: 14
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:255)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:216)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:136)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:75)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:66)
-	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:31)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65)
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391)
-	... 36 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near "user"
-  Position: 14
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:358)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:343)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:319)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:314)
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:215)
-	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:88)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:211)
-	... 42 common frames omitted
-2026-02-17 18:29:50 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 23816 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-02-17 18:29:50 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
-2026-02-17 18:29:50 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-17 18:29:50 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
-2026-02-17 18:29:51 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-02-17 18:29:51 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-02-17 18:29:51 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-17 18:29:51 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1305 ms
-2026-02-17 18:29:51 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-17 18:29:52 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27ffd9f8
-2026-02-17 18:29:52 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-17 18:29:52 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
-2026-02-17 18:29:52 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 5 migrations (execution time 00:00.061s)
-2026-02-17 18:29:52 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
-2026-02-17 18:29:52 - INFO - org.flywaydb.core.internal.command.DbMigrate - Migrating schema "public" to version "5 - create userTable"
-2026-02-17 18:29:52 - ERROR - org.flywaydb.core.internal.command.DbMigrate - Migration of schema "public" to version "5 - create userTable" failed! Changes successfully rolled back.
-2026-02-17 18:29:52 - WARN - org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near ";"
-  Position: 281
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-2026-02-17 18:29:52 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-17 18:29:52 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-02-17 18:29:52 - INFO - org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2026-02-17 18:29:52 - INFO - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-02-17 18:29:52 - ERROR - org.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near ";"
-  Position: 281
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at com.gotcha.gotcha_api.GotchaApiApplication.main(GotchaApiApplication.java:10)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near ";"
-  Position: 281
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
-	... 10 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near ";"
-  Position: 281
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:283)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:282)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:255)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:153)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:77)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:105)
-	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:164)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:153)
-	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:104)
-	at org.flywaydb.core.Flyway.lambda$migrate$3(Flyway.java:245)
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:240)
-	at org.flywaydb.core.Flyway.migrate(Flyway.java:186)
-	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
-	... 17 common frames omitted
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V5__create_userTable.sql
--------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near ";"
-  Position: 281
-Location   : db/migration/V5__create_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V5__create_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:255)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:216)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:136)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:75)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:66)
-	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:31)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65)
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391)
-	... 36 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ";"
-  Position: 281
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:358)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:343)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:319)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:314)
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:215)
-	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:88)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:211)
-	... 42 common frames omitted
-2026-02-17 18:30:02 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 4000 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-02-17 18:30:02 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
-2026-02-17 18:30:03 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-17 18:30:03 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 2 JPA repository interfaces.
-2026-02-17 18:30:03 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-02-17 18:30:03 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-02-17 18:30:03 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-17 18:30:03 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1428 ms
-2026-02-17 18:30:04 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-17 18:30:04 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27ffd9f8
-2026-02-17 18:30:04 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-17 18:30:04 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
-2026-02-17 18:30:04 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 5 migrations (execution time 00:00.055s)
-2026-02-17 18:30:04 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 4
-2026-02-17 18:30:04 - INFO - org.flywaydb.core.internal.command.DbMigrate - Migrating schema "public" to version "5 - create userTable"
-2026-02-17 18:30:04 - INFO - org.flywaydb.core.internal.command.DbMigrate - Successfully applied 1 migration to schema "public", now at version v5 (execution time 00:00.120s)
-2026-02-17 18:30:04 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-02-17 18:30:04 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
-2026-02-17 18:30:05 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-17 18:30:05 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+2026-02-18 01:18:03 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h18s194ms285µs).
+2026-02-18 03:57:41 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h32m5s762ms780µs400ns).
+2026-02-18 10:49:42 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 10972 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-18 10:49:42 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-18 10:49:42 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-18 10:49:42 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 2 JPA repository interfaces.
+2026-02-18 10:49:43 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-18 10:49:43 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-18 10:49:43 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-18 10:49:43 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1278 ms
+2026-02-18 10:49:43 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-18 10:49:44 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@59b492ec
+2026-02-18 10:49:44 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-18 10:49:44 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-18 10:49:44 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 7 migrations (execution time 00:00.099s)
+2026-02-18 10:49:44 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 7
+2026-02-18 10:49:44 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-18 10:49:44 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-18 10:49:44 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-18 10:49:44 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-18 10:49:45 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -449,94 +30,37 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ";"
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-02-17 18:30:05 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-17 18:30:05 - WARN - org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "create table user (user_id bigint generated by default as identity, email varchar(255), gotcha_coins bigint, password varchar(255), role varchar(255) check ((role in ('ADMIN','MEMBER'))), status varchar(255), username varchar(255), primary key (user_id))" via JDBC [ERROR: syntax error at or near "user"
-  Position: 14]
-org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create table user (user_id bigint generated by default as identity, email varchar(255), gotcha_coins bigint, password varchar(255), role varchar(255) check ((role in ('ADMIN','MEMBER'))), status varchar(255), username varchar(255), primary key (user_id))" via JDBC [ERROR: syntax error at or near "user"
-  Position: 14]
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
-	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
-	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
-	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.createTable(AbstractSchemaMigrator.java:305)
-	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:80)
-	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
-	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
-	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
-	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
-	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
-	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
-	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
-	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:433)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:416)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:409)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at com.gotcha.gotcha_api.GotchaApiApplication.main(GotchaApiApplication.java:10)
-Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near "user"
-  Position: 14
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:358)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:343)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:319)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:314)
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
-	... 38 common frames omitted
-2026-02-17 18:30:05 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-17 18:30:06 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-17 18:30:06 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-17 18:30:07 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-02-17 18:30:07 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.491 seconds (process running for 5.939)
-2026-02-17 18:31:40 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-02-17 18:31:40 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-02-17 18:31:40 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-17 18:31:40 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-17 18:31:40 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-02-17 18:31:44 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 21548 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-02-17 18:31:44 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
-2026-02-17 18:31:45 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-17 18:31:45 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
-2026-02-17 18:31:45 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-02-17 18:31:45 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-02-17 18:31:45 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-17 18:31:46 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1334 ms
-2026-02-17 18:31:46 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-17 18:31:46 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4662752a
-2026-02-17 18:31:46 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-17 18:31:46 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
-2026-02-17 18:31:46 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 5 migrations (execution time 00:00.040s)
-2026-02-17 18:31:46 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 5
-2026-02-17 18:31:46 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
-2026-02-17 18:31:46 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-02-17 18:31:46 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
-2026-02-17 18:31:47 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-17 18:31:47 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+2026-02-18 10:49:45 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-18 10:49:45 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-18 10:49:45 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-18 10:49:46 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-18 10:49:47 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-18 10:49:47 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.501 seconds (process running for 6.097)
+2026-02-18 10:50:13 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-18 10:50:13 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-18 10:50:13 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-18 10:50:13 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-18 10:50:13 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-18 12:27:30 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 26352 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-02-18 12:27:30 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-18 12:27:31 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-18 12:27:31 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2026-02-18 12:27:32 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-18 12:27:32 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-18 12:27:32 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-18 12:27:32 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1367 ms
+2026-02-18 12:27:32 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-02-18 12:27:32 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-18 12:27:32 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1b0e031b
+2026-02-18 12:27:32 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-18 12:27:32 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-02-18 12:27:33 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 7 migrations (execution time 00:00.076s)
+2026-02-18 12:27:33 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 7
+2026-02-18 12:27:33 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-02-18 12:27:33 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-18 12:27:33 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-18 12:27:33 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-18 12:27:33 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -548,197 +72,18 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near "us
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-02-17 18:31:47 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-17 18:31:47 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-17 18:31:48 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-17 18:31:48 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-17 18:31:49 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-02-17 18:31:49 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 4.933 seconds (process running for 5.387)
-2026-02-17 18:44:15 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-02-17 18:44:15 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-02-17 18:44:15 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-17 18:44:15 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-17 18:44:15 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-02-17 20:10:53 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 26988 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-02-17 20:10:53 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
-2026-02-17 20:10:54 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-17 20:10:54 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 2 JPA repository interfaces.
-2026-02-17 20:10:54 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-02-17 20:10:54 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-02-17 20:10:54 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-17 20:10:55 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1381 ms
-2026-02-17 20:10:55 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-17 20:10:55 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@799f354a
-2026-02-17 20:10:55 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-17 20:10:55 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
-2026-02-17 20:10:55 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 7 migrations (execution time 00:00.050s)
-2026-02-17 20:10:55 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 5
-2026-02-17 20:10:55 - INFO - org.flywaydb.core.internal.command.DbMigrate - Migrating schema "public" to version "6 - alter userTable"
-2026-02-17 20:10:55 - ERROR - org.flywaydb.core.internal.command.DbMigrate - Migration of schema "public" to version "6 - alter userTable" failed! Changes successfully rolled back.
-2026-02-17 20:10:55 - WARN - org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V6__alter_userTable.sql
-------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "users"
-  Position: 7
-Location   : db/migration/V6__alter_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V6__alter_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-2026-02-17 20:10:55 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-17 20:10:55 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-02-17 20:10:55 - INFO - org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2026-02-17 20:10:55 - INFO - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-02-17 20:10:55 - ERROR - org.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V6__alter_userTable.sql
-------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "users"
-  Position: 7
-Location   : db/migration/V6__alter_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V6__alter_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at com.gotcha.gotcha_api.GotchaApiApplication.main(GotchaApiApplication.java:10)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V6__alter_userTable.sql
-------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "users"
-  Position: 7
-Location   : db/migration/V6__alter_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V6__alter_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
-	... 10 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V6__alter_userTable.sql
-------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "users"
-  Position: 7
-Location   : db/migration/V6__alter_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V6__alter_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:283)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:282)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:255)
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:153)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:77)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59)
-	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:60)
-	at org.flywaydb.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:105)
-	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:164)
-	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:153)
-	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:104)
-	at org.flywaydb.core.Flyway.lambda$migrate$3(Flyway.java:245)
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:240)
-	at org.flywaydb.core.Flyway.migrate(Flyway.java:186)
-	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
-	... 17 common frames omitted
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V6__alter_userTable.sql
-------------------------------------------------
-SQL State  : 42601
-Error Code : 0
-Message    : ERROR: syntax error at or near "users"
-  Position: 7
-Location   : db/migration/V6__alter_userTable.sql (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes\db\migration\V6__alter_userTable.sql)
-Line       : 1
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:255)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:216)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:136)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:75)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:66)
-	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:31)
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65)
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391)
-	... 36 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near "users"
-  Position: 7
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:358)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:343)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:319)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:314)
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:215)
-	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:88)
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:211)
-	... 42 common frames omitted
-2026-02-17 20:12:24 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 29164 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-02-17 20:12:24 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
-2026-02-17 20:12:25 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-17 20:12:25 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 2 JPA repository interfaces.
-2026-02-17 20:12:25 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-02-17 20:12:25 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-02-17 20:12:25 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-17 20:12:26 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1233 ms
-2026-02-17 20:12:26 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-17 20:12:26 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b5021d1
-2026-02-17 20:12:26 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-17 20:12:26 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
-2026-02-17 20:12:26 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 7 migrations (execution time 00:00.063s)
-2026-02-17 20:12:26 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 5
-2026-02-17 20:12:26 - INFO - org.flywaydb.core.internal.command.DbMigrate - Migrating schema "public" to version "6 - alter userTable"
-2026-02-17 20:12:26 - INFO - org.flywaydb.core.internal.command.DbMigrate - Migrating schema "public" to version "7 - add table eventRSVP"
-2026-02-17 20:12:26 - INFO - org.flywaydb.core.internal.command.DbMigrate - Successfully applied 2 migrations to schema "public", now at version v7 (execution time 00:00.093s)
-2026-02-17 20:12:26 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-02-17 20:12:27 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
-2026-02-17 20:12:27 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-17 20:12:27 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
-	Database driver: PostgreSQL JDBC Driver
-	Database dialect: PostgreSQLDialect
-	Database version: 18.1
-	Default catalog/schema: gotcha/public
-	Autocommit mode: undefined/unknown
-	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: none
-	Pool: DataSourceConnectionProvider
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2026-02-17 20:12:28 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-17 20:12:28 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-17 20:12:28 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-17 20:12:29 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-17 20:12:29 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-02-17 20:12:29 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.404 seconds (process running for 5.852)
-2026-02-17 20:19:48 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-02-17 20:19:48 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-02-17 20:19:48 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-17 20:19:48 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-17 20:19:48 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-18 12:27:34 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-18 12:27:34 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-18 12:27:34 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-18 12:27:35 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-18 12:27:35 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-02-18 12:27:35 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-02-18 12:27:35 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 5.316 seconds (process running for 5.767)
+2026-02-18 12:28:06 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-18 12:28:06 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-18 12:28:06 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-02-18 12:31:22 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-18 12:31:22 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-02-18 12:31:22 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-18 12:31:22 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-18 12:31:22 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
