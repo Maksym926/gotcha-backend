@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.controller;
 
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
+import com.gotcha.gotcha_api.model.dto.RegisterRequest;
 import com.gotcha.gotcha_api.service.JWTService;
 import com.gotcha.gotcha_api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 public class UserController {
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     private JWTService jwtService;
@@ -28,15 +29,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user){
-        return userService.saveUser(user);
+    public User registerUser(@RequestBody RegisterRequest registerRequest){
+        return userService.saveUser(registerRequest);
     }
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginRequest user){
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+    public String loginUser(@RequestBody LoginRequest loginRequest){
+        Authentication authentication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
 
         if(authentication.isAuthenticated()){
-            return jwtService.generateToken(user.getEmail());
+            return jwtService.generateToken(loginRequest.email());
         }
         else
             return "Failed to login";
