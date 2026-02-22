@@ -1,8 +1,13 @@
 package com.gotcha.gotcha_api.service;
 
 import com.gotcha.gotcha_api.model.Event;
+import com.gotcha.gotcha_api.model.EventRSVP;
+import com.gotcha.gotcha_api.model.User;
+import com.gotcha.gotcha_api.model.UserPrincipal;
 import com.gotcha.gotcha_api.model.dto.EventResponse;
+import com.gotcha.gotcha_api.model.dto.RSVPRequest;
 import com.gotcha.gotcha_api.repo.EventRepo;
+import com.gotcha.gotcha_api.repo.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +27,9 @@ public class EventService {
     @Autowired
     S3Service s3Service;
 
+    @Autowired
+    UserRepo userRepo;
+
     public List<EventResponse> getAllEvents() {
         List<Event> events = eventRepo.findAll();
 
@@ -36,7 +44,7 @@ public class EventService {
             return  new EventResponse(
                     event.getEventId(),
                     event.getTitle(),
-                    event.getDescription(),
+                    event.getLocation(),
                     signedUrl
             );
 
@@ -70,4 +78,6 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventRepo.deleteById(id);
     }
+
+
 }

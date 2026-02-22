@@ -18,8 +18,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    @Column(nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String email;
     private String status;
     private Long gotchaCoins;
@@ -29,6 +32,7 @@ public class User {
     private List<EventRSVP> rsvps;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
 
     //    private String favoriteDrink; // ??

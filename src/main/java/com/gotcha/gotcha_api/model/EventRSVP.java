@@ -18,13 +18,17 @@ public class EventRSVP {
     private Long rsvpId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name = "event_id", nullable = false)
     private Event event;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    private String status;
-
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+    @Column(name = "guests", nullable = false)
+    private Long guests;
+    @Column(name = "rsvp_name", nullable = false)
+    private String rsvpName;
+    @Column(name = "rsvp_email", nullable = false)
+    private String rsvpEmail;
 }

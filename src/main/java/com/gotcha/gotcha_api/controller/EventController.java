@@ -1,7 +1,10 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.gotcha.gotcha_api.model.Event;
+import com.gotcha.gotcha_api.model.EventRSVP;
+import com.gotcha.gotcha_api.model.UserPrincipal;
 import com.gotcha.gotcha_api.model.dto.EventResponse;
+import com.gotcha.gotcha_api.model.dto.RSVPRequest;
 import com.gotcha.gotcha_api.service.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +72,8 @@ public class EventController {
         }
         return new ResponseEntity<>("Event not found", HttpStatus.NOT_FOUND);
     }
+
+
 
 
 

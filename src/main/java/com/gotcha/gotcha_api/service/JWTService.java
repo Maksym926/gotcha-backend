@@ -33,7 +33,7 @@ public class JWTService {
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000*60*3))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000*60*15))
                 .signWith(generateKey(), SignatureAlgorithm.HS256).compact();
     }
     private String generateSecretKey() {
