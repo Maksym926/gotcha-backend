@@ -5,6 +5,7 @@ import com.gotcha.gotcha_api.model.EventRSVP;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.UserPrincipal;
 import com.gotcha.gotcha_api.model.dto.RSVPRequest;
+import com.gotcha.gotcha_api.model.dto.UpdateRSVPRequest;
 import com.gotcha.gotcha_api.repo.EventRSVPRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,9 @@ public class EventRSVPService {
 
     }
     private EventRSVP mapToEventRSVP(RSVPRequest rsvpRequest, UserPrincipal userPrincipal){
+        if(rsvpRequest instanceof RSVPRequest){
+
+        }
         Event event = eventService.getEventById(rsvpRequest.eventId());
         log.info("User email: " + userPrincipal.getUsername() + " ");
         User user = userService.getUserByEmail(userPrincipal.getUsername());
@@ -52,5 +56,24 @@ public class EventRSVPService {
 
     public void deleteRSVPById(Long eventId) {
         eventRSVPRepo.deleteById(eventId);
+    }
+
+    public EventRSVP getRSVPById(Long rsvpId) {
+        return eventRSVPRepo.findById(rsvpId).orElse(null);
+    }
+
+    public EventRSVP updateRSVP(Long rsvpId, UpdateRSVPRequest updateRsvpRequest) {
+        EventRSVP eventRSVP = eventRSVPRepo.findById(rsvpId).orElse(null);
+        if(updateRsvpRequest.rsvpName() != null){
+            eventRSVP.setRsvpName(updateRsvpRequest.rsvpName());
+        }
+        if(updateRsvpRequest.rsvpEmail() != null){
+            eventRSVP.setRsvpEmail(updateRsvpRequest.rsvpEmail());
+        }
+        if(updateRsvpRequest.guestNumber() != null){
+            eventRSVP.setGuests(updateRsvpRequest.guestNumber());
+        }
+        return eventRSVPRepo.save(eventRSVP);
+
     }
 }
