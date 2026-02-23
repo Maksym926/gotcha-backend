@@ -28,8 +28,8 @@ public class EventRSVPController {
         EventRSVP eventRSVP = eventRSVPService.submitRSVP(rsvpRequest, userPrincipal);
         return new ResponseEntity<>("RSVP submitted successfully", HttpStatus.OK);
     }
-    @PutMapping("/member/event/rsvp/{event_id}")
-    public ResponseEntity<String> updateRSVP(@PathVariable Long rsvp_id, @RequestBody UpdateRSVPRequest updateRsvpRequest){
+    @PutMapping("/member/event/rsvp/{rsvp_id}")
+    public ResponseEntity<String> updateRSVP(@PathVariable("rsvp_id") Long rsvp_id, @RequestBody UpdateRSVPRequest updateRsvpRequest){
         EventRSVP upadetedEventRSVP = eventRSVPService.updateRSVP(rsvp_id, updateRsvpRequest);
         return new ResponseEntity<>("RSVP updated successfully", HttpStatus.OK);
     }
@@ -44,9 +44,20 @@ public class EventRSVPController {
 
     }
 
-    @DeleteMapping("/member/event/rsvp/{event_id}")
-    public ResponseEntity<String> deleteRSVP(@PathVariable Long event_id){
-        eventRSVPService.deleteRSVPById(event_id);
+    @GetMapping("/admin/user/{user_id}/rsvp")
+    public ResponseEntity<List<EventRSVP>> getRSVPByUserId(@PathVariable("user_id") Long user_id){
+        List<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByUserId(user_id);
+        return new ResponseEntity<>(rsvpEvents, HttpStatus.OK);
+    }
+    @GetMapping("/admin/event/{event_id}/rsvp")
+    public ResponseEntity<List<EventRSVP>> getRSVPByEvenId(@PathVariable("event_id") Long event_id){
+        List<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByEventId(event_id);
+        return new ResponseEntity<>(rsvpEvents, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/member/event/rsvp/{rsvp_id}")
+    public ResponseEntity<String> deleteRSVP(@PathVariable Long rsvp_id){
+        eventRSVPService.deleteRSVPById(rsvp_id);
         return new ResponseEntity<>("RSVP deleted successfully", HttpStatus.OK);
     }
 }

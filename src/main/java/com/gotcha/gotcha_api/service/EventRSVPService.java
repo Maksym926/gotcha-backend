@@ -63,6 +63,7 @@ public class EventRSVPService {
     }
 
     public EventRSVP updateRSVP(Long rsvpId, UpdateRSVPRequest updateRsvpRequest) {
+
         EventRSVP eventRSVP = eventRSVPRepo.findById(rsvpId).orElse(null);
         if(updateRsvpRequest.rsvpName() != null){
             eventRSVP.setRsvpName(updateRsvpRequest.rsvpName());
@@ -75,5 +76,13 @@ public class EventRSVPService {
         }
         return eventRSVPRepo.save(eventRSVP);
 
+    }
+
+    public List<EventRSVP> getRSVPByUserId(Long userId) {
+        return eventRSVPRepo.findByUser_UserId(userId);
+    }
+
+    public List<EventRSVP> getRSVPByEventId(Long eventId) {
+        return eventRSVPRepo.findByEvent_EventId(eventId);
     }
 }
