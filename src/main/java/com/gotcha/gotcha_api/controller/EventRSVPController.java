@@ -11,8 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/member/event/rsvp")
+@RequestMapping("/api")
 @CrossOrigin
 public class EventRSVPController {
 
@@ -20,9 +22,19 @@ public class EventRSVPController {
     EventRSVPService eventRSVPService;
 
 
-    @PostMapping
+    @PostMapping("/member/event/rsvp")
     public ResponseEntity<String> submitRSVP(@RequestBody RSVPRequest rsvpRequest, @AuthenticationPrincipal UserPrincipal userPrincipal){
         EventRSVP eventRSVP = eventRSVPService.submitRSVP(rsvpRequest, userPrincipal);
         return new ResponseEntity<>("RSVP submitted successfully", HttpStatus.OK);
+    }
+    @GetMapping("/admin/event/rsvp")
+    public ResponseEntity<List<EventRSVP>> getAllRSVP(){
+        return new ResponseEntity<>(eventRSVPService.getAllRSVP(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/member/event/rsvp/{event_id}")
+    public ResponseEntity<String> deleteRSVP(@PathVariable Long event_id){
+        eventRSVPService.deleteRSVPById(event_id);
+        return new ResponseEntity<>("RSVP deleted successfully", HttpStatus.OK);
     }
 }

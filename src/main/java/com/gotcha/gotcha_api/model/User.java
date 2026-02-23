@@ -1,5 +1,6 @@
 package com.gotcha.gotcha_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gotcha.gotcha_api.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class User {
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
     @Column(nullable = false)
     private String email;
@@ -28,6 +30,7 @@ public class User {
     private Long gotchaCoins;
 
     private String profilePictureKey;
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<EventRSVP> rsvps;
 

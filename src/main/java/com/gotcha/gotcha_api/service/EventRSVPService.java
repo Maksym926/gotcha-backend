@@ -9,7 +9,10 @@ import com.gotcha.gotcha_api.repo.EventRSVPRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -41,5 +44,13 @@ public class EventRSVPService {
         eventRSVP.setRsvpEmail(rsvpRequest.rsvpEmail());
         eventRSVP.setGuests(rsvpRequest.guestNumber());
         return eventRSVP;
+    }
+
+    public List<EventRSVP> getAllRSVP() {
+        return eventRSVPRepo.findAll();
+    }
+
+    public void deleteRSVPById(Long eventId) {
+        eventRSVPRepo.deleteById(eventId);
     }
 }
