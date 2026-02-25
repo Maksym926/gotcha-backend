@@ -30,4 +30,20 @@ public class GlobalExceptionHandler {
                 errors
         );
     }
+
+    //login User
+
+//    @ExceptionHandler(InvalidCredentialsException.class)
+//    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+//    public ErrorResponse handleInvalidCredentialsException(InvalidCredentialsException ex){
+//        Map<String, String> errors = new HashMap<>();
+//
+//        errors.put("message", ex.getMessage());
+//        return new ErrorResponse(
+//                LocalDateTime.now(),
+//                401,
+//                errors
+//
+//        );
+//    }
 }

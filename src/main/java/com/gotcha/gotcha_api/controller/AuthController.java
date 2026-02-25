@@ -34,13 +34,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@Valid@RequestBody LoginRequest loginRequest){
-        Authentication authentication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
-
-        if(authentication.isAuthenticated()){
-            return jwtService.generateToken(loginRequest.email());
-        }
-        else
-            return "Failed to login";
+    public String loginUser(@Valid @RequestBody LoginRequest loginRequest){
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
+        return jwtService.generateToken(loginRequest.email());
     }
 }
