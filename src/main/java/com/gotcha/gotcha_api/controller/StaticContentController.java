@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.controller;
 
 import com.gotcha.gotcha_api.model.StaticContent;
 import com.gotcha.gotcha_api.service.StaticContentService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class StaticContentController {
     @Autowired
     StaticContentService staticContentService;
 
-    @GetMapping("/static-content")
+    @GetMapping("/member/static-content")
     public ResponseEntity<List<StaticContent>> getSections(){
         List<StaticContent> staticContent = staticContentService.getAllSections();
         if(!staticContent.isEmpty()){
@@ -29,7 +30,7 @@ public class StaticContentController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/static-content/{sectionKey}")
+    @GetMapping("/member/static-content/{sectionKey}")
     public ResponseEntity<StaticContent> getSection(@PathVariable String sectionKey){
 
         StaticContent content = staticContentService.getSectionBySectionKey(sectionKey);
@@ -39,8 +40,8 @@ public class StaticContentController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/static-content/{sectionKey}")
-    public ResponseEntity<StaticContent> updateSection(@PathVariable String sectionKey, @RequestPart("content") StaticContent content, @RequestPart("imageFile") MultipartFile imageFile){
+    @PutMapping("/admin/static-content/{sectionKey}")
+    public ResponseEntity<StaticContent> updateSection(@PathVariable String sectionKey, @Valid @RequestPart("content") StaticContent content, @RequestPart("imageFile") MultipartFile imageFile){
         try{
 
             content.setSectionKey(sectionKey);

@@ -5,6 +5,7 @@ import com.gotcha.gotcha_api.model.dto.LoginRequest;
 import com.gotcha.gotcha_api.model.dto.RegisterRequest;
 import com.gotcha.gotcha_api.service.JWTService;
 import com.gotcha.gotcha_api.service.UserService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,9 +29,10 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody RegisterRequest registerRequest){
+    public User registerUser(@Valid @RequestBody RegisterRequest registerRequest){
         return userService.saveUser(registerRequest);
     }
+
     @PostMapping("/login")
     public String loginUser(@RequestBody LoginRequest loginRequest){
         Authentication authentication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));

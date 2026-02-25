@@ -6,6 +6,7 @@ import com.gotcha.gotcha_api.model.UserPrincipal;
 import com.gotcha.gotcha_api.model.dto.EventResponse;
 import com.gotcha.gotcha_api.model.dto.RSVPRequest;
 import com.gotcha.gotcha_api.service.EventService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,12 +26,13 @@ public class EventController {
     @Autowired
     EventService eventService;
 
-    @GetMapping("/event")
+    @GetMapping("member/event")
     public ResponseEntity<List<EventResponse>> getEvents(){
         List<EventResponse> events = eventService.getAllEvents();
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
-    @GetMapping("/event/{id}")
+
+    @GetMapping("member/event/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id){
         Event event = eventService.getEventById(id);
         if(event != null){
@@ -39,8 +41,8 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/event")
-    public ResponseEntity<Event> addEvent(@RequestPart("event") Event event, @RequestPart("imageFile") MultipartFile imageFile){
+    @PostMapping("/admin/event")
+    public ResponseEntity<Event> addEvent(@Valid @RequestPart("event") Event event, @RequestPart("imageFile") MultipartFile imageFile){
         try{
             log.info("Adding the event to DB(Controller layer): " + event);
             Event savedEvent = eventService.addOrUpdateEvent(event, imageFile);
@@ -50,8 +52,9 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/event/{id}")
-    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestPart("event") Event event, @RequestPart("imageFile") MultipartFile imageFile){
+
+    @PutMapping("/admin/event/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @Valid @RequestPart("event") Event event, @RequestPart("imageFile") MultipartFile imageFile){
         try{
             log.info("Updating the event in DB(Controller layer): " + event);
             event.setEventId(id);
@@ -63,7 +66,8 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @DeleteMapping("/event/{id}")
+
+    @DeleteMapping("/admin/event/{id}")
     public ResponseEntity<String> deleteEvent(@PathVariable Long id){
         Event event = eventService.getEventById(id);
         if(event != null){
