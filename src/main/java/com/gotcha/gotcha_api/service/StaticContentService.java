@@ -1,5 +1,7 @@
 package com.gotcha.gotcha_api.service;
 
+import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
+import com.gotcha.gotcha_api.exception.custom.StaticContentNotFoundException;
 import com.gotcha.gotcha_api.model.StaticContent;
 import com.gotcha.gotcha_api.repo.StaticContentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,12 @@ public class StaticContentService {
     @Autowired
     S3Service s3Service;
 
-    public StaticContent getSectionBySectionKey(String sectionKey) {
+    public StaticContent getSectionBySectionKey(String sectionKey){
         StaticContent staticContent = staticContentRepo.findBySectionKey(sectionKey).orElseThrow(() ->
-                new RuntimeException("Not found"));
+                new StaticContentNotFoundException("Section " + sectionKey +" not found"));
         String signedUrl;
-        if(staticContent.getImageKey() != null){
-            signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
-            staticContent.setImageKey(signedUrl);
-
-        }
+        signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
+        staticContent.setImageKey(signedUrl);
         return staticContent;
 
     }
@@ -35,10 +34,8 @@ public class StaticContentService {
         List<StaticContent> staticContentList = staticContentRepo.findAll();
         return staticContentList.stream().map(staticContent -> {
             String signedUrl;
-            if(staticContent.getImageKey() != null){
-                signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
-                staticContent.setImageKey(signedUrl);
-            }
+            signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
+            staticContent.setImageKey(signedUrl);
             return staticContent;
         }).toList();
 
@@ -46,19 +43,24 @@ public class StaticContentService {
 
     public StaticContent updateStaticContent(StaticContent content, MultipartFile file) throws IOException {
 
-        StaticContent existingContent = staticContentRepo.findBySectionKey(content.getSectionKey()).orElse(null);
-        if(existingContent != null){
-            existingContent.setTitle(content.getTitle());
-            existingContent.setDescription(content.getDescription());
-            if(file != null && !file.isEmpty()){
+        StaticContent existingContent = getSectionBySectionKey(content.getSectionKey());
+
+        existingContent.setTitle(content.getTitle());
+        existingContent.setDescription(content.getDescription());
+        if(file != null && !file.isEmpty()){
+            try{
                 String imageKey = s3Service.uploadFile(file, "static-content-img");
                 existingContent.setImageKey(imageKey);
+            }catch (IOException ex){
+                throw new ImageFileNotFoundException("Image file not found", ex);
             }
-            return staticContentRepo.save(existingContent);
+
         }
+        return staticContentRepo.save(existingContent);
 
 
-        return null;
+
+
 
     }
 }

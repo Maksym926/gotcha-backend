@@ -35,10 +35,8 @@ public class EventController {
     @GetMapping("member/event/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id){
         Event event = eventService.getEventById(id);
-        if(event != null){
-            return new ResponseEntity<>(event, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+
     }
 
     @PostMapping("/admin/event")
@@ -70,11 +68,8 @@ public class EventController {
     @DeleteMapping("/admin/event/{id}")
     public ResponseEntity<String> deleteEvent(@PathVariable Long id){
         Event event = eventService.getEventById(id);
-        if(event != null){
-            eventService.deleteEvent(id);
-            return new ResponseEntity<>("Deleted", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Event not found", HttpStatus.NOT_FOUND);
+        eventService.deleteEvent(id);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
 

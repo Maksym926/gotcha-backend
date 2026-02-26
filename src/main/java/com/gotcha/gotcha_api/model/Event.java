@@ -23,6 +23,7 @@ public class Event {
     @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
     private String title;
 
+    @NotBlank(message = "Description is required")
     @Size(max = 2000, message = "Description must not exceed 2000 characters")
     private String description;
 
@@ -31,12 +32,14 @@ public class Event {
     @Future(message = "Event date must be in the future")
     private LocalDateTime eventDate;
 
+    @NotBlank(message = "Location is required")
     @Size(max = 500, message = "Location must not exceed 500 characters")
     private String location;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @NotBlank(message = "Image key is required")
     @Size(max = 255, message = "Image key must not exceed 255 characters")
     private String imageKey;
 }
