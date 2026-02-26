@@ -1,7 +1,9 @@
 package com.gotcha.gotcha_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
+import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +28,9 @@ public class User {
     private String password;
     @Column(nullable = false)
     private String email;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "account_status")
+    private AccountStatus status;
     private Long gotchaCoins;
 
     private String profilePictureKey;
@@ -37,6 +41,19 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    private String mood;
+
+    @Enumerated(EnumType.STRING)
+    private SubscriptionStatus subscriptionStatus;
+
+    private String gotchaFavDrink;
+
+    private String gotchaFavDrinkPictureKey;
+
+
+
+
 
     //    private String favoriteDrink; // ??
 }

@@ -45,9 +45,9 @@ class AuthControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userName", is("testuser")))
+                .andExpect(jsonPath("$.username", is("testuser")))
                 .andExpect(jsonPath("$.email", is("testuser@example.com")))
-                .andExpect(jsonPath("$.id", notNullValue()));
+                .andExpect(jsonPath("$.userId", notNullValue()));
     }
 
     @Test
@@ -74,7 +74,7 @@ class AuthControllerIntegrationTest {
         mockMvc.perform(post("/api/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(duplicateUser)))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().isConflict());
     }
 
     @Test
@@ -126,7 +126,7 @@ class AuthControllerIntegrationTest {
         RegisterRequest registerRequest = new RegisterRequest(
                 "testpassword",
                 "testpassword@example.com",
-                "correctpassword"
+                "correctpassword1"
         );
 
         mockMvc.perform(post("/api/register")

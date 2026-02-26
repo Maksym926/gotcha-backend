@@ -1,5 +1,6 @@
 package com.gotcha.gotcha_api.exception;
 
+import com.gotcha.gotcha_api.exception.custom.DuplicateEmailException;
 import com.gotcha.gotcha_api.exception.custom.EventNotFoundException;
 import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
 import com.gotcha.gotcha_api.exception.custom.RSVPEventNotFoundException;
@@ -70,6 +71,19 @@ public class GlobalExceptionHandler {
         return  new ErrorResponse(
                 LocalDateTime.now(),
                 404,
+                errors
+        );
+    }
+
+    // DuplicateEmailException
+    @ExceptionHandler(DuplicateEmailException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleDuplicateEmailException(DuplicateEmailException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                409,
                 errors
         );
     }

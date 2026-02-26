@@ -4,12 +4,15 @@ import com.gotcha.gotcha_api.enums.Role;
 import jakarta.validation.constraints.*;
 
 public record RegisterRequest(
-
+        @NotBlank(message = "username is required")
+        @Size(min = 3, max = 50, message = "username must be between 3 and 50 characters")
         String userName,
+
         @NotBlank(message = "email is required")
         @Email(message = "invalid email format")
         @Size(max = 255, message = "email must be less than 255 characters")
         String email,
+
         @NotBlank(message = "password is required")
         @Size(min = 8, max = 100, message = "password must be 8-100 characters")
         @Pattern(
@@ -17,9 +20,5 @@ public record RegisterRequest(
                 message = "Password must contain at least one letter and one number"
         )
         String password
-
-
 ) {
-
-
 }
