@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -47,6 +48,7 @@ public class EventRSVPService {
         eventRSVP.setRsvpName(rsvpRequest.rsvpName());
         eventRSVP.setRsvpEmail(rsvpRequest.rsvpEmail());
         eventRSVP.setGuests(rsvpRequest.guestNumber());
+        eventRSVP.setCreatedAt(LocalDateTime.now());
         return eventRSVP;
     }
 
@@ -59,7 +61,9 @@ public class EventRSVPService {
     }
 
     public EventRSVP getRSVPById(Long rsvpId) {
-        return eventRSVPRepo.findById(rsvpId).orElse(null);
+        return eventRSVPRepo.findById(rsvpId).orElseThrow(
+                () -> new RSVPEventNotFoundException("RSVP not found with id: " + rsvpId)
+        );
     }
 
     public EventRSVP updateRSVP(Long rsvpId, UpdateRSVPRequest updateRsvpRequest) {

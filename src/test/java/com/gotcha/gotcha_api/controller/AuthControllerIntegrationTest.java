@@ -1,7 +1,6 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
 import com.gotcha.gotcha_api.model.dto.RegisterRequest;
 import org.junit.jupiter.api.Test;
@@ -94,8 +93,7 @@ class AuthControllerIntegrationTest {
         // Then login with the registered user
         LoginRequest loginRequest = new LoginRequest(
                 "loginuser@example.com",
-                "password123",
-                Role.MEMBER
+                "password123"
         );
 
         mockMvc.perform(post("/api/login")
@@ -110,8 +108,7 @@ class AuthControllerIntegrationTest {
     void testLoginUser_InvalidCredentials() throws Exception {
         LoginRequest loginRequest = new LoginRequest(
                 "nonexistent@example.com",
-                "wrongpassword",
-                Role.MEMBER
+                "wrongpassword"
         );
 
         mockMvc.perform(post("/api/login")
@@ -137,8 +134,7 @@ class AuthControllerIntegrationTest {
         // Attempt login with wrong password
         LoginRequest loginRequest = new LoginRequest(
                 "testpassword@example.com",
-                "wrongpassword",
-                Role.MEMBER
+                "wrongpassword"
         );
 
         mockMvc.perform(post("/api/login")

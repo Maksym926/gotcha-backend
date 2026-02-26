@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
@@ -60,25 +61,34 @@ class EventRSVPControllerIntegrationTest {
     private User testUser;
     private Event testEvent;
     private String jwtToken;
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     @BeforeEach
     void setUp() throws Exception {
-        // Register and login a test user to get JWT token
-        RegisterRequest registerRequest = new RegisterRequest(
-                "rsvpuser",
-                "rsvpuser@example.com",
-                "password123"
-        );
+//        // Register and login a test user to get JWT token
+//        RegisterRequest registerRequest = new RegisterRequest(
+//                "rsvpuser",
+//                "rsvpuser@example.com",
+//                "password123"
+//        );
+//
+//        mockMvc.perform(post("/api/register")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectMapper.writeValueAsString(registerRequest)))
+//                .andExpect(status().isOk());
 
-        mockMvc.perform(post("/api/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(registerRequest)))
-                .andExpect(status().isOk());
+        User admin = new User();
+
+        admin.setUsername("admin2");
+        admin.setEmail("admin2@gotcha.com");
+        admin.setPassword(encoder.encode("admin123"));
+        admin.setRole(Role.ADMIN);
+
+        userRepository.save(admin);
 
         LoginRequest loginRequest = new LoginRequest(
-                "rsvpuser@example.com",
-                "password123",
-                Role.MEMBER
+                "admin2@gotcha.com",
+                "admin123"
         );
 
         MvcResult loginResult = mockMvc.perform(post("/api/login")
@@ -88,13 +98,24 @@ class EventRSVPControllerIntegrationTest {
                 .andReturn();
 
         jwtToken = loginResult.getResponse().getContentAsString();
+
+        // Create a test event
+        testEvent = new Event();
+        testEvent.setTitle("Test Event");
+        testEvent.setDescription("Test Description");
+        testEvent.setEventDate(java.time.LocalDateTime.now().plusDays(7));
+        testEvent.setLocation("Test Location");
+        testEvent.setCreatedAt(java.time.LocalDateTime.now());
+        testEvent.setImageKey("test-image-key.jpg");
+
+
+        testEvent = eventRepository.save(testEvent);
     }
 
     @Test
-    @WithMockUser(username = "rsvpuser@example.com", roles = {"MEMBER"})
     void testSubmitRSVP_Success() throws Exception {
         RSVPRequest rsvpRequest = new RSVPRequest(
-                1L,
+                testEvent.getEventId(),
                 "John Doe",
                 "john.doe@example.com",
                 2L
@@ -109,11 +130,10 @@ class EventRSVPControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "rsvpuser@example.com", roles = {"MEMBER"})
     void testUpdateRSVP_Success() throws Exception {
         // First submit an RSVP
         RSVPRequest rsvpRequest = new RSVPRequest(
-                1L,
+                testEvent.getEventId(),
                 "Jane Doe",
                 "jane.doe@example.com",
                 1L
@@ -126,8 +146,9 @@ class EventRSVPControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        // Assume RSVP ID is 1 (or retrieve it from database)
-        Long rsvpId = 1L;
+        // Get the created RSVP from database
+        java.util.List<EventRSVP> rsvps = eventRSVPRepository.findAll();
+        Long rsvpId = rsvps.get(rsvps.size() - 1).getRsvpId();
 
         UpdateRSVPRequest updateRequest = new UpdateRSVPRequest(
                 "Jane Smith",
@@ -144,11 +165,10 @@ class EventRSVPControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "rsvpuser@example.com", roles = {"MEMBER"})
     void testGetRSVPById_Success() throws Exception {
         // First submit an RSVP
         RSVPRequest rsvpRequest = new RSVPRequest(
-                1L,
+                testEvent.getEventId(),
                 "Test User",
                 "test@example.com",
                 2L
@@ -160,7 +180,9 @@ class EventRSVPControllerIntegrationTest {
                         .content(objectMapper.writeValueAsString(rsvpRequest)))
                 .andExpect(status().isOk());
 
-        Long rsvpId = 1L;
+        // Get the created RSVP ID
+        java.util.List<EventRSVP> rsvps = eventRSVPRepository.findAll();
+        Long rsvpId = rsvps.get(rsvps.size() - 1).getRsvpId();
 
         mockMvc.perform(get("/api/member/event/rsvp/" + rsvpId)
                         .header("Authorization", "Bearer " + jwtToken))
@@ -171,11 +193,10 @@ class EventRSVPControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "rsvpuser@example.com", roles = {"MEMBER"})
     void testDeleteRSVP_Success() throws Exception {
         // First submit an RSVP
         RSVPRequest rsvpRequest = new RSVPRequest(
-                1L,
+                testEvent.getEventId(),
                 "Delete User",
                 "delete@example.com",
                 1L
@@ -187,7 +208,9 @@ class EventRSVPControllerIntegrationTest {
                         .content(objectMapper.writeValueAsString(rsvpRequest)))
                 .andExpect(status().isOk());
 
-        Long rsvpId = 1L;
+        // Get the created RSVP ID
+        java.util.List<EventRSVP> rsvps = eventRSVPRepository.findAll();
+        Long rsvpId = rsvps.get(rsvps.size() - 1).getRsvpId();
 
         mockMvc.perform(delete("/api/member/event/rsvp/" + rsvpId)
                         .header("Authorization", "Bearer " + jwtToken))
@@ -201,29 +224,24 @@ class EventRSVPControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void testGetRSVPByUserId_Admin() throws Exception {
-        Long userId = 1L;
+        User user = userRepository.findByEmail("admin2@gotcha.com").get();
 
-        mockMvc.perform(get("/api/admin/user/" + userId + "/rsvp")
+        mockMvc.perform(get("/api/admin/user/" + user.getUserId() + "/rsvp")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", isA(java.util.List.class)));
     }
 
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void testGetRSVPByEventId_Admin() throws Exception {
-        Long eventId = 1L;
-
-        mockMvc.perform(get("/api/admin/event/" + eventId + "/rsvp")
+        mockMvc.perform(get("/api/admin/event/" + testEvent.getEventId() + "/rsvp")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", isA(java.util.List.class)));
     }
 
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void testGetAllRSVP_Admin() throws Exception {
         mockMvc.perform(get("/api/admin/event/rsvp")
                         .header("Authorization", "Bearer " + jwtToken))
@@ -234,7 +252,7 @@ class EventRSVPControllerIntegrationTest {
     @Test
     void testSubmitRSVP_Unauthorized() throws Exception {
         RSVPRequest rsvpRequest = new RSVPRequest(
-                1L,
+                testEvent.getEventId(),
                 "Unauthorized User",
                 "unauthorized@example.com",
                 1L
