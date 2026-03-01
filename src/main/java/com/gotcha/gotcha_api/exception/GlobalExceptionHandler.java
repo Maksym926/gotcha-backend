@@ -1,9 +1,6 @@
 package com.gotcha.gotcha_api.exception;
 
-import com.gotcha.gotcha_api.exception.custom.DuplicateEmailException;
-import com.gotcha.gotcha_api.exception.custom.EventNotFoundException;
-import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
-import com.gotcha.gotcha_api.exception.custom.RSVPEventNotFoundException;
+import com.gotcha.gotcha_api.exception.custom.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -84,6 +81,18 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(
                 LocalDateTime.now(),
                 409,
+                errors
+        );
+    }
+    // image generation exception
+    @ExceptionHandler(ImageGenerationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleImageGenerationException(ImageGenerationException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                500,
                 errors
         );
     }
