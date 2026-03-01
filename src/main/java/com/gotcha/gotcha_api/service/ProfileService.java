@@ -1,11 +1,18 @@
 package com.gotcha.gotcha_api.service;
 
+import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
 import com.gotcha.gotcha_api.exception.custom.ImageGenerationException;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.UserPrincipal;
+import com.gotcha.gotcha_api.model.dto.ProfileRequest;
 import com.gotcha.gotcha_api.model.dto.ProfileResponse;
+import com.gotcha.gotcha_api.repo.UserRepo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class ProfileService {
@@ -15,6 +22,9 @@ public class ProfileService {
 
     @Autowired
     S3Service s3Service;
+
+    @Autowired
+    UserRepo userRepo;
 
     public ProfileResponse getProfileInfo(UserPrincipal userPrincipal) {
         User user = userService.getUserByEmail(userPrincipal.getUsername());
@@ -43,5 +53,25 @@ public class ProfileService {
         );
 
 
+    }
+
+    public void updateProfileInfo(@Valid ProfileRequest profileRequest, MultipartFile profileImage, UserPrincipal userPrincipal) {
+        User user = userService.getUserByEmail(userPrincipal.getUsername());
+        if (profileImage != null && !profileImage.isEmpty()) {
+            try{
+                String imageKey = s3Service.uploadFile(profileImage, "events-img");
+                user.setProfilePictureKey(imageKey);
+            }catch (IOException ex){
+                throw new ImageFileNotFoundException("Image file not found", ex);
+            }
+        }
+        if(!profileRequest.username().isBlank())
+            user.setUsername(profileRequest.username());
+        if(!profileRequest.mood().isBlank())
+            user.setMood(profileRequest.mood());
+        if(!profileRequest.gotchaFavDrink().isBlank())
+            user.setGotchaFavDrink(profileRequest.gotchaFavDrink());
+
+        userRepo.save(user);
     }
 }
