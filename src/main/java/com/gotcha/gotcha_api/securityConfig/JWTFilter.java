@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.securityConfig;
 
 import com.gotcha.gotcha_api.service.JWTService;
+import com.gotcha.gotcha_api.service.TokenBlacklistService;
 import com.gotcha.gotcha_api.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,6 +25,9 @@ public class JWTFilter extends OncePerRequestFilter {
     private JWTService jwtService;
 
     @Autowired
+    private TokenBlacklistService tokenBlacklistService;
+
+    @Autowired
     private ApplicationContext context;
 
 
@@ -35,12 +39,16 @@ public class JWTFilter extends OncePerRequestFilter {
 
         if(authHeader != null && authHeader.startsWith("Bearer ")){
             token = authHeader.substring(7);
-            username = jwtService.extractUserName(token);
+            try {
+                username = jwtService.extractUserName(token);
+            } catch (Exception e) {
+                // invalid or expired token — continue filter chain unauthenticated
+            }
         }
 
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = context.getBean(UserDetailsServiceImpl.class).loadUserByUsername(username);
-            if(jwtService.validateToken(token, userDetails)){
+            if(jwtService.validateToken(token, userDetails) && !tokenBlacklistService.isBlacklisted(token)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);

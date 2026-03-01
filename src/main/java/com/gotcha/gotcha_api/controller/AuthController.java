@@ -4,10 +4,12 @@ import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
 import com.gotcha.gotcha_api.model.dto.RegisterRequest;
 import com.gotcha.gotcha_api.service.JWTService;
+import com.gotcha.gotcha_api.service.TokenBlacklistService;
 import com.gotcha.gotcha_api.service.UserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,6 +30,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TokenBlacklistService tokenBlacklistService;
+
     @PostMapping("/register")
     public User registerUser(@Valid @RequestBody RegisterRequest registerRequest){
         return userService.saveUser(registerRequest);
@@ -37,5 +42,13 @@ public class AuthController {
     public String loginUser(@Valid @RequestBody LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
         return jwtService.generateToken(loginRequest.email());
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String authHeader){
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            tokenBlacklistService.blacklist(authHeader.substring(7));
+        }
+        return ResponseEntity.ok("Logged out successfully");
     }
 }
