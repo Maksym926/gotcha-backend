@@ -57,7 +57,8 @@ public class EventRSVPService {
     }
 
     public void deleteRSVPById(Long eventId) {
-        eventRSVPRepo.deleteById(eventId);
+        EventRSVP eventRSVP = getRSVPById(eventId);
+        eventRSVPRepo.delete(eventRSVP);
     }
 
     public EventRSVP getRSVPById(Long rsvpId) {

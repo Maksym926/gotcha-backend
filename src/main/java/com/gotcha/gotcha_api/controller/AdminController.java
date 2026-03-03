@@ -1,11 +1,12 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.gotcha.gotcha_api.model.User;
+import com.gotcha.gotcha_api.repo.UserRepo;
+import com.gotcha.gotcha_api.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,8 +14,19 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api/admin")
 public class AdminController {
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
 
+    @Autowired
+    AdminService adminService;
+
+
+    @GetMapping("/api/admin/users")
+    public ResponseEntity<List<User>> getAllUsers(){
+        return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/api/admin/users/{id}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id){
+        adminService.deleteUserByID(id);
+        return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
     }
 }

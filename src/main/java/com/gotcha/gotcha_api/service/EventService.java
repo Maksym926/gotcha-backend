@@ -82,7 +82,8 @@ public class EventService {
     }
 
     public void deleteEvent(Long id) {
-        eventRepo.deleteById(id);
+        Event event = getEventById(id);
+        eventRepo.delete(event);
     }
 
 

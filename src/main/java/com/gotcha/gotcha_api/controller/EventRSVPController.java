@@ -43,6 +43,7 @@ public class EventRSVPController {
     }
     @DeleteMapping("/member/event/rsvp/{rsvp_id}")
     public ResponseEntity<String> deleteRSVP(@PathVariable Long rsvp_id){
+
         eventRSVPService.deleteRSVPById(rsvp_id);
         return new ResponseEntity<>("RSVP deleted successfully", HttpStatus.OK);
     }
