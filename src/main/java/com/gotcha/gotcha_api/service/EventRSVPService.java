@@ -41,7 +41,7 @@ public class EventRSVPService {
 
         Event event = eventService.getEventById(rsvpRequest.eventId());
         log.info("User email: " + userPrincipal.getUsername() + " ");
-        User user = userService.getUserByEmail(userPrincipal.getUsername());
+        User user = userPrincipal.getUser();
         EventRSVP eventRSVP = new EventRSVP();
         eventRSVP.setEvent(event);
         eventRSVP.setUser(user);

@@ -1100,3 +1100,146 @@ Action:
 
 Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
 
+2026-03-01 15:55:09 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 10924 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-03-01 15:55:09 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-01 15:55:10 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-01 15:55:10 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 4 JPA repository interfaces.
+2026-03-01 15:55:10 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-01 15:55:10 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-01 15:55:10 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-03-01 15:55:10 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 945 ms
+2026-03-01 15:55:10 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-03-01 15:55:10 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-01 15:55:10 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@781c2497
+2026-03-01 15:55:10 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-01 15:55:10 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-03-01 15:55:10 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 15 migrations (execution time 00:00.028s)
+2026-03-01 15:55:11 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 15
+2026-03-01 15:55:11 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-03-01 15:55:11 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-01 15:55:11 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-03-01 15:55:11 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-01 15:55:11 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-01 15:55:12 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-01 15:55:12 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-01 15:55:12 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-01 15:55:12 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+2026-03-01 15:55:12 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-01 15:55:12 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-01 15:55:12 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-03-01 15:55:13 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-03-01 15:55:13 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 4.025 seconds (process running for 4.356)
+2026-03-01 15:55:27 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-01 15:55:27 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-01 15:55:27 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-03-01 15:55:27 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-01 15:55:27 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 15:55:27 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-01 15:55:30 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
+2026-03-01 15:55:49 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/news
+2026-03-01 15:55:50 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/news
+2026-03-01 15:55:50 - INFO - com.gotcha.gotcha_api.controller.NewsController - Getting news page from DB: 
+2026-03-01 15:55:50 - INFO - com.gotcha.gotcha_api.service.EventService - Getting events from DB: 6
+2026-03-01 15:55:58 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/logout
+2026-03-01 15:55:58 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 15:55:58 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/logout
+2026-03-01 15:55:58 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestHeaderException: Required request header 'Authorization' for method parameter type String is not present]
+2026-03-01 15:55:58 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /error
+2026-03-01 15:55:58 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 15:56:24 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/logout
+2026-03-01 15:56:24 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 15:56:24 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/logout
+2026-03-01 15:56:24 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestHeaderException: Required request header 'Authorization' for method parameter type String is not present]
+2026-03-01 15:56:24 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /error
+2026-03-01 15:56:24 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 15:57:04 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/logout
+2026-03-01 15:57:04 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/logout
+2026-03-01 15:57:29 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/news
+2026-03-01 15:57:29 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 16:01:44 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-01 16:01:44 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-01 16:01:44 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-01 16:01:44 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-01 16:01:44 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-01 16:03:33 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 26392 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-03-01 16:03:33 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-01 16:03:33 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-01 16:03:34 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 4 JPA repository interfaces.
+2026-03-01 16:03:34 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-01 16:03:34 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-01 16:03:34 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-03-01 16:03:34 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 975 ms
+2026-03-01 16:03:34 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-03-01 16:03:34 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-01 16:03:34 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1b3a9ef4
+2026-03-01 16:03:34 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-01 16:03:34 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-03-01 16:03:34 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 15 migrations (execution time 00:00.024s)
+2026-03-01 16:03:34 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 15
+2026-03-01 16:03:34 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-03-01 16:03:35 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-01 16:03:35 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-03-01 16:03:35 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-01 16:03:35 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-01 16:03:36 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-01 16:03:36 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-01 16:03:36 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-01 16:03:36 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+2026-03-01 16:03:36 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-01 16:03:36 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-01 16:03:36 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-03-01 16:03:37 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-03-01 16:03:37 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 3.959 seconds (process running for 4.299)
+2026-03-01 16:04:12 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-01 16:04:12 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-01 16:04:12 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-03-01 16:04:12 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-01 16:04:12 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 16:04:12 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-01 16:04:15 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
+2026-03-01 16:04:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing PUT /api/member/profile
+2026-03-01 16:04:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured PUT /api/member/profile
+2026-03-01 16:04:33 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'profileImage' is not present.]
+2026-03-01 16:04:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /error
+2026-03-01 16:04:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 16:04:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing PUT /api/member/profile
+2026-03-01 16:04:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured PUT /api/member/profile
+2026-03-01 16:04:44 - WARN - org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'profileImage' is not present.]
+2026-03-01 16:04:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /error
+2026-03-01 16:04:44 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-01 16:05:58 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing PUT /api/member/profile
+2026-03-01 16:05:58 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured PUT /api/member/profile
+2026-03-01 16:05:58 - INFO - com.gotcha.gotcha_api.service.S3Service - Access key from env: null
+2026-03-01 16:05:58 - INFO - com.gotcha.gotcha_api.service.S3Service - Uploading file to S3(S3Service): shrek.jpg
+2026-03-01 16:05:58 - INFO - com.gotcha.gotcha_api.service.S3Service - File name: profile/profilePicture/fb4b4e77-8051-4d70-b57a-6b6df8c5c133_shrek.jpg
+2026-03-01 16:05:58 - INFO - com.gotcha.gotcha_api.service.S3Service - File size: gotcha-cafe-images-eu
+2026-03-01 19:05:52 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h54m17s814ms274µs100ns).
+2026-03-01 19:11:13 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m20s639ms146µs900ns).
+2026-03-01 21:34:37 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=26m51s901ms370µs700ns).
+2026-03-01 22:09:03 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-01 22:09:03 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-01 22:09:03 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-01 22:09:03 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-01 22:09:03 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

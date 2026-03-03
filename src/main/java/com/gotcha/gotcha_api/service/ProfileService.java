@@ -18,16 +18,13 @@ import java.io.IOException;
 public class ProfileService {
 
     @Autowired
-    UserService userService;
-
-    @Autowired
     S3Service s3Service;
 
     @Autowired
     UserRepo userRepo;
 
     public ProfileResponse getProfileInfo(UserPrincipal userPrincipal) {
-        User user = userService.getUserByEmail(userPrincipal.getUsername());
+        User user = userPrincipal.getUser();
         if(user.getProfilePictureKey()!= null){
             String signedUrl = s3Service.generateSignedUrl(user.getProfilePictureKey());
             if(signedUrl == null)
@@ -56,10 +53,10 @@ public class ProfileService {
     }
 
     public void updateProfileInfo(@Valid ProfileRequest profileRequest, MultipartFile profileImage, UserPrincipal userPrincipal) {
-        User user = userService.getUserByEmail(userPrincipal.getUsername());
+        User user = userPrincipal.getUser();
         if (profileImage != null && !profileImage.isEmpty()) {
             try{
-                String imageKey = s3Service.uploadFile(profileImage, "events-img");
+                String imageKey = s3Service.uploadFile(profileImage, "profile/profilePicture");
                 user.setProfilePictureKey(imageKey);
             }catch (IOException ex){
                 throw new ImageFileNotFoundException("Image file not found", ex);
@@ -73,5 +70,10 @@ public class ProfileService {
             user.setGotchaFavDrink(profileRequest.gotchaFavDrink());
 
         userRepo.save(user);
+    }
+
+    public void deleteProfile(UserPrincipal userPrincipal) {
+        User user = userPrincipal.getUser();
+        userRepo.delete(user);
     }
 }

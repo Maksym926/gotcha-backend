@@ -1,5 +1,6 @@
 package com.gotcha.gotcha_api.model;
 
+import lombok.Getter;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,14 +10,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+@Getter
 public class UserPrincipal implements UserDetails {
 
     private User user;
     public UserPrincipal(User user) {
         this.user = user;
     }
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
