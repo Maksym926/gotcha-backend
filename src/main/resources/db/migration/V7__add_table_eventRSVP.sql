@@ -1,4 +1,4 @@
-CREATE TABLE event_rsvp(
+    CREATE TABLE event_rsvp(
     rsvp_id BIGSERIAL PRIMARY KEY,
 
     status VARCHAR(20),

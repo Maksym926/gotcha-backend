@@ -19,12 +19,16 @@ public class AdminController {
     AdminService adminService;
 
 
-    @GetMapping("/api/admin/users")
+    @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
     }
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        return new ResponseEntity<>(adminService.getUserByID(id), HttpStatus.OK);
+    }
 
-    @DeleteMapping("/api/admin/users/{id}")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long id){
         adminService.deleteUserByID(id);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);

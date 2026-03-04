@@ -38,6 +38,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<EventRSVP> rsvps;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
