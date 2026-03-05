@@ -1,6 +1,6 @@
 package com.gotcha.gotcha_api.service;
 
-import com.gotcha.gotcha_api.exception.custom.RSVPEventNotFoundException;
+import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.model.Event;
 import com.gotcha.gotcha_api.model.EventRSVP;
 import com.gotcha.gotcha_api.model.User;
@@ -63,14 +63,14 @@ public class EventRSVPService {
 
     public EventRSVP getRSVPById(Long rsvpId) {
         return eventRSVPRepo.findById(rsvpId).orElseThrow(
-                () -> new RSVPEventNotFoundException("RSVP not found with id: " + rsvpId)
+                () -> new ResourceNotFoundException("RSVP not found with id: " + rsvpId)
         );
     }
 
     public EventRSVP updateRSVP(Long rsvpId, UpdateRSVPRequest updateRsvpRequest) {
 
         EventRSVP eventRSVP = eventRSVPRepo.findById(rsvpId).orElseThrow(
-                () -> new RSVPEventNotFoundException("RSVP not found with id: " + rsvpId)
+                () -> new ResourceNotFoundException("RSVP not found with id: " + rsvpId)
         );
         eventRSVP.setRsvpName(updateRsvpRequest.rsvpName());
         eventRSVP.setRsvpEmail(updateRsvpRequest.rsvpEmail());
@@ -82,13 +82,13 @@ public class EventRSVPService {
 
     public List<EventRSVP> getRSVPByUserId(Long userId) {
         return eventRSVPRepo.findByUser_UserId(userId).orElseThrow(
-                () -> new RSVPEventNotFoundException("RSVP not found with user id: " + userId)
+                () -> new ResourceNotFoundException("RSVP not found with user id: " + userId)
         );
     }
 
     public List<EventRSVP> getRSVPByEventId(Long eventId) {
         return eventRSVPRepo.findByEvent_EventId(eventId).orElseThrow(
-                () -> new RSVPEventNotFoundException("RSVP not found with event id: " + eventId)
+                () -> new ResourceNotFoundException("RSVP not found with event id: " + eventId)
         );
     }
 }

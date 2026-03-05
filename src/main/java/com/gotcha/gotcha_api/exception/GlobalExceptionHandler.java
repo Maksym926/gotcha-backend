@@ -31,13 +31,13 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // EventNotFoundException
-    @ExceptionHandler(EventNotFoundException.class)
+    // ResourceNotFoundException
+    @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleEventNotFoundException(EventNotFoundException ex){
+    public ErrorResponse handleResourceNotFoundException(ResourceNotFoundException ex){
         Map<String, String> errors = new HashMap<>();
         errors.put("message", ex.getMessage());
-        return  new ErrorResponse(
+        return new ErrorResponse(
                 LocalDateTime.now(),
                 404,
                 errors
@@ -59,19 +59,6 @@ public class GlobalExceptionHandler {
                 errors
         );
     }
-    // RSVPEventNotFoundException
-    @ExceptionHandler(RSVPEventNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleEventRSVPNotFoundException(RSVPEventNotFoundException ex){
-        Map<String, String> errors = new HashMap<>();
-        errors.put("message", ex.getMessage());
-        return  new ErrorResponse(
-                LocalDateTime.now(),
-                404,
-                errors
-        );
-    }
-
     // DuplicateEmailException
     @ExceptionHandler(DuplicateEmailException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
@@ -93,17 +80,6 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(
                 LocalDateTime.now(),
                 500,
-                errors
-        );
-    }
-    @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleUserNotFoundException(UserNotFoundException ex){
-        Map<String, String> errors = new HashMap<>();
-        errors.put("message", ex.getMessage());
-        return new ErrorResponse(
-                LocalDateTime.now(),
-                404,
                 errors
         );
     }

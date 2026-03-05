@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.service;
 
 import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
 import com.gotcha.gotcha_api.exception.custom.ImageGenerationException;
+import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.model.Product;
 import com.gotcha.gotcha_api.model.dto.ProductRequest;
 import com.gotcha.gotcha_api.model.dto.ProductResponse;
@@ -43,7 +44,7 @@ public class ProductService {
         return productResponses;
     }
 
-    public ProductResponse createProduct(@Valid ProductRequest productRequest, MultipartFile productImage) {
+    public void createProduct(@Valid ProductRequest productRequest, MultipartFile productImage) {
 
         Product newProduct = mapToProduct(productRequest);
         if (productImage != null && !productImage.isEmpty()) {
@@ -55,8 +56,8 @@ public class ProductService {
             }
         }
 
-        Product savedProduct = productRepo.save(newProduct);
-        return new ProductResponse(savedProduct.getName(), savedProduct.getPrice(), savedProduct.getImageKey());
+        productRepo.save(newProduct);
+
     }
     private Product mapToProduct(ProductRequest productRequest){
         Product product = new Product();
@@ -69,5 +70,32 @@ public class ProductService {
         product.setReleaseDate(LocalDateTime.now());
         product.setStockQuantity(productRequest.stockQuantity());
         return product;
+    }
+
+    public void updateProduct(Long productId, @Valid ProductRequest productRequest, MultipartFile productImage) {
+        Product product = getProductByID(productId);
+
+        if (productImage != null && !productImage.isEmpty()) {
+            try{
+                String imageKey = s3Service.uploadFile(productImage, "product/");
+                product.setImageKey(imageKey);
+            }catch (IOException ex){
+                throw new ImageFileNotFoundException("Image file not found", ex);
+            }
+        }
+
+        productRepo.save(product);
+
+    }
+
+    public Product getProductByID(Long id) {
+        return productRepo.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Product", id)
+        );
+    }
+
+    public void deleteProduct(Long productId) {
+        Product product = getProductByID(productId);
+        productRepo.delete(product);
     }
 }

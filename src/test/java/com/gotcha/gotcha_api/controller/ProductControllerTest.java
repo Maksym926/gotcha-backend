@@ -2,12 +2,15 @@ package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotcha.gotcha_api.enums.Role;
+import com.gotcha.gotcha_api.model.EventRSVP;
 import com.gotcha.gotcha_api.model.Product;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
 import com.gotcha.gotcha_api.model.dto.ProductRequest;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import com.gotcha.gotcha_api.repo.ProductRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.gotcha.gotcha_api.service.S3Service;
@@ -34,6 +37,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -68,13 +72,15 @@ public class ProductControllerTest {
     void setUp() throws Exception {
 
         testUser = new User();
+
         testUser.setUsername("profileuser");
         testUser.setEmail("profileuser@gotcha.com");
         testUser.setPassword(encoder.encode("password123"));
-        testUser.setRole(Role.MEMBER);
+        testUser.setRole(Role.ADMIN);
         userRepo.save(testUser);
 
         Product testProduct = new Product();
+
         testProduct.setName("Tea1");
         testProduct.setDescription("the best Chinese tea");
         testProduct.setBrand("ChinaTea");
@@ -129,12 +135,12 @@ public class ProductControllerTest {
         );
         productPart.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 
-        mockMvc.perform(multipart("/api/member/product")
+        mockMvc.perform(multipart("/api/admin/product")
                         .file(emptyImage)
                         .part(productPart)
                         .header("Authorization", "Bearer " + jwtToken)
                         .with(req -> { req.setMethod("POST"); return req; }))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
 
 
@@ -148,5 +154,66 @@ public class ProductControllerTest {
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name", is("Tea1")));
+    }
+    @Test
+    void testGetProductById() throws Exception{
+        List<Product> products = productRepo.findAll();
+        Long productId = products.get(products.size() - 1).getProductId();
+        mockMvc.perform(get("/api/member/product/" + productId)
+                        .header("Authorization", "Bearer " + jwtToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("Tea1")));
+
+    }
+
+    @Test
+    void testDeleteProduct() throws Exception{
+        List<Product> products = productRepo.findAll();
+        Long productId = products.get(products.size() - 1).getProductId();
+
+        mockMvc.perform(delete("/api/admin/product/" + productId)
+                        .header("Authorization", "Bearer " + jwtToken))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void testUpdateProduct() throws Exception{
+        ProductRequest productRequest = new ProductRequest(
+                "NewTea",
+                "the best Chinese tea",
+                "ChinaTea",
+                new BigDecimal("120.00"),
+                "Drinks",
+                true,
+                10L,
+                ""
+
+        );
+        MockMultipartFile emptyImage = new MockMultipartFile(
+                "productImage",
+                "",
+                "image/jpeg",
+                new byte[0]
+        );
+        MockPart productPart = new MockPart(
+                "productRequest",
+                objectMapper.writeValueAsBytes(productRequest)
+        );
+        productPart.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+
+        List<Product> products = productRepo.findAll();
+        Long productId = products.get(products.size() - 1).getProductId();
+
+        mockMvc.perform(multipart("/api/admin/product/" + productId)
+                        .file(emptyImage)
+                        .part(productPart)
+                        .header("Authorization", "Bearer " + jwtToken)
+                        .with(req -> { req.setMethod("PUT"); return req; }))
+                .andExpect(status().isOk());
+
+
+
+
+        verify(s3Service, never()).uploadFile(any(), anyString());
     }
 }

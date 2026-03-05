@@ -1,6 +1,6 @@
 package com.gotcha.gotcha_api.service;
 
-import com.gotcha.gotcha_api.exception.custom.EventNotFoundException;
+import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
 import com.gotcha.gotcha_api.exception.custom.ImageGenerationException;
 import com.gotcha.gotcha_api.model.Event;
@@ -71,7 +71,7 @@ public class EventService {
 
     public Event getEventById(Long id) {
         Event event = eventRepo.findById(id)
-                .orElseThrow(() -> new EventNotFoundException("Event not found with id: " + id ));
+                .orElseThrow(() -> new ResourceNotFoundException("Event", id));
 
         String signedUrl = s3Service.generateSignedUrl(event.getImageKey());
         if(signedUrl == null)

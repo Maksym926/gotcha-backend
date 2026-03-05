@@ -1,7 +1,7 @@
 package com.gotcha.gotcha_api.service;
 
 import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
-import com.gotcha.gotcha_api.exception.custom.StaticContentNotFoundException;
+import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.model.StaticContent;
 import com.gotcha.gotcha_api.repo.StaticContentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class StaticContentService {
 
     public StaticContent getSectionBySectionKey(String sectionKey){
         StaticContent staticContent = staticContentRepo.findBySectionKey(sectionKey).orElseThrow(() ->
-                new StaticContentNotFoundException("Section " + sectionKey +" not found"));
+                new ResourceNotFoundException("Section " + sectionKey + " not found"));
         String signedUrl;
         signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
         staticContent.setImageKey(signedUrl);
