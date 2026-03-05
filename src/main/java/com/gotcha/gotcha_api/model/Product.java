@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -37,7 +38,7 @@ public class Product {
 
     @Column(name = "release_date", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date releaseDate;
+    private LocalDateTime releaseDate;
 
     @Column(nullable = false)
     private Boolean productAvailable;
