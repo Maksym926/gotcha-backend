@@ -6,10 +6,14 @@ import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.model.Product;
 import com.gotcha.gotcha_api.model.dto.ProductRequest;
 import com.gotcha.gotcha_api.model.dto.ProductResponse;
+import com.gotcha.gotcha_api.model.dto.ProductSearchParameter;
 import com.gotcha.gotcha_api.repo.ProductRepo;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,8 +30,9 @@ public class ProductService {
     @Autowired
     ProductRepo productRepo;
 
-    public List<ProductResponse> getAllProducts() {
-        List<Product> products = productRepo.findAll();
+    public List<ProductResponse> getAllProducts(ProductSearchParameter searchParams) {
+        Specification<Product> specification = search(searchParams);
+        List<Product> products = productRepo.findAll(specification);
 
         List<ProductResponse> productResponses = new ArrayList<>();
 
@@ -42,6 +47,38 @@ public class ProductService {
         }
 
         return productResponses;
+    }
+
+    public static Specification<Product> search( ProductSearchParameter params) {
+        return (root, query, cb) -> {
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            if(StringUtils.hasText(params.keyword())){
+                String pattern = "%" + params.keyword().toLowerCase() + "%";
+                predicates.add(cb.or(
+                        cb.like(cb.lower(root.get("name")), pattern),
+                        cb.like(cb.lower(root.get("description")), pattern)
+                ));
+            }
+            if(StringUtils.hasText(params.brand())){
+                predicates.add(cb.equal(root.get("brand"), params.brand()));
+            }
+            if(StringUtils.hasText(params.category())){
+                predicates.add(cb.equal(root.get("category"), params.category()));
+            }
+            if(params.minPrice() != null){
+                predicates.add(cb.greaterThanOrEqualTo(root.get("price"), params.minPrice()));
+            }
+            if(params.maxPrice() != null){
+                predicates.add(cb.lessThanOrEqualTo(root.get("price"), params.maxPrice()));
+            }
+            if(params.productAvailable() != null){
+                predicates.add(cb.equal(root.get("productAvailable"), params.productAvailable()));
+            }
+
+            return  cb.and(predicates.toArray(new Predicate[0]));
+        };
     }
 
     public void createProduct(@Valid ProductRequest productRequest, MultipartFile productImage) {

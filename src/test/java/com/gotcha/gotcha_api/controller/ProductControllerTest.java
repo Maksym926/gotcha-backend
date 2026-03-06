@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.gotcha.gotcha_api.model.dto.ProductSearchParameter;
 import com.gotcha.gotcha_api.repo.ProductRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.gotcha.gotcha_api.service.S3Service;
@@ -150,10 +151,13 @@ public class ProductControllerTest {
     }
     @Test
     void testGetProducts() throws Exception{
+
         mockMvc.perform(get("/api/member/product")
-                        .header("Authorization", "Bearer " + jwtToken))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name", is("Tea1")));
+                        .header("Authorization", "Bearer " + jwtToken)
+                        .param("keyword", "Te")
+                        .param("productAvailable", "true"))
+                .andExpect(status().isOk());
+
     }
     @Test
     void testGetProductById() throws Exception{

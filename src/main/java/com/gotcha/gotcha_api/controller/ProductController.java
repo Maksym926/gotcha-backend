@@ -3,6 +3,7 @@ package com.gotcha.gotcha_api.controller;
 import com.gotcha.gotcha_api.model.Product;
 import com.gotcha.gotcha_api.model.dto.ProductRequest;
 import com.gotcha.gotcha_api.model.dto.ProductResponse;
+import com.gotcha.gotcha_api.model.dto.ProductSearchParameter;
 import com.gotcha.gotcha_api.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -22,8 +24,16 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/member/product")
-    public ResponseEntity<List<ProductResponse>> getAllProducts(){
-        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+    public ResponseEntity<List<ProductResponse>> getAllProducts(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) BigDecimal minPrice,
+            @RequestParam(required = false) BigDecimal maxPrice,
+            @RequestParam(required = false) Boolean productAvailable
+    ) {
+        ProductSearchParameter params = new ProductSearchParameter(keyword, brand, category, minPrice, maxPrice, productAvailable);
+        return new ResponseEntity<>(productService.getAllProducts(params), HttpStatus.OK);
     }
     @GetMapping("/member/product/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable Long productId){
