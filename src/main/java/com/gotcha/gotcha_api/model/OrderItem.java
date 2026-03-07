@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OrderItem {
 
     @Id
@@ -34,5 +36,7 @@ public class OrderItem {
     @JsonSerialize(using = ToStringSerializer.class)
     @Column(nullable = false)
     private BigDecimal totalPrice;
+
+
 
 }

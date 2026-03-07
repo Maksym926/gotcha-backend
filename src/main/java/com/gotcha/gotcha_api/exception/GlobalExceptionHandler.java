@@ -83,4 +83,17 @@ public class GlobalExceptionHandler {
                 errors
         );
     }
+
+    //out-of-stock exception
+    @ExceptionHandler(ProductOutOfStockException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleOutOfStockException(ProductOutOfStockException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                400,
+                errors
+        );
+    }
 }
