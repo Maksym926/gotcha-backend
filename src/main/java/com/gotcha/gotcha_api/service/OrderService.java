@@ -53,6 +53,7 @@ public class OrderService {
             BigDecimal itemPrice = product.getPrice().multiply(BigDecimal.valueOf(orderItemRequest.quantity()));
 
             OrderItem orderItem = OrderItem.builder()
+                    .order(order)
                     .product(product)
                     .quantity(orderItemRequest.quantity())
                     .totalPrice(itemPrice)
