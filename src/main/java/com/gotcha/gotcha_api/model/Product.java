@@ -6,9 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "products")
@@ -31,7 +29,7 @@ public class Product {
     private String brand;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private Long price;
 
     @Column(nullable = false)
     private String category;

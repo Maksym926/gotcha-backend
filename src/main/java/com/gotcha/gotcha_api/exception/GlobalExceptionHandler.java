@@ -96,4 +96,17 @@ public class GlobalExceptionHandler {
                 errors
         );
     }
+
+    // insufficient coins exception
+    @ExceptionHandler(InsufficientCoinsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleInsufficientCoinsException(InsufficientCoinsException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                400,
+                errors
+        );
+    }
 }

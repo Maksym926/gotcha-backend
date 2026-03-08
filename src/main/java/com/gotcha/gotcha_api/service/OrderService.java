@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.service;
 
 import com.gotcha.gotcha_api.enums.OrderStatus;
+import com.gotcha.gotcha_api.exception.custom.InsufficientCoinsException;
 import com.gotcha.gotcha_api.exception.custom.ProductOutOfStockException;
 import com.gotcha.gotcha_api.model.*;
 import com.gotcha.gotcha_api.model.dto.OrderItemRequest;
@@ -9,10 +10,10 @@ import com.gotcha.gotcha_api.model.dto.OrderRequest;
 import com.gotcha.gotcha_api.model.dto.OrderResponse;
 import com.gotcha.gotcha_api.repo.OrderRepo;
 import com.gotcha.gotcha_api.repo.ProductRepo;
+import com.gotcha.gotcha_api.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,9 @@ public class OrderService {
     @Autowired
     ProductRepo productRepo;
 
+    @Autowired
+    UserRepo userRepo;
+
     public void placeOrder(OrderRequest orderRequest,  User user) {
         Order order = new Order();
         String orderCode = "ORD" + UUID.randomUUID().toString();
@@ -40,7 +44,7 @@ public class OrderService {
         order.setUser(user);
 
         List<OrderItem> orderItems = new ArrayList<>();
-        BigDecimal totalPrice = BigDecimal.ZERO;
+        Long totalPrice = 0L;
 
         for(OrderItemRequest orderItemRequest : orderRequest.items()){
             Product product = productService.getProductByID(orderItemRequest.productId());
@@ -50,7 +54,7 @@ public class OrderService {
             product.setStockQuantity(product.getStockQuantity() - orderItemRequest.quantity());
             productRepo.save(product);
 
-            BigDecimal itemPrice = product.getPrice().multiply(BigDecimal.valueOf(orderItemRequest.quantity()));
+            Long itemPrice = product.getPrice() * orderItemRequest.quantity();
 
             OrderItem orderItem = OrderItem.builder()
                     .order(order)
@@ -59,13 +63,18 @@ public class OrderService {
                     .totalPrice(itemPrice)
                     .build();
             orderItems.add(orderItem);
-            totalPrice = totalPrice.add(itemPrice);
-
-
+            totalPrice += itemPrice;
         }
+
         order.setOrderItems(orderItems);
         order.setTotalPrice(totalPrice);
 
+        if (user.getGotchaCoins() == null || user.getGotchaCoins() < totalPrice) {
+            throw new InsufficientCoinsException("Not enough Gotcha Coins. Required: " + totalPrice + ", Available: " + (user.getGotchaCoins() == null ? 0 : user.getGotchaCoins()));
+        }
+
+        user.setGotchaCoins(user.getGotchaCoins() - totalPrice);
+        userRepo.save(user);
 
         user.getOrders().add(order);
         orderRepo.save(order);

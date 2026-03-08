@@ -2,8 +2,6 @@ package com.gotcha.gotcha_api.model.dto;
 
 import jakarta.validation.constraints.*;
 
-import java.math.BigDecimal;
-
 public record ProductRequest(
         @NotBlank(message = "name is required")
         @Size(max = 255, message = "name must be less than 255 characters")
@@ -18,9 +16,8 @@ public record ProductRequest(
         String brand,
 
         @NotNull(message = "price is required")
-        @DecimalMin(value = "0.0", inclusive = false, message = "price must be greater than 0")
-        @Digits(integer = 10, fraction = 2, message = "price must have at most 2 decimal places")
-        BigDecimal price,
+        @Min(value = 1, message = "price must be greater than 0")
+        Long price,
 
         @NotBlank(message = "category is required")
         @Size(max = 100, message = "category must be less than 100 characters")

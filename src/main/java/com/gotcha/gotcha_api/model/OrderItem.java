@@ -5,10 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "order_items")
@@ -33,9 +29,8 @@ public class OrderItem {
     @Column(nullable = false)
     private Long quantity;
 
-    @JsonSerialize(using = ToStringSerializer.class)
     @Column(nullable = false)
-    private BigDecimal totalPrice;
+    private Long totalPrice;
 
 
 
