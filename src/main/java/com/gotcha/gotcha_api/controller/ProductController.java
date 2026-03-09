@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -24,15 +23,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/member/product")
-    public ResponseEntity<List<ProductResponse>> getAllProducts(
-            @RequestParam(required = false) String keyword,
-            @RequestParam(required = false) String brand,
-            @RequestParam(required = false) String category,
-            @RequestParam(required = false) Long minPrice,
-            @RequestParam(required = false) Long maxPrice,
-            @RequestParam(required = false) Boolean productAvailable
-    ) {
-        ProductSearchParameter params = new ProductSearchParameter(keyword, brand, category, minPrice, maxPrice, productAvailable);
+    public ResponseEntity<List<ProductResponse>> getAllProducts(@Valid @ModelAttribute ProductSearchParameter params) {
         return new ResponseEntity<>(productService.getAllProducts(params), HttpStatus.OK);
     }
     @GetMapping("/member/product/{productId}")

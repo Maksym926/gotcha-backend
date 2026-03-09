@@ -40,6 +40,6 @@ public class Event {
     private LocalDateTime createdAt;
 
     @NotBlank(message = "Image key is required")
-    @Size(max = 255, message = "Image key must not exceed 255 characters")
+    @Column(name = "image_key", length = 1000)
     private String imageKey;
 }

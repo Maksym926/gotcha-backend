@@ -1,4 +1,4 @@
-package com.gotcha.gotcha_api.config;
+package com.gotcha.gotcha_api.flywayConfig;
 
 import org.springframework.boot.flyway.autoconfigure.FlywayMigrationStrategy;
 import org.springframework.context.annotation.Bean;

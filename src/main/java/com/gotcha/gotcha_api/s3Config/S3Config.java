@@ -1,4 +1,4 @@
-package com.gotcha.gotcha_api.S3Config;
+package com.gotcha.gotcha_api.s3Config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -25,7 +25,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -61,6 +60,7 @@ public class OrderControllerIntegrationTest {
 
     private Product testProduct;
     private String jwtToken;
+    private String adminToken;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     @BeforeEach
@@ -72,13 +72,14 @@ public class OrderControllerIntegrationTest {
         testUser.setEmail("orderuser@gotcha.com");
         testUser.setPassword(encoder.encode("password123"));
         testUser.setRole(Role.MEMBER);
+        testUser.setGotchaCoins(100L);
         userRepo.save(testUser);
 
         testProduct = new Product();
         testProduct.setName("Matcha Latte");
         testProduct.setDescription("Delicious matcha latte");
         testProduct.setBrand("Gotcha");
-        testProduct.setPrice(new BigDecimal("5.50"));
+        testProduct.setPrice(0L);
         testProduct.setCategory("Drinks");
         testProduct.setProductAvailable(true);
         testProduct.setStockQuantity(10L);
@@ -94,6 +95,21 @@ public class OrderControllerIntegrationTest {
                 .andReturn();
 
         jwtToken = loginResult.getResponse().getContentAsString();
+
+        // Create admin user
+        User adminUser = new User();
+        adminUser.setUsername("orderadmin");
+        adminUser.setEmail("orderadmin@gotcha.com");
+        adminUser.setPassword(encoder.encode("password123"));
+        adminUser.setRole(Role.ADMIN);
+        userRepo.save(adminUser);
+
+        MvcResult adminLogin = mockMvc.perform(post("/api/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(new LoginRequest("orderadmin@gotcha.com", "password123"))))
+                .andExpect(status().isOk())
+                .andReturn();
+        adminToken = adminLogin.getResponse().getContentAsString();
     }
 
     // =========================================================
@@ -218,6 +234,7 @@ public class OrderControllerIntegrationTest {
         anotherUser.setEmail("another@gotcha.com");
         anotherUser.setPassword(encoder.encode("password123"));
         anotherUser.setRole(Role.MEMBER);
+        anotherUser.setGotchaCoins(100L);
         userRepo.save(anotherUser);
 
         MvcResult anotherLogin = mockMvc.perform(post("/api/login")
@@ -241,5 +258,107 @@ public class OrderControllerIntegrationTest {
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(0)));
+    }
+
+    // =========================================================
+    // Admin: GET /api/admin/order - Get all orders with filters
+    // =========================================================
+
+    @Test
+    void testAdminGetAllOrders_Success() throws Exception {
+        // Place an order as member first
+        OrderRequest orderRequest = new OrderRequest(
+                List.of(new OrderItemRequest(testProduct.getProductId(), 2L))
+        );
+        mockMvc.perform(post("/api/member/order")
+                        .header("Authorization", "Bearer " + jwtToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(orderRequest)))
+                .andExpect(status().isOk());
+
+        // Admin can see all orders
+        mockMvc.perform(get("/api/admin/order")
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].orderCode", startsWith("ORD")));
+    }
+
+    @Test
+    void testAdminGetAllOrders_FilterByStatus() throws Exception {
+        // Place an order
+        mockMvc.perform(post("/api/member/order")
+                        .header("Authorization", "Bearer " + jwtToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                new OrderRequest(List.of(new OrderItemRequest(testProduct.getProductId(), 1L))))))
+                .andExpect(status().isOk());
+
+        // Filter by PENDING status
+        mockMvc.perform(get("/api/admin/order")
+                        .param("status", "PENDING")
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+
+        // Filter by COMPLETED status — should be empty
+        mockMvc.perform(get("/api/admin/order")
+                        .param("status", "COMPLETED")
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+    }
+
+    @Test
+    void testAdminGetAllOrders_MemberForbidden() throws Exception {
+        mockMvc.perform(get("/api/admin/order")
+                        .header("Authorization", "Bearer " + jwtToken))
+                .andExpect(status().isForbidden());
+    }
+
+    // =========================================================
+    // Admin: GET /api/admin/order/{orderId} - Get order by ID
+    // =========================================================
+
+    @Test
+    void testAdminGetOrderById_Success() throws Exception {
+        // Place an order first
+        mockMvc.perform(post("/api/member/order")
+                        .header("Authorization", "Bearer " + jwtToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                new OrderRequest(List.of(new OrderItemRequest(testProduct.getProductId(), 1L))))))
+                .andExpect(status().isOk());
+
+        // Get the order via admin list
+        MvcResult result = mockMvc.perform(get("/api/admin/order")
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Extract order ID from response
+        String response = result.getResponse().getContentAsString();
+        Long orderId = objectMapper.readTree(response).get(0).get("orderId").asLong();
+
+        // Get by ID
+        mockMvc.perform(get("/api/admin/order/" + orderId)
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.orderId", is(orderId.intValue())))
+                .andExpect(jsonPath("$.orderCode", startsWith("ORD")));
+    }
+
+    @Test
+    void testAdminGetOrderById_NotFound() throws Exception {
+        mockMvc.perform(get("/api/admin/order/9999")
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testAdminGetOrderById_MemberForbidden() throws Exception {
+        mockMvc.perform(get("/api/admin/order/1")
+                        .header("Authorization", "Bearer " + jwtToken))
+                .andExpect(status().isForbidden());
     }
 }

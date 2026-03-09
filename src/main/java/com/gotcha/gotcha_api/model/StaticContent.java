@@ -29,6 +29,5 @@ public class StaticContent {
     private String description;
 
     @NotBlank(message = "Image key is required")
-    @Size(max = 255, message = "Image key must not exceed 255 characters")
     private String imageKey;
 }

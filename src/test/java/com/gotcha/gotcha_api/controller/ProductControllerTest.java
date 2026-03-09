@@ -85,7 +85,7 @@ public class ProductControllerTest {
         testProduct.setName("Tea1");
         testProduct.setDescription("the best Chinese tea");
         testProduct.setBrand("ChinaTea");
-        testProduct.setPrice(new BigDecimal("100.00"));
+        testProduct.setPrice(100L);
         testProduct.setCategory("Drinks");
         testProduct.setProductAvailable(true);
         testProduct.setStockQuantity(10L);
@@ -117,7 +117,7 @@ public class ProductControllerTest {
             "Tea",
                 "the best Chinese tea",
                 "ChinaTea",
-                new BigDecimal("100.00"),
+               100L,
                 "Drinks",
                 true,
                 10L,
@@ -186,7 +186,7 @@ public class ProductControllerTest {
                 "NewTea",
                 "the best Chinese tea",
                 "ChinaTea",
-                new BigDecimal("120.00"),
+                120L,
                 "Drinks",
                 true,
                 10L,

@@ -3,16 +3,17 @@ package com.gotcha.gotcha_api.service;
 import com.gotcha.gotcha_api.enums.OrderStatus;
 import com.gotcha.gotcha_api.exception.custom.InsufficientCoinsException;
 import com.gotcha.gotcha_api.exception.custom.ProductOutOfStockException;
+import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.model.*;
-import com.gotcha.gotcha_api.model.dto.OrderItemRequest;
-import com.gotcha.gotcha_api.model.dto.OrderItemResponse;
-import com.gotcha.gotcha_api.model.dto.OrderRequest;
-import com.gotcha.gotcha_api.model.dto.OrderResponse;
+import com.gotcha.gotcha_api.model.dto.*;
 import com.gotcha.gotcha_api.repo.OrderRepo;
 import com.gotcha.gotcha_api.repo.ProductRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -109,5 +110,47 @@ public class OrderService {
 
         }
         return orderResponses;
+    }
+
+    public List<Order> getAllOrders(OrderSearchParameter params){
+        Specification<Order> specification = search(params);
+        return orderRepo.findAll(specification);
+    }
+    public static Specification<Order> search(OrderSearchParameter params) {
+        return (root, query, cb) -> {
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            if(StringUtils.hasText(params.orderCode())){
+                String pattern = "%" + params.orderCode().toLowerCase() + "%";
+                predicates.add(cb.or(
+                        cb.like(cb.lower(root.get("orderCode")), pattern)
+                ));
+            }
+            if(params.status() != null){
+                predicates.add(cb.equal(root.get("status"), params.status()));
+            }
+
+            if(params.minPrice() != null){
+                predicates.add(cb.greaterThanOrEqualTo(root.get("price"), params.minPrice()));
+            }
+            if(params.maxPrice() != null){
+                predicates.add(cb.lessThanOrEqualTo(root.get("price"), params.maxPrice()));
+            }
+            if(params.createDate() != null){
+                predicates.add(cb.equal(root.get("createDate"), params.createDate()));
+            }
+            if(params.updateDate() != null){
+                predicates.add(cb.equal(root.get("updateDate"), params.updateDate()));
+            }
+
+            return  cb.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
+    public Order getOrderById(Long orderId) {
+        return orderRepo.findById(orderId).orElseThrow(
+                () -> new ResourceNotFoundException("Order not found with id: " + orderId)
+        );
     }
 }
