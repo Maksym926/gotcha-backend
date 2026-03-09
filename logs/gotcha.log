@@ -1,408 +1,412 @@
-2026-03-07 19:42:19 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Starting OrderControllerIntegrationTest using Java 23.0.1 with PID 37904 (started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-03-07 19:42:19 - DEBUG - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Running with Spring Boot v4.0.2, Spring v7.0.3
-2026-03-07 19:42:19 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - The following 1 profile is active: "test"
-2026-03-07 19:42:20 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-07 19:42:21 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 113 ms. Found 6 JPA repository interfaces.
-2026-03-07 19:42:23 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-03-07 19:42:23 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
-2026-03-07 19:42:24 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-07 19:42:24 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-03-07 19:42:25 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=POSTGRES
-2026-03-07 19:42:25 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-03-07 19:42:25 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:h2:mem:testdb]
-	Database driver: H2 JDBC Driver
-	Database dialect: H2Dialect
-	Database version: 2.4.240
-	Default catalog/schema: testdb/public
+2026-03-09 11:36:30 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 11460 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-03-09 11:36:30 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 11:36:31 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 11:36:31 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 6 JPA repository interfaces.
+2026-03-09 11:36:31 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 11:36:31 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 11:36:31 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-03-09 11:36:31 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1345 ms
+2026-03-09 11:36:31 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-03-09 11:36:32 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 11:36:32 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6ce15112
+2026-03-09 11:36:32 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 11:36:32 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-03-09 11:36:32 - INFO - org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Repair of failed migration in Schema History table "public"."flyway_schema_history" not necessary. No failed migration detected.
+2026-03-09 11:36:32 - INFO - org.flywaydb.core.internal.command.DbRepair - Successfully repaired schema history table "public"."flyway_schema_history" (execution time 00:00.187s).
+2026-03-09 11:36:32 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 18 migrations (execution time 00:00.018s)
+2026-03-09 11:36:32 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 18
+2026-03-09 11:36:32 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-03-09 11:36:33 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-09 11:36:33 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-03-09 11:36:33 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 11:36:33 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
 	Autocommit mode: undefined/unknown
 	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: 100
+	JDBC fetch size: none
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-03-07 19:42:27 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-07 19:42:27 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 19:42:27 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-07 19:42:28 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
-2026-03-07 19:42:28 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
-2026-03-07 19:42:28 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2026-03-07 19:42:30 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-07 19:42:30 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2026-03-07 19:42:31 - DEBUG - com.gotcha.gotcha_api.securityConfig.JWTFilter - Filter 'JWTFilter' configured for use
-2026-03-07 19:42:31 - INFO - org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
-2026-03-07 19:42:31 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
-2026-03-07 19:42:31 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 16 ms
-2026-03-07 19:42:31 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Started OrderControllerIntegrationTest in 13.756 seconds (process running for 15.675)
-2026-03-07 19:42:32 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:32 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:32 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:33 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:42:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:42:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:42:36 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:42:37 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:42:38 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:42:39 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 19:42:39 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-03-07 19:42:39 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-03-07 19:53:14 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Starting OrderControllerIntegrationTest using Java 23.0.1 with PID 25132 (started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-03-07 19:53:14 - DEBUG - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Running with Spring Boot v4.0.2, Spring v7.0.3
-2026-03-07 19:53:14 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - The following 1 profile is active: "test"
-2026-03-07 19:53:15 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-07 19:53:15 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 115 ms. Found 6 JPA repository interfaces.
-2026-03-07 19:53:17 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-03-07 19:53:17 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
-2026-03-07 19:53:18 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-07 19:53:18 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-03-07 19:53:19 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=POSTGRES
-2026-03-07 19:53:19 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-03-07 19:53:19 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:h2:mem:testdb]
-	Database driver: H2 JDBC Driver
-	Database dialect: H2Dialect
-	Database version: 2.4.240
-	Default catalog/schema: testdb/public
+2026-03-09 11:36:34 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 11:36:35 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 11:36:35 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 11:36:35 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+2026-03-09 11:36:35 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-09 11:36:36 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 11:36:36 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-03-09 11:36:36 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-03-09 11:36:36 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 6.67 seconds (process running for 7.484)
+2026-03-09 11:39:41 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 11:39:41 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 11:39:41 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-03-09 11:39:41 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:41 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:41 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:41 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=customer.created, id=evt_1T928kHk0gTF58U3puJ398bc
+2026-03-09 11:39:41 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: customer.created
+2026-03-09 11:39:41 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:41 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:41 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:41 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_method.attached, id=evt_1T928lHk0gTF58U3samTywxp
+2026-03-09 11:39:41 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_method.attached
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:42 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=customer.updated, id=evt_1T928mHk0gTF58U366e1NJox
+2026-03-09 11:39:42 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: customer.updated
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:42 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoiceitem.created, id=evt_1T928mHk0gTF58U3LgDHGGMh
+2026-03-09 11:39:42 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoiceitem.created
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:42 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.created, id=evt_1T928mHk0gTF58U37t3sL0mn
+2026-03-09 11:39:42 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.created
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:45 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=charge.succeeded, id=evt_3T928nHk0gTF58U30VpXmO5G
+2026-03-09 11:39:45 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: charge.succeeded
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:45 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_intent.succeeded, id=evt_3T928nHk0gTF58U30jiBVEcS
+2026-03-09 11:39:45 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_intent.succeeded
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:45 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_intent.created, id=evt_3T928nHk0gTF58U30jsgnNWI
+2026-03-09 11:39:45 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_intent.created
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:46 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.updated, id=evt_1T928qHk0gTF58U3PeGck8B4
+2026-03-09 11:39:46 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.updated
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:46 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.finalized, id=evt_1T928qHk0gTF58U3hHhLYxYp
+2026-03-09 11:39:46 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.finalized
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:46 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.paid, id=evt_1T928qHk0gTF58U3HHyVLk0O
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:39:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:39:46 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.payment_succeeded, id=evt_1T928qHk0gTF58U3mInkCF6F
+2026-03-09 11:39:46 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.payment_succeeded
+2026-03-09 11:39:47 - INFO - com.gotcha.gotcha_api.controller.WebhookController - invoice.paid: activating subscription for customer=cus_U7GgOGEXogqjre
+2026-03-09 11:40:23 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:40:23 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:40:23 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:40:23 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice_payment.paid, id=evt_1T929RHk0gTF58U3ejWOdSBr
+2026-03-09 11:40:23 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice_payment.paid
+2026-03-09 11:41:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-09 11:41:42 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:41:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-09 11:41:44 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
+2026-03-09 11:41:57 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/subscription
+2026-03-09 11:41:57 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/subscription
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_intent.created, id=evt_3T92AzHk0gTF58U30Qv4hayG
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=customer.subscription.created, id=evt_1T92B0Hk0gTF58U3VYEuxjii
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_intent.created
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: customer.subscription.created
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.created, id=evt_1T92B0Hk0gTF58U3wibyXbSj
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.created
+2026-03-09 11:42:00 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.finalized, id=evt_1T92B0Hk0gTF58U3ewXEMQm1
+2026-03-09 11:42:00 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.finalized
+2026-03-09 11:53:42 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@77aabc88 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:53:49 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@52a7cabe (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:53:51 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2a7017e6 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:53:53 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@48391ce2 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:53:59 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@24a7dd61 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:54:07 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@25367dd2 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:54:07 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6ce15112 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:54:08 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@3f3e2683 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:54:24 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2cd91941 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:55:08 - WARN - com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5ac3f156 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-03-09 11:55:38 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 11:55:38 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 11:55:38 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 11:55:38 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 11:55:38 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 11:58:59 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 12728 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-03-09 11:58:59 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 11:59:00 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 11:59:00 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2026-03-09 11:59:01 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 11:59:01 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 11:59:01 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-03-09 11:59:01 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1167 ms
+2026-03-09 11:59:01 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-03-09 11:59:01 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 11:59:01 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@42aa1324
+2026-03-09 11:59:01 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 11:59:01 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-03-09 11:59:01 - INFO - org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Repair of failed migration in Schema History table "public"."flyway_schema_history" not necessary. No failed migration detected.
+2026-03-09 11:59:01 - INFO - org.flywaydb.core.internal.command.DbRepair - Successfully repaired schema history table "public"."flyway_schema_history" (execution time 00:00.039s).
+2026-03-09 11:59:01 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 18 migrations (execution time 00:00.012s)
+2026-03-09 11:59:01 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 18
+2026-03-09 11:59:01 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-03-09 11:59:01 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-09 11:59:01 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-03-09 11:59:02 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 11:59:02 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
 	Autocommit mode: undefined/unknown
 	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: 100
+	JDBC fetch size: none
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-03-07 19:53:20 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-07 19:53:21 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 19:53:21 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-07 19:53:21 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
-2026-03-07 19:53:21 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
-2026-03-07 19:53:21 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2026-03-07 19:53:23 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-07 19:53:23 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2026-03-07 19:53:24 - DEBUG - com.gotcha.gotcha_api.securityConfig.JWTFilter - Filter 'JWTFilter' configured for use
-2026-03-07 19:53:24 - INFO - org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
-2026-03-07 19:53:24 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
-2026-03-07 19:53:24 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
-2026-03-07 19:53:24 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Started OrderControllerIntegrationTest in 10.521 seconds (process running for 12.136)
-2026-03-07 19:53:25 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:25 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:25 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:26 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:26 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:53:26 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:53:26 - WARN - org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 23502, SQLState: 23502
-2026-03-07 19:53:26 - WARN - org.hibernate.orm.jdbc.error - NULL not allowed for column "order_id"; SQL statement:
-insert into order_items (order_id,product_id,quantity,total_price,order_item_id) values (?,?,?,?,default) [23502-240]
-2026-03-07 19:53:27 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:27 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:27 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:27 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:27 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:53:27 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:53:28 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:28 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:28 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:28 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:28 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:53:28 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 19:53:29 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:29 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:29 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:29 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:29 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:53:29 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:53:29 - WARN - org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 23502, SQLState: 23502
-2026-03-07 19:53:29 - WARN - org.hibernate.orm.jdbc.error - NULL not allowed for column "order_id"; SQL statement:
-insert into order_items (order_id,product_id,quantity,total_price,order_item_id) values (?,?,?,?,default) [23502-240]
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:30 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:31 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:31 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:53:31 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:53:31 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:31 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:31 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:53:32 - WARN - org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 23502, SQLState: 23502
-2026-03-07 19:53:32 - WARN - org.hibernate.orm.jdbc.error - NULL not allowed for column "order_id"; SQL statement:
-insert into order_items (order_id,product_id,quantity,total_price,order_item_id) values (?,?,?,?,default) [23502-240]
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:53:32 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:33 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:53:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:53:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:53:34 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:53:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:53:34 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:53:34 - WARN - org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 23502, SQLState: 23502
-2026-03-07 19:53:34 - WARN - org.hibernate.orm.jdbc.error - NULL not allowed for column "order_id"; SQL statement:
-insert into order_items (order_id,product_id,quantity,total_price,order_item_id) values (?,?,?,?,default) [23502-240]
-2026-03-07 19:53:34 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 19:53:34 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-03-07 19:53:34 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-03-07 19:57:51 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Starting OrderControllerIntegrationTest using Java 23.0.1 with PID 24848 (started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-03-07 19:57:51 - DEBUG - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Running with Spring Boot v4.0.2, Spring v7.0.3
-2026-03-07 19:57:51 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - The following 1 profile is active: "test"
-2026-03-07 19:57:53 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-07 19:57:53 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 135 ms. Found 6 JPA repository interfaces.
-2026-03-07 19:57:55 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-03-07 19:57:55 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
-2026-03-07 19:57:56 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-07 19:57:56 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-03-07 19:57:57 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=POSTGRES
-2026-03-07 19:57:57 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-03-07 19:57:57 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:h2:mem:testdb]
-	Database driver: H2 JDBC Driver
-	Database dialect: H2Dialect
-	Database version: 2.4.240
-	Default catalog/schema: testdb/public
+2026-03-09 11:59:03 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 11:59:03 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 11:59:03 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 11:59:03 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+2026-03-09 11:59:03 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-09 11:59:03 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 11:59:03 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-03-09 11:59:04 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-03-09 11:59:04 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 4.75 seconds (process running for 5.341)
+2026-03-09 11:59:28 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 11:59:28 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 11:59:28 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2026-03-09 11:59:28 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-09 11:59:28 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 11:59:28 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-09 11:59:32 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
+2026-03-09 11:59:40 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/subscription
+2026-03-09 11:59:41 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/subscription
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=charge.succeeded, id=evt_3T92S9Hk0gTF58U30BnODYMy
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: charge.succeeded
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_intent.succeeded, id=evt_3T92S9Hk0gTF58U3082wJPp3
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_intent.succeeded
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=customer.subscription.updated, id=evt_1T92TvHk0gTF58U36WykpML8
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: customer.subscription.updated
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_method.attached, id=evt_1T92TvHk0gTF58U3YMiKydGQ
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_method.attached
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.updated, id=evt_1T92TvHk0gTF58U35wOqsyAg
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.updated
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.paid, id=evt_1T92TvHk0gTF58U3gvM6SIaF
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:01:33 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.payment_succeeded, id=evt_1T92TvHk0gTF58U3id0Q0gwD
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.payment_succeeded
+2026-03-09 12:01:33 - INFO - com.gotcha.gotcha_api.controller.WebhookController - invoice.paid: activating subscription for customer=cus_U6zH0i3u22tqow
+2026-03-09 12:02:19 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:02:19 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:02:19 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:02:19 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice_payment.paid, id=evt_1T92UfHk0gTF58U3ieBXTob5
+2026-03-09 12:02:19 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice_payment.paid
+2026-03-09 12:07:15 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 12:07:15 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 12:07:15 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 12:07:15 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 12:07:15 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 12:07:20 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 4136 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-03-09 12:07:20 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 12:07:20 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 12:07:20 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 6 JPA repository interfaces.
+2026-03-09 12:07:21 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 12:07:21 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 12:07:21 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-03-09 12:07:21 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1249 ms
+2026-03-09 12:07:21 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-03-09 12:07:21 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 12:07:21 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@42aa1324
+2026-03-09 12:07:21 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 12:07:21 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-03-09 12:07:21 - INFO - org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Repair of failed migration in Schema History table "public"."flyway_schema_history" not necessary. No failed migration detected.
+2026-03-09 12:07:21 - INFO - org.flywaydb.core.internal.command.DbRepair - Successfully repaired schema history table "public"."flyway_schema_history" (execution time 00:00.044s).
+2026-03-09 12:07:22 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 18 migrations (execution time 00:00.014s)
+2026-03-09 12:07:22 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 18
+2026-03-09 12:07:22 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-03-09 12:07:22 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-09 12:07:22 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-03-09 12:07:22 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 12:07:22 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
 	Autocommit mode: undefined/unknown
 	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: 100
+	JDBC fetch size: none
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-03-07 19:57:59 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-07 19:57:59 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 19:57:59 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-07 19:57:59 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
-2026-03-07 19:57:59 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
-2026-03-07 19:57:59 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2026-03-07 19:58:01 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-07 19:58:01 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2026-03-07 19:58:02 - DEBUG - com.gotcha.gotcha_api.securityConfig.JWTFilter - Filter 'JWTFilter' configured for use
-2026-03-07 19:58:02 - INFO - org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
-2026-03-07 19:58:02 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
-2026-03-07 19:58:02 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 11 ms
-2026-03-07 19:58:02 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Started OrderControllerIntegrationTest in 11.153 seconds (process running for 12.647)
-2026-03-07 19:58:03 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:03 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:03 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:04 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:04 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:58:04 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:58:04 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:58:04 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:58:05 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:06 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:07 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:08 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 19:58:09 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 19:58:09 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 19:58:09 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-03-07 19:58:09 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-03-07 20:01:35 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Starting OrderControllerIntegrationTest using Java 23.0.1 with PID 11912 (started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
-2026-03-07 20:01:35 - DEBUG - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Running with Spring Boot v4.0.2, Spring v7.0.3
-2026-03-07 20:01:35 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - The following 1 profile is active: "test"
-2026-03-07 20:01:36 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-07 20:01:36 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 53 ms. Found 6 JPA repository interfaces.
-2026-03-07 20:01:37 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-03-07 20:01:37 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
-2026-03-07 20:01:37 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-07 20:01:37 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-03-07 20:01:37 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=POSTGRES
-2026-03-07 20:01:37 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-03-07 20:01:37 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:h2:mem:testdb]
-	Database driver: H2 JDBC Driver
-	Database dialect: H2Dialect
-	Database version: 2.4.240
-	Default catalog/schema: testdb/public
+2026-03-09 12:07:23 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 12:07:23 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 12:07:23 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 12:07:23 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+2026-03-09 12:07:23 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-09 12:07:24 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 12:07:24 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-03-09 12:07:24 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-03-09 12:07:24 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 4.918 seconds (process running for 5.444)
+2026-03-09 12:07:35 - INFO - org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 12:07:35 - INFO - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 12:07:35 - INFO - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2026-03-09 12:07:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-09 12:07:35 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:07:35 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-09 12:07:38 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
+2026-03-09 12:08:10 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/subscription
+2026-03-09 12:08:11 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/subscription
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:13 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_intent.created, id=evt_3T92aMHk0gTF58U30OHOFIPg
+2026-03-09 12:08:13 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_intent.created
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:13 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.created, id=evt_1T92aNHk0gTF58U39mKINEcO
+2026-03-09 12:08:13 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.created
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:14 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.finalized, id=evt_1T92aOHk0gTF58U3mq3KLvP8
+2026-03-09 12:08:14 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.finalized
+2026-03-09 12:08:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:14 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:14 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=customer.subscription.created, id=evt_1T92aNHk0gTF58U3NvJ5yrlP
+2026-03-09 12:08:14 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: customer.subscription.created
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=charge.succeeded, id=evt_3T92aMHk0gTF58U30z2whMe4
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: charge.succeeded
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_method.attached, id=evt_1T92anHk0gTF58U3Y0eHVKHm
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_method.attached
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=customer.subscription.updated, id=evt_1T92anHk0gTF58U3DEyiqNdR
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: customer.subscription.updated
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=payment_intent.succeeded, id=evt_3T92aMHk0gTF58U30PJZ4uMi
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: payment_intent.succeeded
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.paid, id=evt_1T92anHk0gTF58U3521u0GD3
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.updated, id=evt_1T92anHk0gTF58U35C0Bo8cN
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.updated
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:39 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice.payment_succeeded, id=evt_1T92anHk0gTF58U38cIhI6kb
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Unhandled event type: invoice.payment_succeeded
+2026-03-09 12:08:39 - INFO - com.gotcha.gotcha_api.controller.WebhookController - invoice.paid: activating subscription for customer=cus_U6zH0i3u22tqow
+2026-03-09 12:08:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/webhook/stripe
+2026-03-09 12:08:48 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-09 12:08:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/webhook/stripe
+2026-03-09 12:08:48 - INFO - com.gotcha.gotcha_api.controller.WebhookController - Received Stripe webhook event: type=invoice_payment.paid, id=evt_1T92awHk0gTF58U3Pnfv6RPM
+2026-03-09 12:08:48 - ERROR - com.gotcha.gotcha_api.controller.WebhookController - Failed to deserialize Invoice from event evt_1T92awHk0gTF58U3Pnfv6RPM: class com.stripe.model.StripeRawJsonObject cannot be cast to class com.stripe.model.Invoice (com.stripe.model.StripeRawJsonObject and com.stripe.model.Invoice are in unnamed module of loader 'app')
+2026-03-09 12:08:48 - WARN - com.gotcha.gotcha_api.controller.WebhookController - invoice.paid: could not deserialize invoice object
+2026-03-09 12:11:49 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 12:11:49 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 12:11:49 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 12:11:49 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 12:11:49 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 12:13:23 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Starting GotchaApiApplication using Java 23.0.1 with PID 27600 (G:\Work\gotcha-cafe\gotcha-api\gotcha-api\target\classes started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-03-09 12:13:23 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 12:13:24 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 12:13:24 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 6 JPA repository interfaces.
+2026-03-09 12:13:24 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 12:13:24 - INFO - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 12:13:24 - INFO - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-03-09 12:13:24 - INFO - org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1233 ms
+2026-03-09 12:13:24 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-03-09 12:13:25 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 12:13:25 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@42aa1324
+2026-03-09 12:13:25 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 12:13:25 - INFO - org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/gotcha (PostgreSQL 18.1)
+2026-03-09 12:13:25 - INFO - org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Repair of failed migration in Schema History table "public"."flyway_schema_history" not necessary. No failed migration detected.
+2026-03-09 12:13:25 - INFO - org.flywaydb.core.internal.command.DbRepair - Successfully repaired schema history table "public"."flyway_schema_history" (execution time 00:00.036s).
+2026-03-09 12:13:25 - INFO - org.flywaydb.core.internal.command.DbValidate - Successfully validated 18 migrations (execution time 00:00.012s)
+2026-03-09 12:13:25 - INFO - org.flywaydb.core.internal.command.DbMigrate - Current version of schema "public": 18
+2026-03-09 12:13:25 - INFO - org.flywaydb.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2026-03-09 12:13:25 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-09 12:13:25 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-03-09 12:13:25 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 12:13:26 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gotcha]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: gotcha/public
 	Autocommit mode: undefined/unknown
 	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: 100
+	JDBC fetch size: none
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-03-07 20:01:38 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-07 20:01:38 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 20:01:39 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-07 20:01:39 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
-2026-03-07 20:01:39 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
-2026-03-07 20:01:39 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2026-03-07 20:01:40 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-07 20:01:41 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2026-03-07 20:01:41 - DEBUG - com.gotcha.gotcha_api.securityConfig.JWTFilter - Filter 'JWTFilter' configured for use
-2026-03-07 20:01:41 - INFO - org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
-2026-03-07 20:01:41 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
-2026-03-07 20:01:41 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 4 ms
-2026-03-07 20:01:41 - INFO - com.gotcha.gotcha_api.controller.OrderControllerIntegrationTest - Started OrderControllerIntegrationTest in 6.807 seconds (process running for 8.097)
-2026-03-07 20:01:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:42 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:42 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:43 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:43 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 20:01:43 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 20:01:43 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 20:01:43 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 20:01:44 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:45 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 20:01:46 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:47 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/member/order
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/member/order
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/member/order
-2026-03-07 20:01:48 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/member/order
-2026-03-07 20:01:48 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-03-07 20:01:48 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-03-07 20:01:48 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 12:13:26 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 12:13:26 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 12:13:26 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 12:13:27 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+2026-03-09 12:13:27 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-09 12:13:27 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 12:13:27 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-03-09 12:13:27 - INFO - org.springframework.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-03-09 12:13:27 - INFO - com.gotcha.gotcha_api.GotchaApiApplication - Started GotchaApiApplication in 4.911 seconds (process running for 5.416)
+2026-03-09 12:41:44 - WARN - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=24m18s812ms621µs900ns).
+2026-03-09 12:42:03 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 12:42:03 - INFO - org.springframework.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 12:42:03 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 12:42:03 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 12:42:03 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

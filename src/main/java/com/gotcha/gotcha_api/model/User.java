@@ -56,7 +56,9 @@ public class User {
 
     private String gotchaFavDrinkPictureKey;
 
+    private String stripeCustomerId;
 
+    private String stripeSubscriptionId;
 
 
 

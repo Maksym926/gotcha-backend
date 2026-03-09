@@ -28,8 +28,8 @@ public class ProductController {
             @RequestParam(required = false) String keyword,
             @RequestParam(required = false) String brand,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false) BigDecimal minPrice,
-            @RequestParam(required = false) BigDecimal maxPrice,
+            @RequestParam(required = false) Long minPrice,
+            @RequestParam(required = false) Long maxPrice,
             @RequestParam(required = false) Boolean productAvailable
     ) {
         ProductSearchParameter params = new ProductSearchParameter(keyword, brand, category, minPrice, maxPrice, productAvailable);

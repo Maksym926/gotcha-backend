@@ -47,7 +47,7 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(HttpMethod.POST,"/api/register", "/api/login", "/api/logout").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/register", "/api/login", "/api/logout", "/api/webhook/stripe").permitAll()
 
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
 
