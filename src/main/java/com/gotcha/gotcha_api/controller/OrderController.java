@@ -34,11 +34,11 @@ public class OrderController {
     }
 
     @GetMapping("/admin/order")
-    public ResponseEntity<List<Order>> getAllOrders(@Valid @ModelAttribute OrderSearchParameter params){
+    public ResponseEntity<List<OrderResponse>> getAllOrders(@Valid @ModelAttribute OrderSearchParameter params){
         return new ResponseEntity<>(orderService.getAllOrders(params), HttpStatus.OK);
     }
     @GetMapping("/admin/order/{orderId}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long orderId){
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long orderId){
         return new ResponseEntity<>(orderService.getOrderById(orderId), HttpStatus.OK);
     }
 }

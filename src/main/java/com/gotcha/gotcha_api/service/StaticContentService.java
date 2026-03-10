@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.service;
 
 import com.gotcha.gotcha_api.exception.custom.ImageFileNotFoundException;
+import com.gotcha.gotcha_api.exception.custom.ImageGenerationException;
 import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.model.StaticContent;
 import com.gotcha.gotcha_api.repo.StaticContentRepo;
@@ -24,8 +25,14 @@ public class StaticContentService {
         StaticContent staticContent = staticContentRepo.findBySectionKey(sectionKey).orElseThrow(() ->
                 new ResourceNotFoundException("Section " + sectionKey + " not found"));
         String signedUrl;
-        signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
-        staticContent.setImageKey(signedUrl);
+        if(staticContent.getImageKey() != null){
+            signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
+            staticContent.setImageKey(signedUrl);
+            if(signedUrl.isBlank())
+                throw  new ImageGenerationException("Fail to generate an image url");
+        }
+
+
         return staticContent;
 
     }
@@ -33,8 +40,11 @@ public class StaticContentService {
     public List<StaticContent> getAllSections() {
         List<StaticContent> staticContentList = staticContentRepo.findAll();
         return staticContentList.stream().map(staticContent -> {
+
             String signedUrl;
             signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
+            if(signedUrl.isBlank())
+                throw new ImageGenerationException("Fail to generate an image url");
             staticContent.setImageKey(signedUrl);
             return staticContent;
         }).toList();

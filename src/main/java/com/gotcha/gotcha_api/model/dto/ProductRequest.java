@@ -29,7 +29,7 @@ public record ProductRequest(
         @Min(value = 0, message = "stock quantity must be 0 or greater")
         Long stockQuantity,
 
-        @NotBlank(message = "image key is required")
+
         String imageUrl
 ) {
 }

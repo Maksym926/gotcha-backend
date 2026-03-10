@@ -100,6 +100,7 @@ public class OrderService {
                 orderItemResponses.add(orderItemResponse);
             }
             OrderResponse orderResponse = new OrderResponse(
+                    order.getOrderId(),
                     order.getOrderCode(),
                     order.getStatus(),
                     order.getCreateDate(),
@@ -112,9 +113,28 @@ public class OrderService {
         return orderResponses;
     }
 
-    public List<Order> getAllOrders(OrderSearchParameter params){
+    public List<OrderResponse> getAllOrders(OrderSearchParameter params){
         Specification<Order> specification = search(params);
-        return orderRepo.findAll(specification);
+        List<Order> orders = orderRepo.findAll(specification);
+        return orders.stream().map(order -> {
+            List<OrderItem> orderItems = order.getOrderItems();
+            List<OrderItemResponse> orderItemResponses = new ArrayList<>();
+            for(OrderItem item : orderItems){
+                orderItemResponses.add(new OrderItemResponse(
+                        item.getProduct().getName(),
+                        item.getQuantity(),
+                        item.getTotalPrice()
+                ));
+            }
+            return  new OrderResponse(
+                    order.getOrderId(),
+                    order.getOrderCode(),
+                    order.getStatus(),
+                    order.getCreateDate(),
+                    order.getTotalPrice(),
+                    orderItemResponses);
+        }).toList();
+
     }
     public static Specification<Order> search(OrderSearchParameter params) {
         return (root, query, cb) -> {
@@ -148,9 +168,25 @@ public class OrderService {
         };
     }
 
-    public Order getOrderById(Long orderId) {
-        return orderRepo.findById(orderId).orElseThrow(
+    public OrderResponse getOrderById(Long orderId) {
+        Order order =  orderRepo.findById(orderId).orElseThrow(
                 () -> new ResourceNotFoundException("Order not found with id: " + orderId)
         );
+        List<OrderItemResponse> orderItemResponses = new ArrayList<>();
+        for (OrderItem item : order.getOrderItems()) {
+            orderItemResponses.add(new OrderItemResponse(
+                    item.getProduct().getName(),
+                    item.getQuantity(),
+                    item.getTotalPrice()
+            ));
+        }
+        return new OrderResponse(
+                order.getOrderId(),
+                order.getOrderCode(),
+                order.getStatus(),
+                order.getCreateDate(),
+                order.getTotalPrice(),
+                orderItemResponses);
+
     }
 }

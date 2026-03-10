@@ -44,6 +44,8 @@ public class EventService {
             String signedUrl = null;
             if (event.getImageKey() != null) {
                 signedUrl = s3Service.generateSignedUrl(event.getImageKey());
+                if(signedUrl.isBlank())
+                    throw new ImageGenerationException("Image generation url failed");
             }
             return  new EventResponse(
                     event.getEventId(),
@@ -72,10 +74,13 @@ public class EventService {
     public Event getEventById(Long id) {
         Event event = eventRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event", id));
+        String signedUrl = "";
+        if(event.getImageKey() != null){
+             signedUrl = s3Service.generateSignedUrl(event.getImageKey());
+            if(signedUrl.isBlank())
+                throw new ImageGenerationException("Image generation failed");
+        }
 
-        String signedUrl = s3Service.generateSignedUrl(event.getImageKey());
-        if(signedUrl == null)
-            throw new ImageGenerationException("Image generation failed");
         event.setImageKey(signedUrl);
 
         return event;

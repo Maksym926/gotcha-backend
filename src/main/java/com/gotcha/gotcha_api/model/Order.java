@@ -1,5 +1,6 @@
 package com.gotcha.gotcha_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gotcha.gotcha_api.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime updateDate;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

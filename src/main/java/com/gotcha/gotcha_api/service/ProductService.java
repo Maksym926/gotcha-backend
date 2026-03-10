@@ -37,13 +37,14 @@ public class ProductService {
         List<ProductResponse> productResponses = new ArrayList<>();
 
         for(Product product : products){
+            String signedUrl = "";
             if(product.getImageKey() != null){
-                String signedUrl = s3Service.generateSignedUrl(product.getImageKey());
-                if(signedUrl == null)
+                signedUrl = s3Service.generateSignedUrl(product.getImageKey());
+                if(signedUrl.isBlank())
                     throw new ImageGenerationException("Image generation failed");
                 product.setImageKey(signedUrl);
             }
-            productResponses.add( new ProductResponse(product.getName(), product.getPrice(), product.getImageKey()));
+            productResponses.add( new ProductResponse(product.getName(), product.getPrice(), signedUrl));
         }
 
         return productResponses;

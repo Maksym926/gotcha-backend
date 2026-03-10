@@ -25,14 +25,15 @@ public class ProfileService {
 
     public ProfileResponse getProfileInfo(UserPrincipal userPrincipal) {
         User user = userPrincipal.getUser();
+        String signedUrl = "";
         if(user.getProfilePictureKey()!= null){
-            String signedUrl = s3Service.generateSignedUrl(user.getProfilePictureKey());
+            signedUrl = s3Service.generateSignedUrl(user.getProfilePictureKey());
             if(signedUrl == null)
                 throw new ImageGenerationException("Image generation failed");
-            user.setProfilePictureKey(signedUrl);
+
         }
         if(user.getGotchaFavDrinkPictureKey() != null){
-            String signedUrl = s3Service.generateSignedUrl(user.getGotchaFavDrinkPictureKey());
+            signedUrl = s3Service.generateSignedUrl(user.getGotchaFavDrinkPictureKey());
             if(signedUrl == null)
                 throw new ImageGenerationException("Image generation failed");
             user.setGotchaFavDrinkPictureKey(signedUrl);
@@ -41,7 +42,7 @@ public class ProfileService {
                 user.getUsername(),
                 user.getEmail(),
                 user.getGotchaCoins(),
-                user.getProfilePictureKey(),
+                signedUrl,
                 user.getRsvps(),
                 user.getMood(),
                 user.getSubscriptionStatus(),

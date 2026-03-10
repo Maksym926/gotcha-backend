@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.gotcha.gotcha_api.model.User;
+import com.gotcha.gotcha_api.model.dto.UserResponse;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.gotcha.gotcha_api.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class AdminController {
 
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<UserResponse>> getAllUsers(){
         return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
     }
     @GetMapping("/users/{id}")

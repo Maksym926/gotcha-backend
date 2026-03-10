@@ -60,7 +60,4 @@ public class User {
 
     private String stripeSubscriptionId;
 
-
-
-    //    private String favoriteDrink; // ??
 }

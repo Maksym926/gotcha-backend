@@ -338,13 +338,13 @@ public class OrderControllerIntegrationTest {
 
         // Extract order ID from response
         String response = result.getResponse().getContentAsString();
-        Long orderId = objectMapper.readTree(response).get(0).get("orderId").asLong();
+        long orderId = objectMapper.readTree(response).get(0).get("orderId").asLong();
 
         // Get by ID
         mockMvc.perform(get("/api/admin/order/" + orderId)
                         .header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.orderId", is(orderId.intValue())))
+                .andExpect(jsonPath("$.orderId", is((int) orderId)))
                 .andExpect(jsonPath("$.orderCode", startsWith("ORD")));
     }
 

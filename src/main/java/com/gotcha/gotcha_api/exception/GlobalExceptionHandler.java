@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.exception;
 
 import com.gotcha.gotcha_api.exception.custom.*;
+import com.stripe.exception.StripeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -106,6 +107,32 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(
                 LocalDateTime.now(),
                 400,
+                errors
+        );
+    }
+
+    // Stripe exception
+    @ExceptionHandler(StripeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleStripeException(StripeException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                500,
+                errors
+        );
+    }
+
+    // Fallback for unexpected runtime errors
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleRuntimeException(RuntimeException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                500,
                 errors
         );
     }
