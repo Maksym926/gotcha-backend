@@ -13,6 +13,8 @@ import com.gotcha.gotcha_api.repo.EventRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,12 +36,12 @@ public class EventService {
     @Autowired
     UserRepo userRepo;
 
-    public List<EventResponse> getAllEvents() {
-        List<Event> events = eventRepo.findAll();
+    public Page<EventResponse> getAllEvents(Pageable pageable) {
+        Page<Event> events = eventRepo.findAll(pageable);
 
-        log.info("Getting events from DB: " + events.size());
+        log.info("Getting events from DB: " + events);
 
-        return events.stream().map(event -> {
+        return events.map(event -> {
 
             String signedUrl = null;
             if (event.getImageKey() != null) {
@@ -54,7 +56,7 @@ public class EventService {
                     signedUrl
             );
 
-        }).toList();
+        });
     }
 
     public Event addOrUpdateEvent(Event event, MultipartFile file) throws IOException {

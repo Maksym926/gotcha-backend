@@ -11,6 +11,8 @@ import com.gotcha.gotcha_api.repo.ProductRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -86,20 +88,18 @@ public class OrderService {
     }
 
 
-    public List<OrderResponse> getAllOrders(User user) {
-        List<Order> orders = user.getOrders();
-        List<OrderResponse> orderResponses = new ArrayList<>();
-        for(Order order : orders){
+    public Page<OrderResponse> getAllOrders(User user, Pageable pageable) {
+        Page<Order> orders = orderRepo.findByUser(user, pageable);
+        return orders.map(order -> {
             List<OrderItemResponse> orderItemResponses = new ArrayList<>();
             for(OrderItem item : order.getOrderItems()){
-                OrderItemResponse orderItemResponse = new OrderItemResponse(
+                orderItemResponses.add(new OrderItemResponse(
                         item.getProduct().getName(),
                         item.getQuantity(),
                         item.getTotalPrice()
-                );
-                orderItemResponses.add(orderItemResponse);
+                ));
             }
-            OrderResponse orderResponse = new OrderResponse(
+            return new OrderResponse(
                     order.getOrderId(),
                     order.getOrderCode(),
                     order.getStatus(),
@@ -107,16 +107,13 @@ public class OrderService {
                     order.getTotalPrice(),
                     orderItemResponses
             );
-            orderResponses.add(orderResponse);
-
-        }
-        return orderResponses;
+        });
     }
 
-    public List<OrderResponse> getAllOrders(OrderSearchParameter params){
+    public Page<OrderResponse> getAllOrders(OrderSearchParameter params,  Pageable pageable){
         Specification<Order> specification = search(params);
-        List<Order> orders = orderRepo.findAll(specification);
-        return orders.stream().map(order -> {
+        Page<Order> orders = orderRepo.findAll(specification, pageable);
+        return orders.map(order -> {
             List<OrderItem> orderItems = order.getOrderItems();
             List<OrderItemResponse> orderItemResponses = new ArrayList<>();
             for(OrderItem item : orderItems){
@@ -133,7 +130,7 @@ public class OrderService {
                     order.getCreateDate(),
                     order.getTotalPrice(),
                     orderItemResponses);
-        }).toList();
+        });
 
     }
     public static Specification<Order> search(OrderSearchParameter params) {

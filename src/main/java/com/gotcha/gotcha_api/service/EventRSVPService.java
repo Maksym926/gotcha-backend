@@ -11,6 +11,8 @@ import com.gotcha.gotcha_api.repo.EventRSVPRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -52,8 +54,8 @@ public class EventRSVPService {
         return eventRSVP;
     }
 
-    public List<EventRSVP> getAllRSVP() {
-        return eventRSVPRepo.findAll();
+    public Page<EventRSVP> getAllRSVP(Pageable pageable) {
+        return eventRSVPRepo.findAll(pageable);
     }
 
     public void deleteRSVPById(Long eventId) {
@@ -80,14 +82,14 @@ public class EventRSVPService {
 
     }
 
-    public List<EventRSVP> getRSVPByUserId(Long userId) {
-        return eventRSVPRepo.findByUser_UserId(userId).orElseThrow(
+    public Page<EventRSVP> getRSVPByUserId(Long userId, Pageable pageable) {
+        return eventRSVPRepo.findByUser_UserId(userId, pageable).orElseThrow(
                 () -> new ResourceNotFoundException("RSVP not found with user id: " + userId)
         );
     }
 
-    public List<EventRSVP> getRSVPByEventId(Long eventId) {
-        return eventRSVPRepo.findByEvent_EventId(eventId).orElseThrow(
+    public Page<EventRSVP> getRSVPByEventId(Long eventId, Pageable pageable) {
+        return eventRSVPRepo.findByEvent_EventId(eventId, pageable).orElseThrow(
                 () -> new ResourceNotFoundException("RSVP not found with event id: " + eventId)
         );
     }

@@ -6,11 +6,12 @@ import com.gotcha.gotcha_api.exception.custom.ResourceNotFoundException;
 import com.gotcha.gotcha_api.model.StaticContent;
 import com.gotcha.gotcha_api.repo.StaticContentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 @Service
 public class StaticContentService {
@@ -37,18 +38,16 @@ public class StaticContentService {
 
     }
 
-    public List<StaticContent> getAllSections() {
-        List<StaticContent> staticContentList = staticContentRepo.findAll();
-        return staticContentList.stream().map(staticContent -> {
-
+    public Page<StaticContent> getAllSections(Pageable pageable) {
+        Page<StaticContent> staticContentPage = staticContentRepo.findAll(pageable);
+        return staticContentPage.map(staticContent -> {
             String signedUrl;
             signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
             if(signedUrl.isBlank())
                 throw new ImageGenerationException("Fail to generate an image url");
             staticContent.setImageKey(signedUrl);
             return staticContent;
-        }).toList();
-
+        });
     }
 
     public StaticContent updateStaticContent(StaticContent content, MultipartFile file) throws IOException {

@@ -1,11 +1,10 @@
 package com.gotcha.gotcha_api.model.dto;
 
 import com.gotcha.gotcha_api.model.StaticContent;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public record NewsResponse(
-        List<EventResponse> event,
-        List<StaticContent> staticContent
+        Page<EventResponse> event,
+        Page<StaticContent> staticContent
 ) {
 }

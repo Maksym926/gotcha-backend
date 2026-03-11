@@ -8,6 +8,10 @@ import com.gotcha.gotcha_api.model.dto.UpdateRSVPRequest;
 import com.gotcha.gotcha_api.service.EventRSVPService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -51,18 +55,18 @@ public class EventRSVPController {
     //admin
 
     @GetMapping("/admin/user/{user_id}/rsvp")
-    public ResponseEntity<List<EventRSVP>> getRSVPByUserId(@PathVariable("user_id") Long user_id){
-        List<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByUserId(user_id);
+    public ResponseEntity<Page<EventRSVP>> getRSVPByUserId(@PathVariable("user_id") Long user_id, @PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByUserId(user_id, pageable);
         return new ResponseEntity<>(rsvpEvents, HttpStatus.OK);
     }
     @GetMapping("/admin/event/{event_id}/rsvp")
-    public ResponseEntity<List<EventRSVP>> getRSVPByEvenId(@PathVariable("event_id") Long event_id){
-        List<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByEventId(event_id);
+    public ResponseEntity<Page<EventRSVP>> getRSVPByEvenId(@PathVariable("event_id") Long event_id, @PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByEventId(event_id, pageable);
         return new ResponseEntity<>(rsvpEvents, HttpStatus.OK);
     }
     @GetMapping("/admin/event/rsvp")
-    public ResponseEntity<List<EventRSVP>> getAllRSVP(){
-        return new ResponseEntity<>(eventRSVPService.getAllRSVP(), HttpStatus.OK);
+    public ResponseEntity<Page<EventRSVP>> getAllRSVP(@PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+        return new ResponseEntity<>(eventRSVPService.getAllRSVP(pageable), HttpStatus.OK);
     }
 
 

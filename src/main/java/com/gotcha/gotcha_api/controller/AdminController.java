@@ -5,6 +5,10 @@ import com.gotcha.gotcha_api.model.dto.UserResponse;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.gotcha.gotcha_api.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +25,8 @@ public class AdminController {
 
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserResponse>> getAllUsers(){
-        return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
+    public ResponseEntity<Page<UserResponse>> getAllUsers( @PageableDefault(size = 20, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable){
+        return new ResponseEntity<>(adminService.getAllUsers(pageable), HttpStatus.OK);
     }
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){

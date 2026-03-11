@@ -6,6 +6,8 @@ import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.UserResponse;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,10 +22,10 @@ public class AdminService {
     @Autowired
     UserRepo userRepo;
 
-    public List<UserResponse> getAllUsers() {
-        List<User> users = userRepo.findAll();
+    public Page<UserResponse> getAllUsers(Pageable pageable) {
+        Page<User> users = userRepo.findAll(pageable);
 
-        return users.stream().map(user -> {
+        return users.map(user -> {
                 String signedUrl = "";
                 if(user.getProfilePictureKey() != null){
                     signedUrl = s3Service.generateSignedUrl(user.getProfilePictureKey());
@@ -45,7 +47,7 @@ public class AdminService {
                 );
 
 
-        }).toList();
+        });
 
     }
     public User getUserByID(Long id) {

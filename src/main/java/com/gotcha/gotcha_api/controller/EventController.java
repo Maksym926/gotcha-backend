@@ -9,6 +9,10 @@ import com.gotcha.gotcha_api.service.EventService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +31,8 @@ public class EventController {
     EventService eventService;
 
     @GetMapping("member/event")
-    public ResponseEntity<List<EventResponse>> getEvents(){
-        List<EventResponse> events = eventService.getAllEvents();
+    public ResponseEntity<Page<EventResponse>> getEvents(@PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<EventResponse> events = eventService.getAllEvents(pageable);
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 

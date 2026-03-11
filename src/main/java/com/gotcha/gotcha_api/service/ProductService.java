@@ -11,6 +11,8 @@ import com.gotcha.gotcha_api.repo.ProductRepo;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -30,13 +32,11 @@ public class ProductService {
     @Autowired
     ProductRepo productRepo;
 
-    public List<ProductResponse> getAllProducts(ProductSearchParameter searchParams) {
+    public Page<ProductResponse> getAllProducts(ProductSearchParameter searchParams, Pageable pageable) {
         Specification<Product> specification = search(searchParams);
-        List<Product> products = productRepo.findAll(specification);
+        Page<Product> products = productRepo.findAll(specification, pageable);
 
-        List<ProductResponse> productResponses = new ArrayList<>();
-
-        for(Product product : products){
+        return products.map(product -> {
             String signedUrl = "";
             if(product.getImageKey() != null){
                 signedUrl = s3Service.generateSignedUrl(product.getImageKey());
@@ -44,10 +44,8 @@ public class ProductService {
                     throw new ImageGenerationException("Image generation failed");
                 product.setImageKey(signedUrl);
             }
-            productResponses.add( new ProductResponse(product.getName(), product.getPrice(), signedUrl));
-        }
-
-        return productResponses;
+            return new ProductResponse(product.getName(), product.getPrice(), signedUrl);
+        });
     }
 
     public static Specification<Product> search( ProductSearchParameter params) {
