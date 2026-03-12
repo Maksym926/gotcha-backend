@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.model.EventRSVP;
 import com.gotcha.gotcha_api.model.Product;
@@ -78,6 +79,7 @@ public class ProductControllerTest {
         testUser.setEmail("profileuser@gotcha.com");
         testUser.setPassword(encoder.encode("password123"));
         testUser.setRole(Role.ADMIN);
+        testUser.setStatus(AccountStatus.ACTIVE);
         userRepo.save(testUser);
 
         Product testProduct = new Product();

@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.model.Event;
 import com.gotcha.gotcha_api.model.EventRSVP;
@@ -83,6 +84,7 @@ class EventRSVPControllerIntegrationTest {
         admin.setEmail("admin2@gotcha.com");
         admin.setPassword(encoder.encode("admin123"));
         admin.setRole(Role.ADMIN);
+        admin.setStatus(AccountStatus.ACTIVE);
 
         userRepository.save(admin);
 
@@ -230,7 +232,7 @@ class EventRSVPControllerIntegrationTest {
         mockMvc.perform(get("/api/admin/user/" + user.getUserId() + "/rsvp")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", isA(java.util.List.class)));
+                .andExpect(jsonPath("$.content", isA(java.util.List.class)));
     }
 
     @Test
@@ -238,7 +240,7 @@ class EventRSVPControllerIntegrationTest {
         mockMvc.perform(get("/api/admin/event/" + testEvent.getEventId() + "/rsvp")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", isA(java.util.List.class)));
+                .andExpect(jsonPath("$.content", isA(java.util.List.class)));
     }
 
     @Test
@@ -246,7 +248,7 @@ class EventRSVPControllerIntegrationTest {
         mockMvc.perform(get("/api/admin/event/rsvp")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", isA(java.util.List.class)));
+                .andExpect(jsonPath("$.content", isA(java.util.List.class)));
     }
 
     @Test

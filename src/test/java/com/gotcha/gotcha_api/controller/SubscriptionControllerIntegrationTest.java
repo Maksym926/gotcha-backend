@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.User;
@@ -65,6 +66,7 @@ public class SubscriptionControllerIntegrationTest {
         memberUser.setEmail("submember@gotcha.com");
         memberUser.setPassword(encoder.encode("password123"));
         memberUser.setRole(Role.MEMBER);
+        memberUser.setStatus(AccountStatus.ACTIVE);
         memberUser = userRepo.save(memberUser);
 
         // Login member

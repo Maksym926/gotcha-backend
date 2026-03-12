@@ -25,7 +25,7 @@ public class AdminController {
 
 
     @GetMapping("/users")
-    public ResponseEntity<Page<UserResponse>> getAllUsers( @PageableDefault(size = 20, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity<Page<UserResponse>> getAllUsers( @PageableDefault(size = 20, sort = "username", direction = Sort.Direction.DESC) Pageable pageable){
         return new ResponseEntity<>(adminService.getAllUsers(pageable), HttpStatus.OK);
     }
     @GetMapping("/users/{id}")

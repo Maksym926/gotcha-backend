@@ -31,7 +31,7 @@ public class EventController {
     EventService eventService;
 
     @GetMapping("member/event")
-    public ResponseEntity<Page<EventResponse>> getEvents(@PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity<Page<EventResponse>> getEvents(@PageableDefault(size = 20, sort = "eventDate", direction = Sort.Direction.DESC) Pageable pageable){
         Page<EventResponse> events = eventService.getAllEvents(pageable);
         return new ResponseEntity<>(events, HttpStatus.OK);
     }

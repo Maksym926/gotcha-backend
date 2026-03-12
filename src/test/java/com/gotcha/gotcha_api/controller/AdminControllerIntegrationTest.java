@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.User;
@@ -65,6 +66,7 @@ public class AdminControllerIntegrationTest {
         adminUser.setEmail("superadmin@gotcha.com");
         adminUser.setPassword(encoder.encode("password123"));
         adminUser.setRole(Role.ADMIN);
+        adminUser.setStatus(AccountStatus.ACTIVE);
         adminUser = userRepo.save(adminUser);
 
         // Create member user
@@ -74,6 +76,7 @@ public class AdminControllerIntegrationTest {
         memberUser.setPassword(encoder.encode("password123"));
         memberUser.setRole(Role.MEMBER);
         memberUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        memberUser.setStatus(AccountStatus.ACTIVE);
         memberUser = userRepo.save(memberUser);
 
         // Create target user (for get/delete tests)
@@ -83,6 +86,7 @@ public class AdminControllerIntegrationTest {
         targetUser.setPassword(encoder.encode("password123"));
         targetUser.setRole(Role.MEMBER);
         targetUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        targetUser.setStatus(AccountStatus.ACTIVE);
         targetUser = userRepo.save(targetUser);
 
         // Login admin
@@ -111,8 +115,8 @@ public class AdminControllerIntegrationTest {
         mockMvc.perform(get("/api/admin/users")
                         .header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[*].username", hasItems("superadmin", "regularmember", "targetuser")));
+                .andExpect(jsonPath("$.content", hasSize(3)))
+                .andExpect(jsonPath("$.content[*].username", hasItems("superadmin", "regularmember", "targetuser")));
     }
 
     @Test

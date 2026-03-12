@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.Event;
@@ -75,6 +76,7 @@ public class EventControllerIntegrationTest {
         member.setPassword(encoder.encode("password123"));
         member.setRole(Role.MEMBER);
         member.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        member.setStatus(AccountStatus.ACTIVE);
         userRepo.save(member);
 
         // Create admin user
@@ -83,6 +85,7 @@ public class EventControllerIntegrationTest {
         admin.setEmail("eventadmin@gotcha.com");
         admin.setPassword(encoder.encode("password123"));
         admin.setRole(Role.ADMIN);
+        admin.setStatus(AccountStatus.ACTIVE);
         userRepo.save(admin);
 
         // Login member
@@ -121,8 +124,8 @@ public class EventControllerIntegrationTest {
         mockMvc.perform(get("/api/member/event")
                         .header("Authorization", "Bearer " + memberToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].title", is("Coffee Tasting Night")));
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].title", is("Coffee Tasting Night")));
     }
 
     @Test
@@ -132,7 +135,7 @@ public class EventControllerIntegrationTest {
         mockMvc.perform(get("/api/member/event")
                         .header("Authorization", "Bearer " + memberToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(0)));
+                .andExpect(jsonPath("$.content", hasSize(0)));
     }
 
     @Test

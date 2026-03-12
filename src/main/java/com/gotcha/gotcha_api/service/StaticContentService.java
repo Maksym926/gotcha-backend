@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StaticContentService {
@@ -38,16 +40,15 @@ public class StaticContentService {
 
     }
 
-    public Page<StaticContent> getAllSections(Pageable pageable) {
-        Page<StaticContent> staticContentPage = staticContentRepo.findAll(pageable);
-        return staticContentPage.map(staticContent -> {
+    public List<StaticContent> getAllSections() {
+        List<StaticContent> staticContentPage = staticContentRepo.findAll();
+        return staticContentPage.stream().peek(staticContent -> {
             String signedUrl;
             signedUrl = s3Service.generateSignedUrl(staticContent.getImageKey());
             if(signedUrl.isBlank())
                 throw new ImageGenerationException("Fail to generate an image url");
             staticContent.setImageKey(signedUrl);
-            return staticContent;
-        });
+        }).toList();
     }
 
     public StaticContent updateStaticContent(StaticContent content, MultipartFile file) throws IOException {

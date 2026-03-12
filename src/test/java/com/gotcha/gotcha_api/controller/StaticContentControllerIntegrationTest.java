@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.StaticContent;
@@ -73,6 +74,7 @@ public class StaticContentControllerIntegrationTest {
         member.setPassword(encoder.encode("password123"));
         member.setRole(Role.MEMBER);
         member.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        member.setStatus(AccountStatus.ACTIVE);
         userRepo.save(member);
 
         // Create admin user
@@ -81,6 +83,7 @@ public class StaticContentControllerIntegrationTest {
         admin.setEmail("contentadmin@gotcha.com");
         admin.setPassword(encoder.encode("password123"));
         admin.setRole(Role.ADMIN);
+        admin.setStatus(AccountStatus.ACTIVE);
         userRepo.save(admin);
 
         // Login member
@@ -101,6 +104,7 @@ public class StaticContentControllerIntegrationTest {
 
         // Create test static content
         testContent = new StaticContent();
+
         testContent.setSectionKey("hero-banner");
         testContent.setTitle("Welcome to Gotcha Cafe");
         testContent.setDescription("The best cafe in Paris");

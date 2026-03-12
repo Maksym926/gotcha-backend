@@ -3,6 +3,8 @@ package com.gotcha.gotcha_api.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
 import com.gotcha.gotcha_api.model.dto.RegisterRequest;
+import com.gotcha.gotcha_api.repo.EmailVerificationTokenRepo;
+import com.gotcha.gotcha_api.service.EmailService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
@@ -10,10 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
@@ -31,6 +35,23 @@ class AuthControllerIntegrationTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockitoBean
+    private EmailService emailService;
+
+    @Autowired
+    private EmailVerificationTokenRepo emailVerificationTokenRepo;
+
+    // Verify the most recently created email verification token
+    private void verifyLatestEmail() throws Exception {
+        String token = emailVerificationTokenRepo.findAll()
+                .stream()
+                .reduce((first, second) -> second) // get last
+                .orElseThrow()
+                .getToken();
+        mockMvc.perform(get("/api/verify-email").param("token", token))
+                .andExpect(status().isOk());
+    }
 
     @Test
     void testRegisterUser_Success() throws Exception {
@@ -90,6 +111,9 @@ class AuthControllerIntegrationTest {
                         .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isOk());
 
+        // Verify email to activate account before login
+        verifyLatestEmail();
+
         // Then login with the registered user
         LoginRequest loginRequest = new LoginRequest(
                 "loginuser@example.com",
@@ -130,6 +154,9 @@ class AuthControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isOk());
+
+        // Verify email to activate account
+        verifyLatestEmail();
 
         // Attempt login with wrong password
         LoginRequest loginRequest = new LoginRequest(

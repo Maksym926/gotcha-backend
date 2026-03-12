@@ -55,17 +55,17 @@ public class EventRSVPController {
     //admin
 
     @GetMapping("/admin/user/{user_id}/rsvp")
-    public ResponseEntity<Page<EventRSVP>> getRSVPByUserId(@PathVariable("user_id") Long user_id, @PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity<Page<EventRSVP>> getRSVPByUserId(@PathVariable("user_id") Long user_id, @PageableDefault(size = 20, sort = "rsvpId", direction = Sort.Direction.DESC) Pageable pageable){
         Page<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByUserId(user_id, pageable);
         return new ResponseEntity<>(rsvpEvents, HttpStatus.OK);
     }
     @GetMapping("/admin/event/{event_id}/rsvp")
-    public ResponseEntity<Page<EventRSVP>> getRSVPByEvenId(@PathVariable("event_id") Long event_id, @PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity<Page<EventRSVP>> getRSVPByEvenId(@PathVariable("event_id") Long event_id, @PageableDefault(size = 20, sort = "rsvpId", direction = Sort.Direction.DESC) Pageable pageable){
         Page<EventRSVP> rsvpEvents = eventRSVPService.getRSVPByEventId(event_id, pageable);
         return new ResponseEntity<>(rsvpEvents, HttpStatus.OK);
     }
     @GetMapping("/admin/event/rsvp")
-    public ResponseEntity<Page<EventRSVP>> getAllRSVP(@PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity<Page<EventRSVP>> getAllRSVP(@PageableDefault(size = 20, sort = "rsvpId", direction = Sort.Direction.DESC) Pageable pageable){
         return new ResponseEntity<>(eventRSVPService.getAllRSVP(pageable), HttpStatus.OK);
     }
 

@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NewService {
 
@@ -23,7 +25,7 @@ public class NewService {
 
     public ResponseEntity<NewsResponse> getAllNews(@PageableDefault(size = 20, sort = "releaseDate", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<EventResponse> events = eventService.getAllEvents(pageable);
-        Page<StaticContent> staticContents = staticContentService.getAllSections(pageable);
+        List<StaticContent> staticContents = staticContentService.getAllSections();
         NewsResponse response = new NewsResponse(
                 events,
                 staticContents

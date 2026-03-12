@@ -1,6 +1,7 @@
 package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.Product;
@@ -74,6 +75,7 @@ public class OrderControllerIntegrationTest {
         testUser.setPassword(encoder.encode("password123"));
         testUser.setRole(Role.MEMBER);
         testUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        testUser.setStatus(AccountStatus.ACTIVE);
         testUser.setGotchaCoins(100L);
         userRepo.save(testUser);
 
@@ -104,6 +106,7 @@ public class OrderControllerIntegrationTest {
         adminUser.setEmail("orderadmin@gotcha.com");
         adminUser.setPassword(encoder.encode("password123"));
         adminUser.setRole(Role.ADMIN);
+        adminUser.setStatus(AccountStatus.ACTIVE);
         userRepo.save(adminUser);
 
         MvcResult adminLogin = mockMvc.perform(post("/api/login")
@@ -193,7 +196,7 @@ public class OrderControllerIntegrationTest {
         mockMvc.perform(get("/api/member/order")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(0)));
+                .andExpect(jsonPath("$.content", hasSize(0)));
     }
 
     @Test
@@ -213,13 +216,13 @@ public class OrderControllerIntegrationTest {
         mockMvc.perform(get("/api/member/order")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].orderCode", startsWith("ORD")))
-                .andExpect(jsonPath("$[0].status", is("PENDING")))
-                .andExpect(jsonPath("$[0].totalPrice", notNullValue()))
-                .andExpect(jsonPath("$[0].items", hasSize(1)))
-                .andExpect(jsonPath("$[0].items[0].productName", is("Matcha Latte")))
-                .andExpect(jsonPath("$[0].items[0].quantity", is(2)));
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].orderCode", startsWith("ORD")))
+                .andExpect(jsonPath("$.content[0].status", is("PENDING")))
+                .andExpect(jsonPath("$.content[0].totalPrice", notNullValue()))
+                .andExpect(jsonPath("$.content[0].items", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].items[0].productName", is("Matcha Latte")))
+                .andExpect(jsonPath("$.content[0].items[0].quantity", is(2)));
     }
 
     @Test
@@ -237,6 +240,7 @@ public class OrderControllerIntegrationTest {
         anotherUser.setPassword(encoder.encode("password123"));
         anotherUser.setRole(Role.MEMBER);
         anotherUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        anotherUser.setStatus(AccountStatus.ACTIVE);
         anotherUser.setGotchaCoins(100L);
         userRepo.save(anotherUser);
 
@@ -260,7 +264,7 @@ public class OrderControllerIntegrationTest {
         mockMvc.perform(get("/api/member/order")
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(0)));
+                .andExpect(jsonPath("$.content", hasSize(0)));
     }
 
     // =========================================================
@@ -283,8 +287,8 @@ public class OrderControllerIntegrationTest {
         mockMvc.perform(get("/api/admin/order")
                         .header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].orderCode", startsWith("ORD")));
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].orderCode", startsWith("ORD")));
     }
 
     @Test
@@ -302,14 +306,14 @@ public class OrderControllerIntegrationTest {
                         .param("status", "PENDING")
                         .header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(jsonPath("$.content", hasSize(1)));
 
         // Filter by COMPLETED status — should be empty
         mockMvc.perform(get("/api/admin/order")
                         .param("status", "COMPLETED")
                         .header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(0)));
+                .andExpect(jsonPath("$.content", hasSize(0)));
     }
 
     @Test
@@ -341,7 +345,7 @@ public class OrderControllerIntegrationTest {
 
         // Extract order ID from response
         String response = result.getResponse().getContentAsString();
-        long orderId = objectMapper.readTree(response).get(0).get("orderId").asLong();
+        long orderId = objectMapper.readTree(response).get("content").get(0).get("orderId").asLong();
 
         // Get by ID
         mockMvc.perform(get("/api/admin/order/" + orderId)

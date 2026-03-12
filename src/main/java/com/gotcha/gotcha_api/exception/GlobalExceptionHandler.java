@@ -3,6 +3,7 @@ package com.gotcha.gotcha_api.exception;
 import com.gotcha.gotcha_api.exception.custom.*;
 import com.stripe.exception.StripeException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -133,6 +134,19 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(
                 LocalDateTime.now(),
                 400,
+                errors
+        );
+    }
+
+    // Authentication failures (bad credentials, disabled account, etc.) from controller-level auth calls
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponse handleAuthenticationException(AuthenticationException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", "Invalid credentials");
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                401,
                 errors
         );
     }

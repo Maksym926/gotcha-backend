@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
@@ -24,8 +26,8 @@ public class StaticContentController {
     StaticContentService staticContentService;
 
     @GetMapping("/member/static-content")
-    public ResponseEntity<Page<StaticContent>> getSections(@PageableDefault(size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
-        Page<StaticContent> staticContent = staticContentService.getAllSections(pageable);
+    public ResponseEntity<List<StaticContent>> getSections(){
+        List<StaticContent> staticContent = staticContentService.getAllSections();
         if(!staticContent.isEmpty()){
             return new ResponseEntity<>(staticContent, HttpStatus.OK);
         }
