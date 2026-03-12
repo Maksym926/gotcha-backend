@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/member/subscription")
 public class SubscriptionController {
 

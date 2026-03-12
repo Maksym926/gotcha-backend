@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 @Slf4j
 public class AuthController {
 

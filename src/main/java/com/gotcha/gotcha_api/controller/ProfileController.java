@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 @Slf4j
 public class ProfileController {
 

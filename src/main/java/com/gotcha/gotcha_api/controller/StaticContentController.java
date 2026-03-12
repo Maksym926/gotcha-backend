@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 @Slf4j
 public class StaticContentController {
 

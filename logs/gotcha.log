@@ -17762,3 +17762,77 @@ org.springframework.security.authentication.DisabledException: User is disabled
 2026-03-12 18:03:25 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-03-12 18:03:25 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-03-12 18:03:25 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-12 18:17:07 - INFO - com.gotcha.gotcha_api.controller.AuthControllerIntegrationTest - Starting AuthControllerIntegrationTest using Java 23.0.1 with PID 39152 (started by Maksym in G:\Work\gotcha-cafe\gotcha-api\gotcha-api)
+2026-03-12 18:17:07 - DEBUG - com.gotcha.gotcha_api.controller.AuthControllerIntegrationTest - Running with Spring Boot v4.0.2, Spring v7.0.3
+2026-03-12 18:17:07 - INFO - com.gotcha.gotcha_api.controller.AuthControllerIntegrationTest - The following 1 profile is active: "test"
+2026-03-12 18:17:08 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-12 18:17:08 - INFO - org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 8 JPA repository interfaces.
+2026-03-12 18:17:09 - INFO - org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-12 18:17:09 - INFO - org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-03-12 18:17:10 - INFO - org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-12 18:17:10 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-12 18:17:10 - INFO - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=POSTGRES
+2026-03-12 18:17:10 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-12 18:17:10 - INFO - org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:testdb]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: testdb/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-12 18:17:11 - INFO - org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-12 18:17:11 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-12 18:17:12 - INFO - org.springframework.data.jpa.repository.query.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-12 18:17:12 - INFO - com.gotcha.gotcha_api.service.JWTService - Generated key length: 256 bits
+2026-03-12 18:17:12 - INFO - org.springframework.security.config.annotation.authentication.configuration.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+2026-03-12 18:17:12 - WARN - org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-12 18:17:12 - WARN - org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-12 18:17:13 - DEBUG - org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-03-12 18:17:13 - DEBUG - com.gotcha.gotcha_api.securityConfig.JWTFilter - Filter 'JWTFilter' configured for use
+2026-03-12 18:17:13 - INFO - org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-03-12 18:17:13 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+2026-03-12 18:17:13 - INFO - org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 2 ms
+2026-03-12 18:17:13 - INFO - com.gotcha.gotcha_api.controller.AuthControllerIntegrationTest - Started AuthControllerIntegrationTest in 6.482 seconds (process running for 8.275)
+2026-03-12 18:17:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/register
+2026-03-12 18:17:13 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:13 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/register
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/register
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/register
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/verify-email
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/verify-email
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:14 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Authenticated user
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/register
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/register
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing GET /api/verify-email
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured GET /api/verify-email
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.authentication.ProviderManager - Authentication failed with provider DaoAuthenticationProvider since Bad credentials
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/login
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/login
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.authentication.dao.DaoAuthenticationProvider - Failed to find user 'nonexistent@example.com'
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.authentication.ProviderManager - Authentication failed with provider DaoAuthenticationProvider since Bad credentials
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/register
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:15 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/register
+2026-03-12 18:17:16 - DEBUG - org.springframework.security.web.FilterChainProxy - Securing POST /api/register
+2026-03-12 18:17:16 - DEBUG - org.springframework.security.web.authentication.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-03-12 18:17:16 - DEBUG - org.springframework.security.web.FilterChainProxy - Secured POST /api/register
+2026-03-12 18:17:16 - INFO - org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-12 18:17:16 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-12 18:17:16 - INFO - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
