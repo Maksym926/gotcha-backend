@@ -1,5 +1,6 @@
 package com.gotcha.gotcha_api.model;
 
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import lombok.Getter;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -52,6 +53,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return user.getStatus() == AccountStatus.ACTIVE;
     }
 }

@@ -124,6 +124,19 @@ public class GlobalExceptionHandler {
         );
     }
 
+    // Invalid password reset token
+    @ExceptionHandler(InvalidPasswordResetTokenException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleInvalidPasswordResetTokenException(InvalidPasswordResetTokenException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                400,
+                errors
+        );
+    }
+
     // Fallback for unexpected runtime errors
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

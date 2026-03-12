@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 
 @Configuration
 @EnableWebSecurity
@@ -47,11 +49,13 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(HttpMethod.POST,"/api/register", "/api/login", "/api/logout", "/api/webhook/stripe").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/register", "/api/login", "/api/logout", "/api/webhook/stripe", "/api/forgot-password", "/api/reset-password").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/verify-email").permitAll()
 
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
 
-                        .requestMatchers("/api/member/**").hasAnyAuthority("ADMIN", "MEMBER")
+                        .requestMatchers("/api/member/subscription/**").hasAnyAuthority("ADMIN", "MEMBER")
+                        .requestMatchers("/api/member/**").access(memberSubscriptionAuthorizationManager())
 
                         .anyRequest()
                         .authenticated())
@@ -64,6 +68,11 @@ public class SecurityConfig {
 
 
         return http.build();
+    }
+
+    @Bean
+    public AuthorizationManager<RequestAuthorizationContext> memberSubscriptionAuthorizationManager() {
+        return new MemberSubscriptionAuthorizationManager();
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config){

@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotcha.gotcha_api.enums.Role;
+import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
 import com.gotcha.gotcha_api.model.dto.ProfileRequest;
@@ -63,6 +64,7 @@ public class ProfileIntegrationTest {
         testUser.setEmail("profileuser@gotcha.com");
         testUser.setPassword(encoder.encode("password123"));
         testUser.setRole(Role.MEMBER);
+        testUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         userRepository.save(testUser);
 
         when(s3Service.uploadFile(any(), anyString())).thenReturn("mocked-image-key");

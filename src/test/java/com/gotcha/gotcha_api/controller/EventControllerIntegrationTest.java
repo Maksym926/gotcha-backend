@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotcha.gotcha_api.enums.Role;
+import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.Event;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
@@ -73,6 +74,7 @@ public class EventControllerIntegrationTest {
         member.setEmail("eventmember@gotcha.com");
         member.setPassword(encoder.encode("password123"));
         member.setRole(Role.MEMBER);
+        member.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         userRepo.save(member);
 
         // Create admin user

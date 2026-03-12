@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotcha.gotcha_api.enums.Role;
+import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
 import com.gotcha.gotcha_api.repo.UserRepo;
@@ -72,6 +73,7 @@ public class AdminControllerIntegrationTest {
         memberUser.setEmail("regularmember@gotcha.com");
         memberUser.setPassword(encoder.encode("password123"));
         memberUser.setRole(Role.MEMBER);
+        memberUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         memberUser = userRepo.save(memberUser);
 
         // Create target user (for get/delete tests)
@@ -80,6 +82,7 @@ public class AdminControllerIntegrationTest {
         targetUser.setEmail("targetuser@gotcha.com");
         targetUser.setPassword(encoder.encode("password123"));
         targetUser.setRole(Role.MEMBER);
+        targetUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         targetUser = userRepo.save(targetUser);
 
         // Login admin

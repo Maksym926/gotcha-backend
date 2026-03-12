@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotcha.gotcha_api.enums.Role;
+import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.Product;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.LoginRequest;
@@ -72,6 +73,7 @@ public class OrderControllerIntegrationTest {
         testUser.setEmail("orderuser@gotcha.com");
         testUser.setPassword(encoder.encode("password123"));
         testUser.setRole(Role.MEMBER);
+        testUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         testUser.setGotchaCoins(100L);
         userRepo.save(testUser);
 
@@ -234,6 +236,7 @@ public class OrderControllerIntegrationTest {
         anotherUser.setEmail("another@gotcha.com");
         anotherUser.setPassword(encoder.encode("password123"));
         anotherUser.setRole(Role.MEMBER);
+        anotherUser.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         anotherUser.setGotchaCoins(100L);
         userRepo.save(anotherUser);
 
