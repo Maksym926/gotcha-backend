@@ -1,3 +1,13 @@
-FROM openjdk:27-ea
-ADD target/gotcha-api.jar gotcha-api.jar
+# Stage 1: Build
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+COPY src ./src
+RUN mvn package -DskipTests -B
+
+# Stage 2: Run
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY --from=build /app/target/gotcha-api.jar gotcha-api.jar
 ENTRYPOINT ["java", "-jar", "gotcha-api.jar"]

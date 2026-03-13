@@ -1,6 +1,3 @@
-version: "3.8"
-
-
 services:
 
   db:
@@ -28,13 +25,26 @@ services:
     ports:
       - "8080:8080"
     environment:
+      # Database
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/gotcha-db
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=admin
 
+      # Flyway
       - SPRING_FLYWAY_URL=jdbc:postgresql://db:5432/gotcha-db
       - SPRING_FLYWAY_USER=postgres
       - SPRING_FLYWAY_PASSWORD=admin
+
+      # AWS S3
+      - AWS_ACCESSKEY=${AWS_ACCESS_KEY}
+      - AWS_SECRETKEY=${AWS_SECRET_KEY}
+      - AWS_REGION=${AWS_REGION:-eu-north-1}
+      - AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
+
+      # Stripe
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - STRIPE_PRICE_ID=${STRIPE_PRICE_ID}
     depends_on:
       - db
     networks:
