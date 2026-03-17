@@ -53,6 +53,8 @@ services:
       - SPRING_MAIL_PASSWORD=${MAIL_PASSWORD}
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
+
+      - APP_FRONTEND_URL=${APP_FRONTEND_URL}
     depends_on:
       - db
     networks:
