@@ -35,8 +35,7 @@ build/
 ### Claude Code ###
 .claude/
 
-**/application.properties
-**/application-*.properties
+
 
 ### Environment ###
 .env
