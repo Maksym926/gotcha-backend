@@ -1,0 +1,66 @@
+services:
+
+  db:
+    image: postgres:16
+    container_name: gotcha-postgres-db
+    restart: always
+    environment:
+      - POSTGRES_DB=gotcha-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - gotcha-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gotcha-api/gotcha-api:v1
+    container_name: spring-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      # Database
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/gotcha-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+
+      # Flyway
+      - SPRING_FLYWAY_URL=jdbc:postgresql://db:5432/gotcha-db
+      - SPRING_FLYWAY_USER=postgres
+      - SPRING_FLYWAY_PASSWORD=admin
+
+      # AWS S3
+      - AWS_ACCESSKEY=${AWS_ACCESS_KEY}
+      - AWS_SECRETKEY=${AWS_SECRET_KEY}
+      - AWS_REGION=${AWS_REGION:-eu-north-1}
+      - AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
+
+      # Stripe
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - STRIPE_PRICE_ID=${STRIPE_PRICE_ID}
+
+      # Mail
+      - SPRING_MAIL_HOST=${MAIL_HOST:-smtp.gmail.com}
+      - SPRING_MAIL_PORT=${MAIL_PORT:-587}
+      - SPRING_MAIL_USERNAME=${MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${MAIL_PASSWORD}
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
+    depends_on:
+      - db
+    networks:
+      - gotcha-network
+
+volumes:
+  postgres_data:
+
+networks:
+  gotcha-network:
+    driver: bridge

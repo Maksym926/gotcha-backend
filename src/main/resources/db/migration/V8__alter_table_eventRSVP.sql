@@ -1,0 +1,3 @@
+ALTER TABLE event_rsvp
+DROP COLUMN status,
+ADD COLUMN guests BIGINT NOT NULL
