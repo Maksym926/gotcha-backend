@@ -62,7 +62,7 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(HttpMethod.POST,"/api/register", "/api/login", "/api/logout", "/api/webhook/stripe", "/api/forgot-password", "/api/reset-password").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/register", "/api/login", "/api/logout", "/api/refresh", "/api/webhook/stripe", "/api/forgot-password", "/api/reset-password").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/verify-email").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
 

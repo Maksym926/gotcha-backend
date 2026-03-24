@@ -4,23 +4,17 @@ import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.exception.custom.InvalidPasswordResetTokenException;
 import com.gotcha.gotcha_api.model.EmailVerificationToken;
 import com.gotcha.gotcha_api.model.User;
-import com.gotcha.gotcha_api.model.dto.ForgotPasswordRequest;
-import com.gotcha.gotcha_api.model.dto.LoginRequest;
-import com.gotcha.gotcha_api.model.dto.RegisterRequest;
-import com.gotcha.gotcha_api.model.dto.ResetPasswordRequest;
+import com.gotcha.gotcha_api.model.RefreshToken;
+import com.gotcha.gotcha_api.model.dto.*;
 import com.gotcha.gotcha_api.repo.EmailVerificationTokenRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
-import com.gotcha.gotcha_api.service.JWTService;
-import com.gotcha.gotcha_api.service.PasswordResetService;
-import com.gotcha.gotcha_api.service.TokenBlacklistService;
-import com.gotcha.gotcha_api.service.UserService;
+import com.gotcha.gotcha_api.service.*;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -44,6 +38,9 @@ public class AuthController {
     private PasswordResetService passwordResetService;
 
     @Autowired
+    private RefreshTokenService refreshTokenService;
+
+    @Autowired
     private EmailVerificationTokenRepo emailVerificationTokenRepo;
 
     @Autowired
@@ -55,15 +52,28 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@Valid @RequestBody LoginRequest loginRequest){
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
-        return jwtService.generateToken(loginRequest.email());
+    public AuthResponse loginUser(@Valid @RequestBody LoginRequest loginRequest){
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
+        String accessToken = jwtService.generateToken(loginRequest.email());
+        User user = userRepo.findByEmail(loginRequest.email())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
+        return new AuthResponse(accessToken, refreshToken.getToken());
+    }
+
+    @PostMapping("/refresh")
+    public AuthResponse refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
+        return refreshTokenService.rotateRefreshToken(request.refreshToken());
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(@RequestHeader("Authorization") String authHeader){
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String authHeader,
+                                         @RequestBody(required = false) RefreshTokenRequest refreshTokenRequest){
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             tokenBlacklistService.blacklist(authHeader.substring(7));
+        }
+        if (refreshTokenRequest != null && refreshTokenRequest.refreshToken() != null) {
+            refreshTokenService.revokeTokenFamily(refreshTokenRequest.refreshToken());
         }
         return ResponseEntity.ok("Logged out successfully");
     }
