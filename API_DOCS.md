@@ -35,7 +35,7 @@ Register a new user account.
 ---
 
 ### POST `/login`
-Login and receive a JWT token.
+Login and receive an access token and refresh token.
 
 **Auth:** None
 
@@ -47,14 +47,49 @@ Login and receive a JWT token.
 }
 ```
 
-**Response:** `200` — JWT token string
+**Response:** `200` — AuthResponse
+```json
+{
+  "accessToken": "jwt_access_token",
+  "refreshToken": "refresh_token_string"
+}
+```
+
+---
+
+### POST `/refresh`
+Rotate a refresh token to get a new access token and refresh token.
+
+**Auth:** None
+
+**Body:**
+```json
+{
+  "refreshToken": "string (required)"
+}
+```
+
+**Response:** `200` — AuthResponse
+```json
+{
+  "accessToken": "new_jwt_access_token",
+  "refreshToken": "new_refresh_token_string"
+}
+```
 
 ---
 
 ### POST `/logout`
-Invalidate the current JWT token.
+Invalidate the current access token and optionally revoke the refresh token family.
 
 **Auth:** Bearer token (header `Authorization`)
+
+**Body (optional):**
+```json
+{
+  "refreshToken": "string"
+}
+```
 
 **Response:** `200` — "Logged out successfully"
 
