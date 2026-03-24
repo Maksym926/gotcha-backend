@@ -138,6 +138,19 @@ public class GlobalExceptionHandler {
         );
     }
 
+    // Invalid refresh token
+    @ExceptionHandler(InvalidRefreshTokenException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponse handleInvalidRefreshTokenException(InvalidRefreshTokenException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                401,
+                errors
+        );
+    }
+
     // Authentication failures (bad credentials, disabled account, etc.) from controller-level auth calls
     @ExceptionHandler(AuthenticationException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
