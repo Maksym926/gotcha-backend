@@ -35,6 +35,7 @@ public class AdminService {
 
                 }
                 return new UserResponse(
+                        user.getUserId(),
                         user.getUsername(),
                         user.getEmail(),
                         user.getStatus(),
