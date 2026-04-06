@@ -88,30 +88,17 @@ public class AuthController {
             }
     )
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> loginUser(@Valid @RequestBody LoginRequest loginRequest,
+    public ResponseEntity<String> loginUser(@Valid @RequestBody LoginRequest loginRequest,
                                                   HttpServletResponse response) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
-        String accessToken = jwtService.generateToken(loginRequest.email());
         User user = userRepo.findByEmail(loginRequest.email())
                 .orElseThrow(() -> new RuntimeException("User not found"));
+        String accessToken = jwtService.generateToken(user.getEmail(), user.getUserId(), user.getRole().name());
         RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
 
         response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(refreshToken.getToken()).toString());
 
-        return ResponseEntity.ok(
-                new AuthResponse(
-                        accessToken,
-                        user.getUserId(),
-                        user.getUsername(),
-                        user.getEmail(),
-                        user.getStatus(),
-                        user.getGotchaCoins(),
-                        user.getProfilePictureKey(),
-                        user.getRole(),
-                        user.getMood(),
-                        user.getSubscriptionStatus(),
-                        user.getGotchaFavDrink()
-                ));
+        return ResponseEntity.ok(accessToken);
     }
 
     @Operation(
@@ -128,32 +115,19 @@ public class AuthController {
             }
     )
     @PostMapping("/refresh")
-    public ResponseEntity<AuthResponse> refreshToken(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<String> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         String refreshTokenValue = extractRefreshTokenCookie(request);
         if (refreshTokenValue == null) {
             throw new InvalidRefreshTokenException("Refresh token cookie is missing");
         }
 
         RefreshToken newRefreshToken = refreshTokenService.rotateRefreshToken(refreshTokenValue);
-        String accessToken = jwtService.generateToken(newRefreshToken.getUser().getEmail());
+        User user = newRefreshToken.getUser();
+        String accessToken = jwtService.generateToken(user.getEmail(), user.getUserId(), user.getRole().name());
 
         response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(newRefreshToken.getToken()).toString());
 
-        User user = newRefreshToken.getUser();
-
-        return ResponseEntity.ok(new AuthResponse(
-                accessToken,
-                user.getUserId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getStatus(),
-                user.getGotchaCoins(),
-                user.getProfilePictureKey(),
-                user.getRole(),
-                user.getMood(),
-                user.getSubscriptionStatus(),
-                user.getGotchaFavDrink()
-                ));
+        return ResponseEntity.ok(accessToken);
     }
 
     @Operation(

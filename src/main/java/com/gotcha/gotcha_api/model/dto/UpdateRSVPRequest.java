@@ -3,6 +3,8 @@ package com.gotcha.gotcha_api.model.dto;
 import jakarta.validation.constraints.*;
 
 public record UpdateRSVPRequest(
+        Long eventId,
+
         @NotBlank(message = "RSVP name is required")
         @Size(max = 255, message = "RSVP name must be less than 255 characters")
         String rsvpName,

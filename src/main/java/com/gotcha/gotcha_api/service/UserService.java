@@ -63,7 +63,7 @@ public class UserService {
         user.setEmail(request.email());
         user.setPassword(encoder.encode(request.password()));
         user.setStatus(AccountStatus.ACTIVE);
-        user.setSubscriptionStatus(SubscriptionStatus.INACTIVE);
+        user.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         user.setRole(Role.MEMBER);
 
         return user;

@@ -31,24 +31,31 @@ public class EventRSVPController {
 
     @PostMapping("/member/event/rsvp")
     public ResponseEntity<String> submitRSVP(@Valid @RequestBody RSVPRequest rsvpRequest, @AuthenticationPrincipal UserPrincipal userPrincipal){
-        EventRSVP eventRSVP = eventRSVPService.submitRSVP(rsvpRequest, userPrincipal);
+        eventRSVPService.submitRSVP(rsvpRequest, userPrincipal);
         return new ResponseEntity<>("RSVP submitted successfully", HttpStatus.OK);
     }
-    @PutMapping("/member/event/rsvp/{rsvp_id}")
-    public ResponseEntity<String> updateRSVP(@Valid @PathVariable("rsvp_id") Long rsvp_id, @RequestBody UpdateRSVPRequest updateRsvpRequest){
-        EventRSVP upadetedEventRSVP = eventRSVPService.updateRSVP(rsvp_id, updateRsvpRequest);
+    // member — current user's RSVPs
+
+    @GetMapping("/member/event/rsvp/me")
+    public ResponseEntity<Page<EventRSVP>> getMyRSVPs(@AuthenticationPrincipal UserPrincipal userPrincipal,
+                                                      @PageableDefault(size = 20, sort = "rsvpId", direction = Sort.Direction.DESC) Pageable pageable) {
+        Long userId = userPrincipal.getUser().getUserId();
+        return new ResponseEntity<>(eventRSVPService.getRSVPByUserId(userId, pageable), HttpStatus.OK);
+    }
+
+    @PutMapping("/member/event/rsvp/me")
+    public ResponseEntity<String> updateMyRSVP(@AuthenticationPrincipal UserPrincipal userPrincipal,
+                                               @Valid @RequestBody UpdateRSVPRequest updateRsvpRequest) {
+        Long userId = userPrincipal.getUser().getUserId();
+        eventRSVPService.updateRSVPByUserIdAndEventId(userId, updateRsvpRequest);
         return new ResponseEntity<>("RSVP updated successfully", HttpStatus.OK);
     }
-    @GetMapping("/member/event/rsvp/{rsvp_id}")
-    public ResponseEntity<EventRSVP> getRSVPById(@PathVariable Long rsvp_id){
-        return new ResponseEntity<>(eventRSVPService.getRSVPById(rsvp_id), HttpStatus.OK);
 
-    }
-    @DeleteMapping("/member/event/rsvp/{rsvp_id}")
-    public ResponseEntity<String> deleteRSVP(@PathVariable Long rsvp_id){
-
-        eventRSVPService.deleteRSVPById(rsvp_id);
-        return new ResponseEntity<>("RSVP deleted successfully", HttpStatus.OK);
+    @DeleteMapping("/member/event/rsvp/me")
+    public ResponseEntity<String> deleteAllMyRSVPs(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+        Long userId = userPrincipal.getUser().getUserId();
+        eventRSVPService.deleteAllRSVPsByUserId(userId);
+        return new ResponseEntity<>("All RSVPs deleted successfully", HttpStatus.OK);
     }
 
     //admin
