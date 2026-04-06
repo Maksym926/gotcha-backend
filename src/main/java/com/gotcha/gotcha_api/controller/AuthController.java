@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.controller;
 
 import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.exception.custom.InvalidPasswordResetTokenException;
+import com.gotcha.gotcha_api.exception.custom.InvalidRefreshTokenException;
 import com.gotcha.gotcha_api.model.EmailVerificationToken;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.RefreshToken;
@@ -9,9 +10,14 @@ import com.gotcha.gotcha_api.model.dto.*;
 import com.gotcha.gotcha_api.repo.EmailVerificationTokenRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.gotcha.gotcha_api.service.*;
+import com.gotcha.gotcha_api.util.CookieUtil;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -52,30 +58,61 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse loginUser(@Valid @RequestBody LoginRequest loginRequest){
+    public ResponseEntity<AuthResponse> loginUser(@Valid @RequestBody LoginRequest loginRequest,
+                                                  HttpServletResponse response) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
         String accessToken = jwtService.generateToken(loginRequest.email());
         User user = userRepo.findByEmail(loginRequest.email())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
-        return new AuthResponse(accessToken, refreshToken.getToken());
+
+        response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(refreshToken.getToken()).toString());
+
+        return ResponseEntity.ok(new AuthResponse(accessToken));
     }
 
     @PostMapping("/refresh")
-    public AuthResponse refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
-        return refreshTokenService.rotateRefreshToken(request.refreshToken());
+    public ResponseEntity<AuthResponse> refreshToken(HttpServletRequest request, HttpServletResponse response) {
+        String refreshTokenValue = extractRefreshTokenCookie(request);
+        if (refreshTokenValue == null) {
+            throw new InvalidRefreshTokenException("Refresh token cookie is missing");
+        }
+
+        RefreshToken newRefreshToken = refreshTokenService.rotateRefreshToken(refreshTokenValue);
+        String accessToken = jwtService.generateToken(newRefreshToken.getUser().getEmail());
+
+        response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(newRefreshToken.getToken()).toString());
+
+        return ResponseEntity.ok(new AuthResponse(accessToken));
     }
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestHeader("Authorization") String authHeader,
-                                         @RequestBody(required = false) RefreshTokenRequest refreshTokenRequest){
+                                         HttpServletRequest request, HttpServletResponse response) {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             tokenBlacklistService.blacklist(authHeader.substring(7));
         }
-        if (refreshTokenRequest != null && refreshTokenRequest.refreshToken() != null) {
-            refreshTokenService.revokeTokenFamily(refreshTokenRequest.refreshToken());
+
+        String refreshTokenValue = extractRefreshTokenCookie(request);
+        if (refreshTokenValue != null) {
+            refreshTokenService.revokeTokenFamily(refreshTokenValue);
         }
+
+        response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.deleteRefreshTokenCookie().toString());
+
         return ResponseEntity.ok("Logged out successfully");
+    }
+
+    private String extractRefreshTokenCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("refreshToken".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
     }
 
     @PostMapping("/forgot-password")

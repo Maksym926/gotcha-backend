@@ -3,7 +3,6 @@ package com.gotcha.gotcha_api.service;
 import com.gotcha.gotcha_api.exception.custom.InvalidRefreshTokenException;
 import com.gotcha.gotcha_api.model.RefreshToken;
 import com.gotcha.gotcha_api.model.User;
-import com.gotcha.gotcha_api.model.dto.AuthResponse;
 import com.gotcha.gotcha_api.repo.RefreshTokenRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ public class RefreshTokenService {
     @Autowired
     private RefreshTokenRepo refreshTokenRepo;
 
-    @Autowired
-    private JWTService jwtService;
-
     public RefreshToken createRefreshToken(User user) {
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setToken(UUID.randomUUID().toString());
@@ -38,7 +34,7 @@ public class RefreshTokenService {
     }
 
     @Transactional
-    public AuthResponse rotateRefreshToken(String tokenValue) {
+    public RefreshToken rotateRefreshToken(String tokenValue) {
         RefreshToken existingToken = refreshTokenRepo.findByToken(tokenValue)
                 .orElseThrow(() -> new InvalidRefreshTokenException("Invalid refresh token"));
 
@@ -51,10 +47,7 @@ public class RefreshTokenService {
             // Still within grace period — return same family new tokens without re-rotating
             if (existingToken.isWithinGracePeriod()) {
                 log.debug("Refresh token used within grace period, allowing");
-                String accessToken = jwtService.generateToken(existingToken.getUser().getEmail());
-                // Create a new refresh token in the same family
-                RefreshToken newToken = createRefreshTokenInFamily(existingToken.getUser(), existingToken.getFamily());
-                return new AuthResponse(accessToken, newToken.getToken());
+                return createRefreshTokenInFamily(existingToken.getUser(), existingToken.getFamily());
             }
 
             // Past grace period — this is token reuse, likely theft
@@ -72,11 +65,7 @@ public class RefreshTokenService {
         refreshTokenRepo.save(existingToken);
 
         // Issue new refresh token in the same family
-        RefreshToken newToken = createRefreshTokenInFamily(existingToken.getUser(), existingToken.getFamily());
-
-        String accessToken = jwtService.generateToken(existingToken.getUser().getEmail());
-
-        return new AuthResponse(accessToken, newToken.getToken());
+        return createRefreshTokenInFamily(existingToken.getUser(), existingToken.getFamily());
     }
 
     private RefreshToken createRefreshTokenInFamily(User user, String family) {
