@@ -2,6 +2,7 @@ package com.gotcha.gotcha_api.service;
 
 import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.enums.Role;
+import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.exception.custom.DuplicateEmailException;
 import com.gotcha.gotcha_api.model.EmailVerificationToken;
 import com.gotcha.gotcha_api.model.User;
@@ -62,6 +63,7 @@ public class UserService {
         user.setEmail(request.email());
         user.setPassword(encoder.encode(request.password()));
         user.setStatus(AccountStatus.ACTIVE);
+        user.setSubscriptionStatus(SubscriptionStatus.INACTIVE);
         user.setRole(Role.MEMBER);
 
         return user;
