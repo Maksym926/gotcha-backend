@@ -68,7 +68,7 @@ public class AuthController {
 
         response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(refreshToken.getToken()).toString());
 
-        return ResponseEntity.ok(new AuthResponse(accessToken));
+        return ResponseEntity.ok(new AuthResponse(accessToken, user.getUserId()));
     }
 
     @PostMapping("/refresh")
@@ -83,7 +83,7 @@ public class AuthController {
 
         response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(newRefreshToken.getToken()).toString());
 
-        return ResponseEntity.ok(new AuthResponse(accessToken));
+        return ResponseEntity.ok(new AuthResponse(accessToken, newRefreshToken.getUser().getUserId()));
     }
 
     @PostMapping("/logout")
