@@ -11,6 +11,11 @@ import com.gotcha.gotcha_api.repo.EmailVerificationTokenRepo;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.gotcha.gotcha_api.service.*;
 import com.gotcha.gotcha_api.util.CookieUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @Slf4j
+@Tag(name = "Authentication", description = "Login, logout, token refresh, registration, and password management")
 public class AuthController {
 
     @Autowired
@@ -57,6 +63,18 @@ public class AuthController {
         return userService.saveUser(registerRequest);
     }
 
+    @Operation(
+            summary = "Login",
+            description = "Authenticates the user and returns an access token in the response body. " +
+                    "A refresh token is set as an HTTP-only secure cookie (not visible to JavaScript).",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Login successful",
+                            headers = @Header(name = "Set-Cookie",
+                                    description = "refreshToken cookie (HttpOnly, Secure, SameSite=None, Path=/api, Max-Age=7 days)",
+                                    schema = @Schema(type = "string"))),
+                    @ApiResponse(responseCode = "401", description = "Invalid credentials")
+            }
+    )
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> loginUser(@Valid @RequestBody LoginRequest loginRequest,
                                                   HttpServletResponse response) {
@@ -71,6 +89,19 @@ public class AuthController {
         return ResponseEntity.ok(new AuthResponse(accessToken, user.getUserId()));
     }
 
+    @Operation(
+            summary = "Refresh access token",
+            description = "Rotates the refresh token and returns a new access token. " +
+                    "No request body needed — the refresh token is read from the HTTP-only cookie sent automatically by the browser. " +
+                    "A new refresh token cookie replaces the old one.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Token refreshed successfully",
+                            headers = @Header(name = "Set-Cookie",
+                                    description = "New rotated refreshToken cookie",
+                                    schema = @Schema(type = "string"))),
+                    @ApiResponse(responseCode = "401", description = "Missing, expired, or revoked refresh token")
+            }
+    )
     @PostMapping("/refresh")
     public ResponseEntity<AuthResponse> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         String refreshTokenValue = extractRefreshTokenCookie(request);
@@ -86,6 +117,17 @@ public class AuthController {
         return ResponseEntity.ok(new AuthResponse(accessToken, newRefreshToken.getUser().getUserId()));
     }
 
+    @Operation(
+            summary = "Logout",
+            description = "Blacklists the access token and revokes the refresh token family. " +
+                    "The refresh token cookie is cleared. No request body needed.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Logged out successfully",
+                            headers = @Header(name = "Set-Cookie",
+                                    description = "Clears the refreshToken cookie (Max-Age=0)",
+                                    schema = @Schema(type = "string")))
+            }
+    )
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestHeader("Authorization") String authHeader,
                                          HttpServletRequest request, HttpServletResponse response) {

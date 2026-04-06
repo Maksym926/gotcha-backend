@@ -6,10 +6,63 @@ Interactive docs (Swagger UI): `http://localhost:8080/swagger-ui.html`
 
 ## Authentication
 
-All `/member/**` and `/admin/**` endpoints require a JWT token in the `Authorization` header:
+This API uses a **dual-token** authentication strategy:
+
+- **Access token** (short-lived, 15 min) — sent by the frontend in the `Authorization` header for every API call
+- **Refresh token** (long-lived, 7 days) — stored as an **HTTP-only cookie**, managed entirely by the browser and backend
+
+All `/member/**` and `/admin/**` endpoints require a JWT access token:
 
 ```
-Authorization: Bearer <token>
+Authorization: Bearer <access_token>
+```
+
+### How refresh tokens work
+
+The refresh token is **never exposed to JavaScript**. The backend sets it as a `Set-Cookie` header, and the browser automatically stores and sends it. This protects against XSS attacks.
+
+**Cookie properties:**
+| Property | Value | Purpose |
+|----------|-------|---------|
+| `HttpOnly` | `true` | JavaScript cannot read the cookie |
+| `Secure` | `true` | Only sent over HTTPS |
+| `SameSite` | `None` | Allows cross-origin requests (frontend on different domain) |
+| `Path` | `/api` | Cookie only sent to `/api` endpoints |
+| `Max-Age` | `604800` (7 days) | Cookie expiration |
+
+### Token rotation
+
+Each call to `/refresh` invalidates the old refresh token and issues a new one. If a revoked token is reused (potential theft), the entire token family is revoked, logging out all sessions for that user.
+
+A 30-second grace period allows concurrent requests that may use the same token before the rotation completes.
+
+### Frontend integration
+
+The frontend must include `credentials: 'include'` (fetch) or `withCredentials: true` (axios) for the browser to send/receive cookies cross-origin:
+
+```javascript
+// Login
+const res = await fetch('/api/login', {
+  method: 'POST',
+  credentials: 'include',  // required for Set-Cookie to be stored
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, password })
+});
+const { accessToken, userId } = await res.json();
+
+// Refresh (when access token expires)
+const res = await fetch('/api/refresh', {
+  method: 'POST',
+  credentials: 'include'  // browser auto-sends the refreshToken cookie
+});
+const { accessToken, userId } = await res.json();
+
+// Logout
+await fetch('/api/logout', {
+  method: 'POST',
+  credentials: 'include',
+  headers: { 'Authorization': `Bearer ${accessToken}` }
+});
 ```
 
 ---
@@ -35,7 +88,7 @@ Register a new user account.
 ---
 
 ### POST `/login`
-Login and receive an access token and refresh token.
+Login and receive an access token. The refresh token is set as an HTTP-only cookie.
 
 **Auth:** None
 
@@ -48,47 +101,59 @@ Login and receive an access token and refresh token.
 ```
 
 **Response:** `200` — AuthResponse
+
+**Headers:**
+```
+Set-Cookie: refreshToken=<token>; Path=/api; HttpOnly; Secure; SameSite=None; Max-Age=604800
+```
+
+**Body:**
 ```json
 {
   "accessToken": "jwt_access_token",
-  "refreshToken": "refresh_token_string"
+  "userId": 1
 }
 ```
 
 ---
 
 ### POST `/refresh`
-Rotate a refresh token to get a new access token and refresh token.
+Rotate the refresh token and get a new access token. The refresh token is read from the HTTP-only cookie (sent automatically by the browser) — no request body needed.
 
-**Auth:** None
+**Auth:** None (authenticated via refresh token cookie)
+
+**Request:** No body required. The browser sends the `refreshToken` cookie automatically.
+
+**Response:** `200` — AuthResponse
+
+**Headers:**
+```
+Set-Cookie: refreshToken=<new_token>; Path=/api; HttpOnly; Secure; SameSite=None; Max-Age=604800
+```
 
 **Body:**
 ```json
 {
-  "refreshToken": "string (required)"
+  "accessToken": "new_jwt_access_token",
+  "userId": 1
 }
 ```
 
-**Response:** `200` — AuthResponse
-```json
-{
-  "accessToken": "new_jwt_access_token",
-  "refreshToken": "new_refresh_token_string"
-}
-```
+**Errors:**
+- `401` — Missing cookie, expired token, revoked token, or token reuse detected
 
 ---
 
 ### POST `/logout`
-Invalidate the current access token and optionally revoke the refresh token family.
+Invalidate the current access token and revoke the refresh token family. The refresh token cookie is cleared.
 
 **Auth:** Bearer token (header `Authorization`)
 
-**Body (optional):**
-```json
-{
-  "refreshToken": "string"
-}
+**Request:** No body required. The refresh token is read from the cookie.
+
+**Response Headers:**
+```
+Set-Cookie: refreshToken=; Path=/api; HttpOnly; Secure; SameSite=None; Max-Age=0
 ```
 
 **Response:** `200` — "Logged out successfully"
