@@ -5,6 +5,7 @@ import com.gotcha.gotcha_api.enums.Role;
 import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 
 public record UserResponse(
+        Long userId,
         String username,
         String email,
         AccountStatus status,

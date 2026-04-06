@@ -59,8 +59,20 @@ public class AuthController {
     private UserRepo userRepo;
 
     @PostMapping("/register")
-    public User registerUser(@Valid @RequestBody RegisterRequest registerRequest){
-        return userService.saveUser(registerRequest);
+    public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody RegisterRequest registerRequest){
+        User user = userService.saveUser(registerRequest);
+        return ResponseEntity.ok(new UserResponse(
+                user.getUserId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getStatus(),
+                user.getGotchaCoins(),
+                user.getProfilePictureKey(),
+                user.getRole(),
+                user.getMood(),
+                user.getSubscriptionStatus(),
+                user.getGotchaFavDrink()
+        ));
     }
 
     @Operation(
@@ -86,7 +98,20 @@ public class AuthController {
 
         response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(refreshToken.getToken()).toString());
 
-        return ResponseEntity.ok(new AuthResponse(accessToken, user.getUserId()));
+        return ResponseEntity.ok(
+                new AuthResponse(
+                        accessToken,
+                        user.getUserId(),
+                        user.getUsername(),
+                        user.getEmail(),
+                        user.getStatus(),
+                        user.getGotchaCoins(),
+                        user.getProfilePictureKey(),
+                        user.getRole(),
+                        user.getMood(),
+                        user.getSubscriptionStatus(),
+                        user.getGotchaFavDrink()
+                ));
     }
 
     @Operation(
@@ -114,7 +139,21 @@ public class AuthController {
 
         response.addHeader(HttpHeaders.SET_COOKIE, CookieUtil.createRefreshTokenCookie(newRefreshToken.getToken()).toString());
 
-        return ResponseEntity.ok(new AuthResponse(accessToken, newRefreshToken.getUser().getUserId()));
+        User user = newRefreshToken.getUser();
+
+        return ResponseEntity.ok(new AuthResponse(
+                accessToken,
+                user.getUserId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getStatus(),
+                user.getGotchaCoins(),
+                user.getProfilePictureKey(),
+                user.getRole(),
+                user.getMood(),
+                user.getSubscriptionStatus(),
+                user.getGotchaFavDrink()
+                ));
     }
 
     @Operation(
