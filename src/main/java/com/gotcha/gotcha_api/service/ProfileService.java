@@ -43,7 +43,6 @@ public class ProfileService {
                 user.getEmail(),
                 user.getGotchaCoins(),
                 signedUrl,
-                user.getRsvps(),
                 user.getMood(),
                 user.getSubscriptionStatus(),
                 user.getGotchaFavDrink(),

@@ -13,8 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -92,5 +92,20 @@ public class EventRSVPService {
         return eventRSVPRepo.findByEvent_EventId(eventId, pageable).orElseThrow(
                 () -> new ResourceNotFoundException("RSVP not found with event id: " + eventId)
         );
+    }
+
+    public EventRSVP updateRSVPByUserIdAndEventId(Long userId, UpdateRSVPRequest updateRsvpRequest) {
+        EventRSVP eventRSVP = eventRSVPRepo.findByUser_UserIdAndEvent_EventId(userId, updateRsvpRequest.eventId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "RSVP not found for user id: " + userId + " and event id: " + updateRsvpRequest.eventId()));
+        eventRSVP.setRsvpName(updateRsvpRequest.rsvpName());
+        eventRSVP.setRsvpEmail(updateRsvpRequest.rsvpEmail());
+        eventRSVP.setGuests(updateRsvpRequest.guestNumber());
+        return eventRSVPRepo.save(eventRSVP);
+    }
+
+    @Transactional
+    public void deleteAllRSVPsByUserId(Long userId) {
+        eventRSVPRepo.deleteByUser_UserId(userId);
     }
 }

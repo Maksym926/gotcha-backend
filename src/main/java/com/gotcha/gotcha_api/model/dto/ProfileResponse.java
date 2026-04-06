@@ -10,7 +10,6 @@ public record ProfileResponse(
         String email,
         Long gotchaCoins,
         String profilePictureUrl,
-        List<EventRSVP> rsvps,
         String mood,
         SubscriptionStatus subscriptionStatus,
         String gotchaFavDrink,
