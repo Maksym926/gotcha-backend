@@ -41,16 +41,16 @@ public class UserService {
         User user = mapToUser(registerRequest);
         User savedUser = userRepo.save(user);
 
-//        String token = UUID.randomUUID().toString();
-//        EmailVerificationToken verificationToken = new EmailVerificationToken();
-//        verificationToken.setToken(token);
-//        verificationToken.setUser(savedUser);
-//        verificationToken.setExpiryDate(LocalDateTime.now().plusHours(24));
-//        verificationToken.setUsed(false);
-//        verificationToken.setCreatedAt(LocalDateTime.now());
-//        emailVerificationTokenRepo.save(verificationToken);
-//
-//        emailService.sendVerificationEmail(savedUser.getEmail(), token);
+        String token = UUID.randomUUID().toString();
+        EmailVerificationToken verificationToken = new EmailVerificationToken();
+        verificationToken.setToken(token);
+        verificationToken.setUser(savedUser);
+        verificationToken.setExpiryDate(LocalDateTime.now().plusHours(24));
+        verificationToken.setUsed(false);
+        verificationToken.setCreatedAt(LocalDateTime.now());
+        emailVerificationTokenRepo.save(verificationToken);
+
+        emailService.sendVerificationEmail(savedUser.getEmail(), token);
 
         return savedUser;
     }
