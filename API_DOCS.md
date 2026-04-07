@@ -106,7 +106,21 @@ Register a new user account.
 }
 ```
 
-**Response:** `200` — User object
+**Response:** `200` — UserResponse
+```json
+{
+  "userId": 1,
+  "username": "string",
+  "email": "string",
+  "status": "ACTIVE",
+  "gotchaCoins": 0,
+  "profilePictureKey": null,
+  "role": "MEMBER",
+  "mood": null,
+  "subscriptionStatus": null,
+  "gotchaFavDrink": null
+}
+```
 
 ---
 
@@ -227,6 +241,7 @@ Get all users (paginated).
 {
   "content": [
     {
+      "userId": 1,
       "username": "string",
       "email": "string",
       "status": "ACTIVE|PENDING",
