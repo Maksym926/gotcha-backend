@@ -77,7 +77,7 @@ public class AuthController {
 
     @Operation(
             summary = "Login",
-            description = "Authenticates the user and returns an access token in the response body. " +
+            description = "Authenticates the user and returns a JWT access token (contains userId, role, email as claims). " +
                     "A refresh token is set as an HTTP-only secure cookie (not visible to JavaScript).",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Login successful",

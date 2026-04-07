@@ -36,6 +36,29 @@ Each call to `/refresh` invalidates the old refresh token and issues a new one. 
 
 A 30-second grace period allows concurrent requests that may use the same token before the rotation completes.
 
+### JWT claims
+
+The access token contains the following claims in its payload:
+
+```json
+{
+  "sub": "user@email.com",
+  "userId": 24,
+  "role": "MEMBER",
+  "iat": 1712422800,
+  "exp": 1712423700
+}
+```
+
+The frontend can decode the token to get user info without an extra API call:
+
+```javascript
+const payload = JSON.parse(atob(accessToken.split('.')[1]));
+// payload.sub    → "user@email.com"
+// payload.userId → 24
+// payload.role   → "MEMBER"
+```
+
 ### Frontend integration
 
 The frontend must include `credentials: 'include'` (fetch) or `withCredentials: true` (axios) for the browser to send/receive cookies cross-origin:
@@ -48,14 +71,14 @@ const res = await fetch('/api/login', {
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ email, password })
 });
-const { accessToken, userId } = await res.json();
+const accessToken = await res.text();
 
 // Refresh (when access token expires)
 const res = await fetch('/api/refresh', {
   method: 'POST',
   credentials: 'include'  // browser auto-sends the refreshToken cookie
 });
-const { accessToken, userId } = await res.json();
+const accessToken = await res.text();
 
 // Logout
 await fetch('/api/logout', {
@@ -100,20 +123,14 @@ Login and receive an access token. The refresh token is set as an HTTP-only cook
 }
 ```
 
-**Response:** `200` — AuthResponse
+**Response:** `200` — Access token string
 
 **Headers:**
 ```
 Set-Cookie: refreshToken=<token>; Path=/api; HttpOnly; Secure; SameSite=None; Max-Age=604800
 ```
 
-**Body:**
-```json
-{
-  "accessToken": "jwt_access_token",
-  "userId": 1
-}
-```
+**Body:** Raw JWT access token string (contains `userId`, `role`, and `email` as claims)
 
 ---
 
@@ -124,20 +141,14 @@ Rotate the refresh token and get a new access token. The refresh token is read f
 
 **Request:** No body required. The browser sends the `refreshToken` cookie automatically.
 
-**Response:** `200` — AuthResponse
+**Response:** `200` — Access token string
 
 **Headers:**
 ```
 Set-Cookie: refreshToken=<new_token>; Path=/api; HttpOnly; Secure; SameSite=None; Max-Age=604800
 ```
 
-**Body:**
-```json
-{
-  "accessToken": "new_jwt_access_token",
-  "userId": 1
-}
-```
+**Body:** Raw JWT access token string
 
 **Errors:**
 - `401` — Missing cookie, expired token, revoked token, or token reuse detected
@@ -342,14 +353,26 @@ Submit an RSVP for an event.
 
 ---
 
-### PUT `/member/event/rsvp/{rsvp_id}`
-Update an RSVP.
+### GET `/member/event/rsvp/me`
+Get all RSVPs for the currently authenticated user (paginated). User identity is extracted from the JWT token — no user ID needed in the URL.
+
+**Auth:** Member (active subscription)
+
+**Params:** `page`, `size`, `sort` (default: rsvpId,desc)
+
+**Response:** `200` — `Page<EventRSVP>`
+
+---
+
+### PUT `/member/event/rsvp/me`
+Update a specific RSVP for the current user, identified by `eventId` in the request body.
 
 **Auth:** Member (active subscription)
 
 **Body:**
 ```json
 {
+  "eventId": 1,
   "rsvpName": "string",
   "rsvpEmail": "email",
   "guestNumber": 1
@@ -360,17 +383,8 @@ Update an RSVP.
 
 ---
 
-### GET `/member/event/rsvp/{rsvp_id}`
-Get an RSVP by ID.
-
-**Auth:** Member (active subscription)
-
-**Response:** `200` — EventRSVP object
-
----
-
-### DELETE `/member/event/rsvp/{rsvp_id}`
-Delete an RSVP.
+### DELETE `/member/event/rsvp/me`
+Delete all RSVPs for the currently authenticated user.
 
 **Auth:** Member (active subscription)
 
@@ -565,7 +579,6 @@ Get the current user's profile.
   "email": "string",
   "gotchaCoins": 0,
   "profilePictureUrl": "string",
-  "rsvps": [],
   "mood": "string",
   "subscriptionStatus": "ACTIVE",
   "gotchaFavDrink": "string",
