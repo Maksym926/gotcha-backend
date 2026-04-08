@@ -105,7 +105,7 @@ public class WebhookController {
         Optional<User> userOpt = userRepo.findByStripeCustomerId(stripeCustomerId);
         userOpt.ifPresent(user -> {
             user.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
-            user.setGotchaCoins(300L);
+            user.setGotchaCoins(user.getGotchaCoins() + 300L);;
             userRepo.save(user);
         });
     }
