@@ -35,4 +35,12 @@ public class SubscriptionController {
         subscriptionService.cancelSubscription(userPrincipal.getUser());
         return ResponseEntity.ok("Subscription will be cancelled at the end of the billing period");
     }
+
+    @PostMapping("/refund")
+    public ResponseEntity<Map<String, String>> refundSubscription(
+            @AuthenticationPrincipal UserPrincipal userPrincipal) throws StripeException {
+
+        subscriptionService.refundAsMember(userPrincipal.getUser());
+        return ResponseEntity.ok(Map.of("message", "Subscription refunded successfully"));
+    }
 }

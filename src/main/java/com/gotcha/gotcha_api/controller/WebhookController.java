@@ -3,7 +3,10 @@ package com.gotcha.gotcha_api.controller;
 import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.repo.UserRepo;
+import com.gotcha.gotcha_api.service.SubscriptionService;
 import com.stripe.exception.SignatureVerificationException;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Subscription;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.model.Event;
@@ -25,6 +28,9 @@ public class WebhookController {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private SubscriptionService subscriptionService;
 
     @Value("${stripe.webhook.secret}")
     private String webhookSecret;
@@ -73,6 +79,15 @@ public class WebhookController {
                     syncSubscriptionState(event, customerId);
                 } else {
                     log.warn("customer.subscription.updated: could not extract customer ID from event");
+                }
+            }
+
+            case "charge.refunded" -> {
+                if (customerId != null) {
+                    log.info("charge.refunded: handling refund for customer={}", customerId);
+                    handleChargeRefunded(customerId);
+                } else {
+                    log.warn("charge.refunded: could not extract customer ID from event");
                 }
             }
 
@@ -193,5 +208,36 @@ public class WebhookController {
             user.setCancelAtPeriodEnd(false);
             userRepo.save(user);
         });
+    }
+
+    private void handleChargeRefunded(String stripeCustomerId) {
+        Optional<User> userOpt = userRepo.findByStripeCustomerId(stripeCustomerId);
+        if (userOpt.isEmpty()) {
+            log.warn("charge.refunded: no user found for stripeCustomerId={}", stripeCustomerId);
+            return;
+        }
+
+        User user = userOpt.get();
+
+        // Idempotency: if already deactivated via API, skip
+        if (user.getSubscriptionStatus() == SubscriptionStatus.INACTIVE
+                && user.getStripeSubscriptionId() == null) {
+            log.info("charge.refunded: user {} already deactivated, skipping", user.getUserId());
+            return;
+        }
+
+        // Cancel subscription on Stripe if still active
+        if (user.getStripeSubscriptionId() != null) {
+            try {
+                Subscription subscription = Subscription.retrieve(user.getStripeSubscriptionId());
+                subscription.cancel();
+            } catch (StripeException e) {
+                log.error("charge.refunded: failed to cancel subscription for user {}: {}",
+                        user.getUserId(), e.getMessage());
+            }
+        }
+
+        subscriptionService.deactivateAndClawBack(user);
+        log.info("charge.refunded: user {} deactivated, coins={}", user.getUserId(), user.getGotchaCoins());
     }
 }
