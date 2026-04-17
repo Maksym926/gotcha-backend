@@ -60,4 +60,6 @@ public class User {
 
     private String stripeSubscriptionId;
 
+    private boolean cancelAtPeriodEnd;
+
 }

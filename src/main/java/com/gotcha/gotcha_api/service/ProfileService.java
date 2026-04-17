@@ -45,6 +45,7 @@ public class ProfileService {
                 signedUrl,
                 user.getMood(),
                 user.getSubscriptionStatus(),
+                user.isCancelAtPeriodEnd(),
                 user.getGotchaFavDrink(),
                 user.getGotchaFavDrinkPictureKey()
         );

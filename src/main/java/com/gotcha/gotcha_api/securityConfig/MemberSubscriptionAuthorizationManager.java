@@ -32,8 +32,9 @@ public class MemberSubscriptionAuthorizationManager implements AuthorizationMana
 
         Object principal = auth.getPrincipal();
         if (principal instanceof UserPrincipal userPrincipal) {
+            SubscriptionStatus status = userPrincipal.getUser().getSubscriptionStatus();
             return new AuthorizationDecision(
-                    userPrincipal.getUser().getSubscriptionStatus() == SubscriptionStatus.ACTIVE
+                    status == SubscriptionStatus.ACTIVE || status == SubscriptionStatus.PAST_DUE
             );
         }
 

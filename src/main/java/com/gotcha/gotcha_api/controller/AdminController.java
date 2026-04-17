@@ -4,6 +4,8 @@ import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.model.dto.UserResponse;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.gotcha.gotcha_api.service.AdminService;
+import com.gotcha.gotcha_api.service.SubscriptionService;
+import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -21,6 +24,9 @@ public class AdminController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    SubscriptionService subscriptionService;
 
 
     @GetMapping("/users")
@@ -36,5 +42,12 @@ public class AdminController {
     public ResponseEntity<String> deleteUserById(@PathVariable Long id){
         adminService.deleteUserByID(id);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
+    }
+
+    @PostMapping("/users/{id}/refund")
+    public ResponseEntity<Map<String, String>> refundUser(@PathVariable Long id) throws StripeException {
+        User user = adminService.getUserByID(id);
+        subscriptionService.refundAsAdmin(user);
+        return ResponseEntity.ok(Map.of("message", "User refunded successfully"));
     }
 }

@@ -112,6 +112,19 @@ public class GlobalExceptionHandler {
         );
     }
 
+    // Refund not allowed
+    @ExceptionHandler(RefundNotAllowedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleRefundNotAllowedException(RefundNotAllowedException ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ErrorResponse(
+                LocalDateTime.now(),
+                400,
+                errors
+        );
+    }
+
     // Stripe exception
     @ExceptionHandler(StripeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

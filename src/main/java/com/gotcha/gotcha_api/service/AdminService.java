@@ -44,6 +44,7 @@ public class AdminService {
                         user.getRole(),
                         user.getMood(),
                         user.getSubscriptionStatus(),
+                        user.isCancelAtPeriodEnd(),
                         user.getGotchaFavDrink()
                 );
 

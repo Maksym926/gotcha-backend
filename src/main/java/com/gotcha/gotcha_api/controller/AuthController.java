@@ -71,6 +71,7 @@ public class AuthController {
                 user.getRole(),
                 user.getMood(),
                 user.getSubscriptionStatus(),
+                user.isCancelAtPeriodEnd(),
                 user.getGotchaFavDrink()
         ));
     }

@@ -14,6 +14,7 @@ public record UserResponse(
         Role role,
         String mood,
         SubscriptionStatus subscriptionStatus,
+        boolean cancelAtPeriodEnd,
         String gotchaFavDrink
 
 ) {
