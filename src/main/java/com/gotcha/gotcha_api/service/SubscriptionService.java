@@ -1,6 +1,5 @@
 package com.gotcha.gotcha_api.service;
 
-import com.gotcha.gotcha_api.enums.SubscriptionStatus;
 import com.gotcha.gotcha_api.model.User;
 import com.gotcha.gotcha_api.repo.UserRepo;
 import com.stripe.exception.StripeException;
@@ -8,7 +7,7 @@ import com.stripe.model.Customer;
 import com.stripe.model.Subscription;
 import com.stripe.param.CustomerCreateParams;
 import com.stripe.param.SubscriptionCreateParams;
-import com.stripe.param.SubscriptionCancelParams;
+import com.stripe.param.SubscriptionUpdateParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,6 +22,19 @@ public class SubscriptionService {
     private String priceId;
 
     public String subscribe(User user) throws StripeException {
+
+        // Re-subscribe: if user cancelled but period hasn't ended yet, just reactivate
+        if (user.getStripeSubscriptionId() != null && user.isCancelAtPeriodEnd()) {
+            Subscription subscription = Subscription.retrieve(user.getStripeSubscriptionId());
+            SubscriptionUpdateParams params = SubscriptionUpdateParams.builder()
+                    .setCancelAtPeriodEnd(false)
+                    .build();
+            subscription.update(params);
+
+            user.setCancelAtPeriodEnd(false);
+            userRepo.save(user);
+            return null;
+        }
 
         // Step 1: Create or reuse Stripe Customer
         String customerId = user.getStripeCustomerId();
@@ -51,7 +63,7 @@ public class SubscriptionService {
 
         // Step 3: Save subscription ID and set status to INACTIVE until payment confirmed by webhook
         user.setStripeSubscriptionId(subscription.getId());
-        user.setSubscriptionStatus(SubscriptionStatus.INACTIVE);
+        user.setSubscriptionStatus(com.gotcha.gotcha_api.enums.SubscriptionStatus.INACTIVE);
         userRepo.save(user);
 
         // Step 4: Return clientSecret for frontend to confirm payment
@@ -66,10 +78,12 @@ public class SubscriptionService {
         }
 
         Subscription subscription = Subscription.retrieve(user.getStripeSubscriptionId());
-        subscription.cancel();
+        SubscriptionUpdateParams params = SubscriptionUpdateParams.builder()
+                .setCancelAtPeriodEnd(true)
+                .build();
+        subscription.update(params);
 
-        user.setSubscriptionStatus(SubscriptionStatus.INACTIVE);
-        user.setStripeSubscriptionId(null);
+        user.setCancelAtPeriodEnd(true);
         userRepo.save(user);
     }
 }

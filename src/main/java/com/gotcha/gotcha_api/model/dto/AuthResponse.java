@@ -15,6 +15,7 @@ public record AuthResponse(
         Role role,
         String mood,
         SubscriptionStatus subscriptionStatus,
+        boolean cancelAtPeriodEnd,
         String gotchaFavDrink
 
 ) {

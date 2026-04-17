@@ -22,6 +22,9 @@ public class SubscriptionController {
             @AuthenticationPrincipal UserPrincipal userPrincipal) throws StripeException {
 
         String clientSecret = subscriptionService.subscribe(userPrincipal.getUser());
+        if (clientSecret == null) {
+            return ResponseEntity.ok(Map.of("reactivated", "true"));
+        }
         return ResponseEntity.ok(Map.of("clientSecret", clientSecret));
     }
 
@@ -30,6 +33,6 @@ public class SubscriptionController {
             @AuthenticationPrincipal UserPrincipal userPrincipal) throws StripeException {
 
         subscriptionService.cancelSubscription(userPrincipal.getUser());
-        return ResponseEntity.ok("Subscription cancelled successfully");
+        return ResponseEntity.ok("Subscription will be cancelled at the end of the billing period");
     }
 }

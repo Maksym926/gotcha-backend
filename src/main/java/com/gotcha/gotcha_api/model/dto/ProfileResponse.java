@@ -12,6 +12,7 @@ public record ProfileResponse(
         String profilePictureUrl,
         String mood,
         SubscriptionStatus subscriptionStatus,
+        boolean cancelAtPeriodEnd,
         String gotchaFavDrink,
         String gotchaFavDrinkPictureUrl
 ) {
