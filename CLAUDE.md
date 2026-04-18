@@ -52,7 +52,7 @@ com.gotcha.gotcha_api/
 
 | Entity | Description |
 |---|---|
-| `User` | Central entity. Has `role` (USER/MEMBER/ADMIN), `accountStatus` (ACTIVE/INACTIVE/SUSPENDED/PENDING/DELETED), `subscriptionStatus` (ACTIVE/INACTIVE/PAST_DUE), `gotchaCoins`, Stripe IDs, `cancelAtPeriodEnd` |
+| `User` | Central entity. Has `role` (MEMBER/ADMIN), `accountStatus` (ACTIVE/INACTIVE/SUSPENDED/PENDING/DELETED), `subscriptionStatus` (ACTIVE/INACTIVE/PAST_DUE), `gotchaCoins`, Stripe IDs, `cancelAtPeriodEnd` |
 | `RefreshToken` | Persisted DB tokens with family-based revocation for replay-attack detection |
 | `EmailVerificationToken` | 24-hour single-use token sent on registration |
 | `PasswordResetToken` | 15-minute single-use token for password reset flow |
@@ -116,6 +116,8 @@ Subscription flow uses `DEFAULT_INCOMPLETE` payment behavior (payment confirmati
 Uses **Gmail API with OAuth2** — not SMTP. `EmailService` builds a `Gmail` client via `UserCredentials` (client ID + secret + refresh token) on startup. Sends:
 - Email verification links (24h expiry) on registration
 - Password reset links (15min expiry)
+
+**Password reset guard**: `PasswordResetService.createPasswordResetToken()` silently skips sending an email if the account is not `ACTIVE` (e.g. `PENDING`). The API still returns the same generic 200 response to prevent enumeration.
 
 ### Image Storage
 

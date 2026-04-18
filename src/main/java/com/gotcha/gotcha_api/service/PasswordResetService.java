@@ -1,5 +1,6 @@
 package com.gotcha.gotcha_api.service;
 
+import com.gotcha.gotcha_api.enums.AccountStatus;
 import com.gotcha.gotcha_api.exception.custom.InvalidPasswordResetTokenException;
 import com.gotcha.gotcha_api.model.PasswordResetToken;
 import com.gotcha.gotcha_api.model.User;
@@ -41,6 +42,11 @@ public class PasswordResetService {
         }
 
         User user = userOptional.get();
+
+        if (user.getStatus() != AccountStatus.ACTIVE) {
+            log.warn("Password reset requested for non-active account (status={}): {}", user.getStatus(), email);
+            return; // silent skip — same response as "user not found" to prevent enumeration
+        }
 
         String token = UUID.randomUUID().toString();
 
