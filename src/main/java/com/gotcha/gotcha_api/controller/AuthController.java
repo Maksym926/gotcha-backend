@@ -171,6 +171,12 @@ public class AuthController {
         return null;
     }
 
+    @PostMapping("/resend-verification")
+    public ResponseEntity<String> resendVerification(@Valid @RequestBody ForgotPasswordRequest request) {
+        userService.resendVerificationEmail(request.email());
+        return ResponseEntity.ok("If your account is pending verification, a new verification link has been sent.");
+    }
+
     @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
         passwordResetService.createPasswordResetToken(request.email());

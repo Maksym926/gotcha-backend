@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ./mvnw test
 
 # Run a single test class
-./mvnw test -Dtest=SubscriptionControllerIntegrationTest
+./mvnw test -Dtest=AuthControllerIntegrationTest
 
 # Run a single test method
 ./mvnw test -Dtest=SubscriptionControllerIntegrationTest#testRefundSubscription_ExpiredWindow_Returns400
@@ -54,7 +54,7 @@ com.gotcha.gotcha_api/
 |---|---|
 | `User` | Central entity. Has `role` (MEMBER/ADMIN), `accountStatus` (ACTIVE/INACTIVE/SUSPENDED/PENDING/DELETED), `subscriptionStatus` (ACTIVE/INACTIVE/PAST_DUE), `gotchaCoins`, Stripe IDs, `cancelAtPeriodEnd` |
 | `RefreshToken` | Persisted DB tokens with family-based revocation for replay-attack detection |
-| `EmailVerificationToken` | 24-hour single-use token sent on registration |
+| `EmailVerificationToken` | 24-hour single-use token sent on registration or resend. Old tokens are invalidated before a new one is issued. |
 | `PasswordResetToken` | 15-minute single-use token for password reset flow |
 | `Event` / `EventRSVP` | Café events with RSVP (attending/not attending) per user |
 | `Product` / `Order` / `OrderItem` | Café menu ordering, paid with `gotchaCoins` |
@@ -72,7 +72,7 @@ com.gotcha.gotcha_api/
 
 | Path | Rule |
 |---|---|
-| `POST /api/register`, `/api/login`, `/api/logout`, `/api/refresh`, `/api/webhook/stripe`, `/api/forgot-password`, `/api/reset-password` | Public |
+| `POST /api/register`, `/api/login`, `/api/logout`, `/api/refresh`, `/api/webhook/stripe`, `/api/forgot-password`, `/api/reset-password`, `/api/resend-verification` | Public |
 | `GET /api/verify-email` | Public |
 | `/swagger-ui/**`, `/v3/api-docs/**` | Public |
 | `/api/admin/**` | `ADMIN` authority only |
@@ -85,7 +85,7 @@ com.gotcha.gotcha_api/
 
 | Controller | Prefix | Key Operations |
 |---|---|---|
-| `AuthController` | `/api` | register, login, logout, refresh token, forgot/reset password, verify email |
+| `AuthController` | `/api` | register, login, logout, refresh token, forgot/reset password, verify email, resend verification |
 | `ProfileController` | `/api/member/profile` | get/update profile (multipart with image), delete account |
 | `SubscriptionController` | `/api/member/subscription` | subscribe (returns Stripe `clientSecret`), cancel, refund |
 | `OrderController` | `/api/member/order` | place order (costs coins), list own orders; admin: list all orders with filtering |
@@ -114,10 +114,12 @@ Subscription flow uses `DEFAULT_INCOMPLETE` payment behavior (payment confirmati
 ### Email
 
 Uses **Gmail API with OAuth2** — not SMTP. `EmailService` builds a `Gmail` client via `UserCredentials` (client ID + secret + refresh token) on startup. Sends:
-- Email verification links (24h expiry) on registration
+- Email verification links (24h expiry) on registration and resend
 - Password reset links (15min expiry)
 
 **Password reset guard**: `PasswordResetService.createPasswordResetToken()` silently skips sending an email if the account is not `ACTIVE` (e.g. `PENDING`). The API still returns the same generic 200 response to prevent enumeration.
+
+**Resend verification guard**: `UserService.resendVerificationEmail()` silently skips if the account does not exist or is not `PENDING` (e.g. already `ACTIVE`, `SUSPENDED`, `DELETED`). All existing tokens for the user are deleted before a new one is issued.
 
 ### Image Storage
 
