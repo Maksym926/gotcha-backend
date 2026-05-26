@@ -58,7 +58,7 @@ com.gotcha.gotcha_api/
 | `PasswordResetToken` | 15-minute single-use token for password reset flow |
 | `Event` / `EventRSVP` | Café events with RSVP (attending/not attending) per user |
 | `Product` / `Order` / `OrderItem` | Café menu ordering, paid with `gotchaCoins` |
-| `StaticContent` | CMS-style key/value blocks with optional S3 image keys |
+| `StaticContent` | CMS-style key/value blocks with two optional S3 image keys: `imageKey` (primary) and `secondaryImageKey` |
 
 ### Authentication Flow
 
@@ -93,7 +93,7 @@ com.gotcha.gotcha_api/
 | `EventRSVPController` | `/api/member/event` | RSVP to events, update/delete RSVP |
 | `AdminController` | `/api/admin` | list/get/delete users (paginated), admin refund |
 | `ProductController` | `/api` | member: browse products; admin: CRUD products with images |
-| `StaticContentController` | `/api` | member: get content blocks; admin: CRUD content with images |
+| `StaticContentController` | `/api` | member: `GET /member/static-content/{sectionKey}`; admin: `GET /admin/static-content`, `PUT /admin/static-content/{sectionKey}` (multipart: `title`, `description` as `@RequestParam`; `imageFile`, `secondaryImageFile` as optional file parts) |
 | `NewsController` | `/api` | news listing (member) |
 | `WebhookController` | `/api/webhook/stripe` | Stripe webhook handler (public) |
 
@@ -131,7 +131,7 @@ AWS S3 (`S3Service`). Images uploaded as multipart in admin endpoints. Keys stor
 
 ### Database Migrations
 
-Flyway migrations in `src/main/resources/db/migration/`, naming `V{n}__{description}.sql`. Currently at **V26**. Hibernate is set to `validate` — it never creates or alters schema.
+Flyway migrations in `src/main/resources/db/migration/`, naming `V{n}__{description}.sql`. Currently at **V28**. Hibernate is set to `validate` — it never creates or alters schema.
 
 ## Testing
 

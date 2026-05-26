@@ -39,7 +39,6 @@ public class Event {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @NotBlank(message = "Image key is required")
     @Column(name = "image_key", length = 1000)
     private String imageKey;
 }

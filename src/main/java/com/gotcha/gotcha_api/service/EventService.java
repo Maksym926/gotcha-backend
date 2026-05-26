@@ -52,7 +52,7 @@ public class EventService {
             return  new EventResponse(
                     event.getEventId(),
                     event.getTitle(),
-                    event.getLocation(),
+                    event.getEventDate(),
                     signedUrl
             );
 
