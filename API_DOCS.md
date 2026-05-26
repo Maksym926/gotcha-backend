@@ -629,7 +629,7 @@ Delete the current user's profile/account.
 
 ## Static Content Endpoints
 
-### GET `/member/static-content/{sectionKey}`
+### GET `/static-content/{sectionKey}`
 Get a specific static content section by its key.
 
 **Auth:** Member (active subscription)

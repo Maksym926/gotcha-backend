@@ -93,7 +93,7 @@ com.gotcha.gotcha_api/
 | `EventRSVPController` | `/api/member/event` | RSVP to events, update/delete RSVP |
 | `AdminController` | `/api/admin` | list/get/delete users (paginated), admin refund |
 | `ProductController` | `/api` | member: browse products; admin: CRUD products with images |
-| `StaticContentController` | `/api` | member: `GET /member/static-content/{sectionKey}`; admin: `GET /admin/static-content`, `PUT /admin/static-content/{sectionKey}` (multipart: `title`, `description` as `@RequestParam`; `imageFile`, `secondaryImageFile` as optional file parts) |
+| `StaticContentController` | `/api` | public: `GET /static-content/{sectionKey}`; admin: `GET /admin/static-content`, `PUT /admin/static-content/{sectionKey}` (multipart: `title`, `description` as `@RequestParam`; `imageFile`, `secondaryImageFile` as optional file parts) |
 | `NewsController` | `/api` | news listing (member) |
 | `WebhookController` | `/api/webhook/stripe` | Stripe webhook handler (public) |
 
