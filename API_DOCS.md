@@ -629,36 +629,70 @@ Delete the current user's profile/account.
 
 ## Static Content Endpoints
 
-### GET `/member/static-content`
-Get all static content sections.
-
-**Auth:** Member (active subscription)
-
-**Response:** `200` — `List<StaticContent>`
-
----
-
-### GET `/member/static-content/{sectionKey}`
-Get a specific static content section.
+### GET `/static-content/{sectionKey}`
+Get a specific static content section by its key.
 
 **Auth:** Member (active subscription)
 
 **Response:** `200` — StaticContent object
+```json
+{
+  "contentId": 1,
+  "sectionKey": "hero",
+  "title": "string",
+  "description": "string",
+  "imageKey": "signed-s3-url or null",
+  "secondaryImageKey": "signed-s3-url or null"
+}
+```
+
+**Errors:**
+- `404` — Section not found
+
+---
+
+### GET `/admin/static-content`
+Get all static content sections.
+
+**Auth:** Admin
+
+**Response:** `200` — `List<StaticContent>`
+```json
+[
+  {
+    "contentId": 1,
+    "sectionKey": "hero",
+    "title": "string",
+    "description": "string",
+    "imageKey": "signed-s3-url or null",
+    "secondaryImageKey": "signed-s3-url or null"
+  }
+]
+```
 
 ---
 
 ### PUT `/admin/static-content/{sectionKey}`
-Update a static content section.
+Update a static content section. Both image fields are optional — omit a file part to leave the existing image unchanged.
 
 **Auth:** Admin
 
 **Content-Type:** `multipart/form-data`
 
 **Parts:**
-- `content` — JSON StaticContent data
-- `imageFile` — Image file
 
-**Response:** `200` — StaticContent object
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `title` | text param | yes | Section title |
+| `description` | text param | no | Section body text |
+| `imageFile` | file part | no | Primary image — replaces existing if provided |
+| `secondaryImageFile` | file part | no | Secondary image — replaces existing if provided |
+
+**Response:** `200` — Updated StaticContent object
+
+**Errors:**
+- `404` — Section not found
+- `500` — S3 upload failure
 
 ---
 
